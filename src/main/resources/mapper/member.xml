@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.dao.LoginDao">
+
+	<select id="login" parameterType="String" resultType="memberDto">
+		select email, userfname, userlname, userpwd
+		from member
+		where email = #{email} and userpwd = #{userpwd}
+	</select>
+
+	<select id="userList" resultType="memberDto">
+		select email, userfname, userlname, userpwd 
+		from member;
+	</select>
+	
+	<insert id="userRegister" parameterType="MemberDto">
+		insert into member (email, userfname, userlname, userpwd )
+		values (#{email}, #{userFname}, #{userLname}, #{userpwd})
+	</insert>
+	
+	<update id="userModify" parameterType="MemberDto">
+		update member
+		set userpwd = #{userpwd}, userfname = #{userFname}, userlname = #{userLname}
+		where email = #{email}
+	</update>
+	
+	<delete id="userDelete" parameterType="String">
+		delete from member
+		where email = #{email}
+	</delete>
+</mapper>
