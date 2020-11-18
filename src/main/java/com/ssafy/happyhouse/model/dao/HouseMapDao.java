@@ -18,5 +18,8 @@ public interface HouseMapDao {
 	List<HouseDealDto> getAptRentInDong(String dong);
 	List<HouseDealDto> getJuRentInDong(String dong);
 	List<HouseDealDto> getAptMemeInName(String apt);
+	List<HouseDealDto> getJuMemeInName(String apt);
+	List<HouseDealDto> getAptRentInName(String apt);
+	List<HouseDealDto> getJuRentInName(String apt);
 	List<HouseDealDto> getAptInType(String dong, String type);
 }

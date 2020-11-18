@@ -2,19 +2,13 @@ package com.ssafy.happyhouse.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.model.HouseDealDto;
 import com.ssafy.happyhouse.model.HouseInfoDto;
@@ -76,7 +70,41 @@ public class HouseMapController {
 	}
 
 	@GetMapping(value = "/searchResult")
-	public String list() {
+	public String list(String key, String word, Model model) {
+		if(key == null) key="";
+		if(word == null)  word="";
+		key=key.trim();
+		word = "%" + word.trim() + "%";
+		
+		System.out.println(key + " " + word);
+		
+		List<HouseDealDto> result = null;
+		
+		try {
+			switch(key){
+			case "dong":			
+				result=houseMapService.getAptMemeInDong(word);
+				result.addAll(houseMapService.getAptRentInDong(word));
+				result.addAll(houseMapService.getJuMemeInDong(word));
+				result.addAll(houseMapService.getJuRentInDong(word));				
+				break;
+			case "name":
+				result=houseMapService.getAptMemeInName(word);
+				result.addAll(houseMapService.getAptRentInName(word));
+				result.addAll(houseMapService.getJuMemeInName(word));
+				result.addAll(houseMapService.getJuRentInName(word));
+				break;
+			}
+			
+			model.addAttribute("result", result );
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg","검색 중 오류가 발생했습니다." );
+			return "error/error";
+		}
+		
+		System.out.println(result);
+		
 		return "dist/searchResult";
 	}
 
