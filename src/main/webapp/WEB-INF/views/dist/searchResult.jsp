@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Happy House</title>
+<title>Happy House</title>
 <link href="${root }/css/styles.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"
     crossorigin="anonymous" />
@@ -34,7 +34,7 @@
                 <div class="container-fluid">
                     <h1 class="mt-4">검색 결과</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="${root }/">Dashboard</a></li>
                         <li class="breadcrumb-item active">검색결과</li>
                     </ol>
                     <div class="card mb-4">
@@ -44,7 +44,7 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <c:choose>
-                                    <c:when test="${!empty dong}">
+                                    <c:when test="${!empty result}">
                                         <table class="table table-bordered" id="dataTable"
                                             width="100%" cellspacing="0">
                                             <thead>
@@ -64,7 +64,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach var="item" items="${dong}">
+                                                <c:forEach var="item" items="${result}">
                                                     <tr>
                                                         <td>${item.getNo()}</td>
                                                         <td>${item.getDong()}</td>
@@ -81,27 +81,6 @@
                                                     </tr>
                                                 </c:forEach>
                                             </tbody>
-                                        </table>
-                                    </c:when>
-                                    <c:when test="${!empty apt}">
-                                        <table class="table table-bordered" id="dataTable"
-                                            width="100%" cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th>번호</th>
-                                                    <th>법정동</th>
-                                                    <th>아파트이름</th>
-                                                    <th>지번</th>
-                                                    <th>지역코드</th>
-                                                    <th>가격</th>
-                                                    <th>건설연도</th>
-                                                    <th>거래연도</th>
-                                                    <th>거래월</th>
-                                                    <th>거래일</th>
-                                                    <th>면적</th>
-                                                    <th>층수</th>
-                                                </tr>
-                                            </thead>
                                         </table>
                                     </c:when>
                                     <c:otherwise>
