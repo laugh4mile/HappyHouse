@@ -28,7 +28,7 @@
 			dataType : 'json',
 			success : function(data, status) {
 				console.log(document.location.href.split("/")[5]);
-				
+
 				$.each(data, function(index, vo) {
 					$("#sido").append("<option value='"+vo.sidoCode+"'>" + vo.sidoName + "</option>");
 				});//each
@@ -75,26 +75,14 @@
 				success : function(data, status) {
 					$("#searchResult").empty();
 					$.each(data, function(index, vo) {
-						let str = "<tr class=" + colorArr[index % 3] + ">" + "<td>" + 
-						vo.no + "</td>" + "<td>" + 
-						vo.dong + "</td>" + "<td>" + 
-						vo.aptName + "</td>" + "<td>" + 
-						vo.jibun + "</td>" + "<td>" + 
-						vo.code + "</td>" + "<td>" + 
-						vo.dealAmount + "</td>" + "<td>" + 
-						vo.buildYear + "</td>" + "<td>" + 
-						vo.dealYear + "</td>" + "<td>" + 
-						vo.dealMonth + "</td>" + "<td>" +
-						vo.dealDay + "</td>" + "<td>" + 
-						vo.area + "</td>" + "<td>" + 
-						vo.floor + "</td>";
+						let str = "<tr class=" + colorArr[index % 3] + ">" + "<td>" + vo.no + "</td>" + "<td>" + vo.dong + "</td>" + "<td>" + vo.aptName + "</td>" + "<td>" + vo.jibun + "</td>" + "<td>" + vo.code + "</td>" + "<td>" + vo.dealAmount + "</td>" + "<td>" + vo.buildYear + "</td>" + "<td>" + vo.dealYear + "</td>" + "<td>" + vo.dealMonth + "</td>" + "<td>" + vo.dealDay + "</td>" + "<td>" + vo.area + "</td>" + "<td>" + vo.floor + "</td>";
 						$("#searchResult").append(str);
 					})
 				}//function
 			})
 		});//change
 	});//ready
-	function geocode(jsonData) {
+	/* function geocode(jsonData) {
 		let idx = 0;
 		$.each(jsonData, function(index, vo) {
 			let tmpLat;
@@ -103,7 +91,6 @@
 				key : 'AIzaSyBD6jkqOVbvgeKK3ij8y5su8_henALYfWs',
 				address : vo.dong + "+" + vo.aptName + "+" + vo.jibun
 			}, function(data, status) {
-				//alert(data.results[0].geometry.location.lat);
 				tmpLat = data.results[0].geometry.location.lat;
 				tmpLng = data.results[0].geometry.location.lng;
 				$("#lat_" + index).text(tmpLat);
@@ -111,7 +98,7 @@
 				addMarker(tmpLat, tmpLng, vo.aptName);
 			}, "json");//get
 		});//each
-	}
+	} */
 
 	function searchSomething() {
 		if (document.getElementById("search").value == "") {
@@ -191,6 +178,67 @@
 					</div>
 				</div>
 			</main>
+
+			<div class="container-fluid">
+				<div class="card mb-4">
+					<div id="map" style="width: 1630px; height: 400px;"></div>
+					<script type="text/javascript"
+						src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d0f81655e444c4cae90021cdf7832a59"></script>
+					<script>
+						var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+						mapOption = {
+							center : new kakao.maps.LatLng(37.5665734, 126.978179), // 지도의 중심좌표
+							level : 3
+						// 지도의 확대 레벨
+						};
+
+						var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+						// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+						var mapTypeControl = new kakao.maps.MapTypeControl();
+						// 지도 타입 컨트롤을 지도에 표시합니다
+						map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+						/* var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+						
+						var positions = [
+						{
+						    title: '카카오', 
+						    latlng: new kakao.maps.LatLng(33.450705, 126.570677)
+						},
+						{
+						    title: '생태연못', 
+						    latlng: new kakao.maps.LatLng(33.450936, 126.569477)
+						},
+						{
+						    title: '텃밭', 
+						    latlng: new kakao.maps.LatLng(33.450879, 126.569940)
+						},
+						{
+						    title: '근린공원',
+						    latlng: new kakao.maps.LatLng(33.451393, 126.570738)
+						}];
+
+						for (var i = 0; i < positions.length; i++) {
+
+							// 마커 이미지의 이미지 크기 입니다
+							var imageSize = new kakao.maps.Size(24, 35);
+
+							// 마커 이미지를 생성합니다    
+							var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+							// 마커를 생성합니다
+							var marker = new kakao.maps.Marker({
+								map : map, // 마커를 표시할 지도
+								position : positions[i].latlng, // 마커를 표시할 위치
+								title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+								image : markerImage
+							// 마커 이미지 
+							});
+						} */
+					</script>
+
+				</div>
+			</div>
 			<%@ include file="footer.jsp"%>
 		</div>
 	</div>
