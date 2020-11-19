@@ -139,7 +139,7 @@
 				<div class="container-fluid">
 					<h1 class="mt-4">주택전월세</h1>
 					<ol class="breadcrumb mb-4">
-						<li class="breadcrumb-item"><a href="index.jsp">Dashboard</a></li>
+						<li class="breadcrumb-item"><a href="${root }/map/index">Dashboard</a></li>
 						<li class="breadcrumb-item active">주택전월세</li>
 					</ol>
 					<div class="card mb-4">
