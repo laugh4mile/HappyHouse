@@ -29,7 +29,7 @@
                     <a class="nav-link" href="${root }/map/APTRent">APT 전월세</a>
                     <a class="nav-link" href="${root }/map/Jumeme">주택 매매</a>
                     <a class="nav-link" href="${root }/map/JuRent">주택 전월세</a>
-                    <a class="nav-link" href="#">상권 정보</a>
+                    <a class="nav-link" href="${root }/map/searchRoad">길 찾기</a>
                     <a class="nav-link" href="#">환경 정보</a>
                 </nav>
             </div>
