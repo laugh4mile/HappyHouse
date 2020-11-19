@@ -125,6 +125,11 @@
 </script>
 </head>
 <body class="sb-nav-fixed">
+
+	<%-- title name update (anonymous character)  --%>
+	<script>
+		document.title = 'HAPPY HOUSE';
+	</script>
 	<%@ include file="header.jsp"%>
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
