@@ -121,5 +121,11 @@ public class HouseMapController {
 		
 		return "dist/searchResult";
 	}
+	
+	@GetMapping(value = "/detailedInfo")
+	public String info(Model model) {
+	
+		return "dist/detailedInfo";
+	}
 
 }

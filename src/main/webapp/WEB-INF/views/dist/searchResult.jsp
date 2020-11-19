@@ -83,8 +83,8 @@
 									</a>
 									<div class="card-body">
 										<h4 class="card-title">
-											<a href="${root}/}">
-												<!-- 링크 바꾸기  -->
+											<a href="${root}/map/detailedInfo">
+												<!-- 파라미터로 뭘 보내는게 좋을까?  -->
 												아마트매매
 												${item.aptName}
 											</a>
@@ -107,8 +107,8 @@
 									<div class="card-body">
 										<h4 class="card-title">
 										<p></p>
-											<a href="${root}/}">
-												<!-- 링크 바꾸기  -->
+											<a href="${root}/map/detailedInfo">
+												<!-- 파라미터로 뭘 보내는게 좋을까? -->
 												아파트 전월세 - ${item.aptName}
 											</a>
 										</h4>
