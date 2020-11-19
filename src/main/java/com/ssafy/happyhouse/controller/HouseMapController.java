@@ -74,36 +74,42 @@ public class HouseMapController {
 		if(key == null) key="";
 		if(word == null)  word="";
 		key=key.trim();
-		word = "%" + word.trim() + "%";
-		
 		System.out.println(key + " " + word);
-		
-		List<HouseDealDto> result = null;
+
+		List<HouseDealDto> AptMeme = null;
+		List<HouseDealDto> AptRent = null;
+		List<HouseDealDto> JuMeme = null;
+		List<HouseDealDto> JuRent = null;
 		
 		try {
-			switch(key){
+			String search = "%" + word.trim() + "%";
+			
+			switch(key){			
 			case "dong":			
-				result=houseMapService.getAptMemeInDong(word);
-				result.addAll(houseMapService.getAptRentInDong(word));
-				result.addAll(houseMapService.getJuMemeInDong(word));
-				result.addAll(houseMapService.getJuRentInDong(word));				
+				AptMeme = houseMapService.getAptMemeInDong(search);
+				AptRent = houseMapService.getAptRentInDong(search);
+				JuMeme = houseMapService.getJuMemeInDong(search);
+				JuRent = houseMapService.getJuRentInDong(search);				
 				break;
 			case "name":
-				result=houseMapService.getAptMemeInName(word);
-				result.addAll(houseMapService.getAptRentInName(word));
-				result.addAll(houseMapService.getJuMemeInName(word));
-				result.addAll(houseMapService.getJuRentInName(word));
+				AptMeme = houseMapService.getAptMemeInName(search);
+				AptRent = houseMapService.getAptRentInName(search);
+				JuMeme = houseMapService.getJuMemeInName(search);
+				JuRent = houseMapService.getJuRentInName(search);
 				break;
 			}
 			
-			model.addAttribute("result", result );
+			model.addAttribute("word", word );
+			model.addAttribute("AptMeme", AptMeme );
+			model.addAttribute("AptRent", AptRent );
+			model.addAttribute("JuMeme", JuMeme );
+			model.addAttribute("JuRent", JuRent );
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			model.addAttribute("msg","검색 중 오류가 발생했습니다." );
 			return "error/error";
 		}
-		
-		System.out.println(result);
 		
 		return "dist/searchResult";
 	}
