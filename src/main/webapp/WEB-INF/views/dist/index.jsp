@@ -8,7 +8,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 
-<title>Happy House</title>
+<title>Happy House</title>
 
 <link href="${root }/css/styles.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
