@@ -13,10 +13,13 @@ public interface HouseMapService {
 	List<HouseInfoDto> getDongInGugun(String gugun) throws Exception;
 	List<HouseInfoDto> getAptInDong(String dong) throws Exception;
 	List<HouseDealDto> getAptMemeInDong(String dong) throws Exception;
-	List<HouseDealDto> getJuMemeInDong(String dong);
-	List<HouseDealDto> getAptRentInDong(String dong);
-	List<HouseDealDto> getJuRentInDong(String dong);
-	List<HouseDealDto> getAptMemeInName(String apt);
-	List<HouseDealDto> getAptInType(String dong, String type);
+	List<HouseDealDto> getJuMemeInDong(String dong) throws Exception;
+	List<HouseDealDto> getAptRentInDong(String dong) throws Exception;
+	List<HouseDealDto> getJuRentInDong(String dong) throws Exception;
+	List<HouseDealDto> getAptMemeInName(String apt) throws Exception;
+	List<HouseDealDto> getJuMemeInName(String apt) throws Exception;
+	List<HouseDealDto> getAptRentInName(String apt) throws Exception;
+	List<HouseDealDto> getJuRentInName(String apt) throws Exception;
+	List<HouseDealDto> getAptInType(String dong, String type) throws Exception;
 	
 }

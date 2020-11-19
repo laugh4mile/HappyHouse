@@ -51,28 +51,42 @@ public class HouseMapServiceImpl implements HouseMapService {
 	}
 
 	@Override
-	public List<HouseDealDto> getAptMemeInName(String apt) {
+	public List<HouseDealDto> getAptMemeInName(String apt) throws Exception {
 		return housemapdao.getAptMemeInName(apt);
 	}
 
 	@Override
-	public List<HouseDealDto> getJuMemeInDong(String dong) {
+	public List<HouseDealDto> getJuMemeInDong(String dong) throws Exception  {
 		return housemapdao.getJuMemeInDong(dong);
 	}
 
 	@Override
-	public List<HouseDealDto> getAptRentInDong(String dong) {
+	public List<HouseDealDto> getAptRentInDong(String dong) throws Exception  {
 		return housemapdao.getAptRentInDong(dong);
 	}
 
 	@Override
-	public List<HouseDealDto> getJuRentInDong(String dong) {
+	public List<HouseDealDto> getJuRentInDong(String dong) throws Exception {
 		return housemapdao.getJuRentInDong(dong);
 	}
 
 	@Override
-	public List<HouseDealDto> getAptInType(String dong, String type) {
-		return housemapdao.getAptInType(dong, type);
-		
+	public List<HouseDealDto> getJuMemeInName(String apt) throws Exception {
+		return housemapdao.getJuMemeInName(apt);
+	}
+
+	@Override
+	public List<HouseDealDto> getAptRentInName(String apt) throws Exception {
+		return housemapdao.getAptRentInName(apt);
+	}
+
+	@Override
+	public List<HouseDealDto> getJuRentInName(String apt) throws Exception {
+		return housemapdao.getJuRentInName(apt);
+	}
+	
+	@Override
+	public List<HouseDealDto> getAptInType(String dong, String type) throws Exception {
+		return housemapdao.getAptInType(dong, type);		
 	}
 }

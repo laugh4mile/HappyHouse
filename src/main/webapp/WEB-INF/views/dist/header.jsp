@@ -15,25 +15,24 @@
     <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
     </button>
-    <!-- Navbar Search-->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"
-        id="searchform" method="post">
-        <input type="hidden" name="act" id="act" value="search">
-        <div class="input-group">
-            <select name='key' id='key'>
-                <option value='dong'>동</option>
-                <option value='apt'>이름</option>
-            </select>
-            <input class="form-control" id="word" name="word" type="text"
-                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button"
-                    onkeydown="javascript:if(event.keyCode == 13) {console.log('wow'); searchSomething();}"
-                    onclick="javascript:searchSomething();">검색</button>
-            </div>
-        </div>
-    </form>
-    <!-- Navbar-->
+	<!-- nav search bar 부분 수정 : jh -->
+	<form class="ml-auto mr-0 mr-md-3 my-2 my-md-0" id="searchform" method="get" action="${root}/map/searchResult">
+		<div class="form-row">
+			<select class="col-12 col-md-3 form-control" name="key" id="key">
+				<option value="dong" selected="selected">동 이름 검색</option>
+				<option value="name">아파트/주택 이름 검색</option>
+			</select>
+			<div class="col-12 col-md-6 mb-2 mb-md-0">
+				<input type="text" name="word" class="form-control form-control-lg"
+					placeholder="">
+			</div>
+			<div class="col-12 col-md-3">
+				<button type="submit" class="btn btn-block btn-lg btn-primary">Search!</button>
+			</div>
+		</div>
+	</form>
+	<!-- nav search bar 부분 수정 : jh -->
+	
     <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="userDropdown"
                 href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
