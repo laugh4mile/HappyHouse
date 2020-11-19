@@ -25,6 +25,33 @@
 		$('#mvRegisterBtn').focusin(function() {
 			$(location).attr("href", "${root}/");
 		});
+		$("#registerBtn").click(function() {
+			let registerinfo = JSON.stringify({
+				"email" : $("#email").val(),
+				"userLname" : $("#userLname").val(),
+				"userFname" : $("#userFname").val(),
+				"userpwd" : $("#userpwd").val(),
+			});
+			console.log("여기까지는 된다");
+			$.ajax({
+				url : '${root}/user/regi',
+				type : 'POST',
+				contentType : 'application/json;charset=utf-8',
+				dataType : 'json',
+				data : registerinfo,
+				success : function(users) {
+					$("#email").val('');
+					$("#userLname").val('');
+					$("#userFname").val('');
+					$("#userpwd").val('');
+					$("#userRegModal").modal("hide");
+					makeList(users);
+				},
+				error : function(xhr, status, msg) {
+					console.log("상태값 : " + status + " Http에러메시지 : " + msg);
+				}
+			});
+		});
 	});
 	/* function login() {
 		if (document.getElementById("inputEmailAddress").value == "") {
@@ -99,7 +126,10 @@
 								</div>
 								<div class="card-footer text-center">
 									<div class="small">
-										<a href="register.jsp">Need an account? Sign up!</a>
+										<!-- <a href="register.jsp">Need an account? Sign up!</a> -->
+
+										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userRegModal">Need
+											an account? Sign up!</button>
 									</div>
 								</div>
 							</div>
@@ -109,6 +139,47 @@
 			</main>
 		</div>
 	</div>
+	<!-- 회원 등록 모달 -->
+	<div class="modal" id="userRegModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h4 class="modal-title">회원등록</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<div class="modal-body">
+					<form id="memberform" method="post" action="">
+						<input type="hidden" name="act" id="act" value="">
+						<div class="form-group" align="left">
+							<label for="email">이메일</label><br> <input type="text"
+								class="form-control" id="email" name="email" placeholder="">
+						</div>
+						<div class="form-group" align="left">
+							<label for="">비밀번호</label> <input type="password"
+								class="form-control" id="userpwd" name="userpwd" placeholder="">
+						</div>
+						<div class="form-group" align="left">
+							<label for="">성</label> <input type="text" class="form-control"
+								id="userLname" name="userLname" placeholder="">
+						</div>
+						<div class="form-group" align="left">
+							<label for="name">이름</label> <input type="text"
+								class="form-control" id="userFname" name="userFname"
+								placeholder="">
+						</div>
+						<div class="form-group" align="center">
+							<button type="button" class="btn btn-primary" id="registerBtn">회원가입</button>
+							<button type="reset" class="btn btn-warning">초기화</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
