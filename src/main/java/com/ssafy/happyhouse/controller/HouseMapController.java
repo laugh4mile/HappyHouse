@@ -68,6 +68,14 @@ public class HouseMapController {
 	public String listAPTMeme() {
 		return "dist/APTmeme";
 	}
+	@GetMapping(value="/searchRoad")
+	public String searchRoad() {
+		return "dist/searchRoad";
+	}
+	@GetMapping(value="/index")
+	public String index() {
+		return "dist/index";
+	}
 
 	@GetMapping(value = "/searchResult")
 	public String list(String key, String word, Model model) {
