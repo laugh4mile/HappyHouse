@@ -72,9 +72,9 @@
 								<div class="card-body">
 									<form id="loginform" method="post" action="">
 										<div class="form-group">
-											<label class="small mb-1" for="inputEmailAddress">Email</label>
+											<label class="small mb-1" for="inputEmailAddress">ID</label>
 											<input class="form-control py-4" id="inputEmailAddress"
-												name="email" type="email" placeholder="Enter email address" />
+												name="email" type="email" placeholder="Enter ID" />
 										</div>
 										<div class="form-group">
 											<label class="small mb-1" for="inputPassword">Password</label>
