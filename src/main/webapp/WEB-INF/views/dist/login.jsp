@@ -25,8 +25,7 @@
 		$('#mvRegisterBtn').focusin(function() {
 			$(location).attr("href", "${root}/");
 		});
-		
-		
+
 		$("#registerBtn").click(function() {
 			let registerinfo = JSON.stringify({
 				"email" : $("#email").val(),
@@ -54,14 +53,11 @@
 				}
 			});
 		});
-		
-		$("#find_pw_btn").click(function(){
-			location.href='../user/find_pw_form';
+
+		$("#find_pw_btn").click(function() {
+			location.href = '../user/find_pw_form';
 		});
-		
-		
-		
-		
+
 	});
 	/* function login() {
 		if (document.getElementById("inputEmailAddress").value == "") {
@@ -88,9 +84,37 @@
 <meta name="author" content="" />
 <title>Page Title - SB Admin</title>
 <link href="${root }/css/styles.css" rel="stylesheet" />
+<link href="${root }/css/style_hyunsoo.css" rel="stylesheet" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
 	crossorigin="anonymous"></script>
+<script type="text/javascript">
+  function loginWithKakao() {
+    Kakao.Auth.authorize({
+      redirectUri: 'https://developers.kakao.com/tool/demo/oauth'
+    })
+  }
+  // 아래는 데모를 위한 UI 코드입니다.
+  displayToken()
+  function displayToken() {
+    const token = getCookie('authorize-access-token')
+    if(token) {
+      Kakao.Auth.setAccessToken(token)
+      Kakao.Auth.getStatusInfo(({ status }) => {
+        if(status === 'connected') {
+          document.getElementById('token-result').innerText = 'login success. token: ' + Kakao.Auth.getAccessToken()
+        } else {
+          Kakao.Auth.setAccessToken(null)
+        }
+      })
+    }
+  }
+  function getCookie(name) {
+    const value = "; " + document.cookie;
+    const parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+  }
+</script>
 </head>
 <body class="bg-primary">
 	<div id="layoutAuthentication">
@@ -128,16 +152,14 @@
 										</div>
 										<div
 											class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-											
+							
 											<label>Password</label>
 											<span class="w3-right w3-button w3-hover-white" title="비밀번호 찾기" id="find_pw_btn">
 												<i class="fa fa-exclamation-triangle w3-hover-text-red w3-large"></i>
 											</span>											
 											
 											<a class="small"  href="${root}/user/find_pw_form">Forgot Password?</a>
-											
-											
-											
+
 											<!-- <button type="button" class="btn btn-primary" onclick="javascript:login();">Login</button> -->
 											<button type="button" id="loginBtn" class="btn btn-primary">Login</button>
 										</div>
@@ -147,8 +169,14 @@
 									<div class="small">
 										<!-- <a href="register.jsp">Need an account? Sign up!</a> -->
 
-										<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userRegModal">Need
-											an account? Sign up!</button>
+										<button type="button" class="btn_signup" data-toggle="modal"
+											data-target="#userRegModal">회원가입 하기</button>
+										<a id="custom-login-btn" class="btn_kakaoLogin"
+											href="javascript:loginWithKakao()"> <img
+											src="${root}/img/kakao_login_medium_narrow.png" width="" />
+										</a>
+										<p id="token-result"></p>
+
 									</div>
 								</div>
 							</div>
