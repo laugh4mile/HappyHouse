@@ -75,7 +75,7 @@
 				<div class="result-cards">
 					<c:if test="${!empty AptMeme}">
 						<c:forEach var="item" items="${AptMeme}">
-							<div class="col-lg-2 col-sm-5 portfolio-item AptMeme">
+							<div class="col-lg-3 col-sm-5 portfolio-item AptMeme">
 								<div class="card h-150">
 									<a href="${root}/" target="blank">
 										<!-- 링크 바꾸기  -->
@@ -83,9 +83,9 @@
 									</a>
 									<div class="card-body">
 										<h4 class="card-title">
+											<p>아마트매매</p>
 											<a href="${root}/map/detailedInfo">
 												<!-- 파라미터로 뭘 보내는게 좋을까?  -->
-												아마트매매
 												${item.aptName}
 											</a>
 										</h4>
@@ -98,7 +98,7 @@
 
 					<c:if test="${!empty AptRent}">
 						<c:forEach var="item" items="${AptRent}">
-							<div class="col-lg-2 col-sm-5 portfolio-item AptRent">
+							<div class="col-lg-3 col-sm-5 portfolio-item AptRent">
 								<div class="card h-150">
 									<a href="${root}/" target="blank">
 										<!-- 링크 바꾸기  -->
@@ -106,10 +106,10 @@
 									</a>
 									<div class="card-body">
 										<h4 class="card-title">
-										<p></p>
+											<p>아파트 전월세</p>
 											<a href="${root}/map/detailedInfo">
 												<!-- 파라미터로 뭘 보내는게 좋을까? -->
-												아파트 전월세 - ${item.aptName}
+												${item.aptName}
 											</a>
 										</h4>
 										<p class="card-text">${item.dealAmount}만원</p>
@@ -121,7 +121,7 @@
 
 					<c:if test="${!empty JuMeme}">
 						<c:forEach var="item" items="${JuMeme}">
-							<div class="col-lg-2 col-sm-5 portfolio-item JuMeme">
+							<div class="col-lg-3 col-sm-5 portfolio-item JuMeme">
 								<div class="card h-150">
 									<a href="${root}/" target="blank">
 										<!-- 링크 바꾸기  -->
@@ -129,9 +129,10 @@
 									</a>
 									<div class="card-body">
 										<h4 class="card-title">
+											<p>주택 매매</p>
 											<a href="${root}/}">
 												<!-- 링크 바꾸기  -->
-												주택 매매 - ${item.aptName}
+												${item.aptName}
 											</a>
 										</h4>
 										<p class="card-text">${item.dealAmount}만원</p>
@@ -143,7 +144,7 @@
 
 					<c:if test="${!empty JuRent}">
 						<c:forEach var="item" items="${JuRent}">
-							<div class="col-lg-2 col-sm-5 portfolio-item JuRent">
+							<div class="col-lg-3 col-sm-5 portfolio-item JuRent">
 								<div class="card h-150">
 									<a href="${root}/" target="blank">
 										<!-- 링크 바꾸기  -->
@@ -151,9 +152,10 @@
 									</a>
 									<div class="card-body">
 										<h4 class="card-title">
+											<p>주택 전월세</p>
 											<a href="${root}/}">
 												<!-- 링크 바꾸기  -->
-												주택 전월세 - ${item.aptName}
+												${item.aptName}
 											</a>
 										</h4>
 										<p class="card-text">${item.dealAmount}만원</p>
