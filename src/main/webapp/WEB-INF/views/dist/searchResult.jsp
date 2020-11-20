@@ -77,7 +77,7 @@
 						<c:forEach var="item" items="${AptMeme}">
 							<div class="col-lg-3 col-sm-5 portfolio-item AptMeme">
 								<div class="card h-150">
-									<a href="${root}/" target="blank">
+									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 										<!-- 링크 바꾸기  -->
 										<img class="card-img-top" src="https://via.placeholder.com/100X150" alt="">
 									</a>
@@ -100,7 +100,7 @@
 						<c:forEach var="item" items="${AptRent}">
 							<div class="col-lg-3 col-sm-5 portfolio-item AptRent">
 								<div class="card h-150">
-									<a href="${root}/" target="blank">
+									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 										<!-- 링크 바꾸기  -->
 										<img class="card-img-top" src="https://via.placeholder.com/100X150" alt="">
 									</a>
@@ -123,7 +123,7 @@
 						<c:forEach var="item" items="${JuMeme}">
 							<div class="col-lg-3 col-sm-5 portfolio-item JuMeme">
 								<div class="card h-150">
-									<a href="${root}/" target="blank">
+									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 										<!-- 링크 바꾸기  -->
 										<img class="card-img-top" src="https://via.placeholder.com/100X150" alt="">
 									</a>
@@ -146,7 +146,7 @@
 						<c:forEach var="item" items="${JuRent}">
 							<div class="col-lg-3 col-sm-5 portfolio-item JuRent">
 								<div class="card h-150">
-									<a href="${root}/" target="blank">
+									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 										<!-- 링크 바꾸기  -->
 										<img class="card-img-top" src="https://via.placeholder.com/100X150" alt="">
 									</a>
