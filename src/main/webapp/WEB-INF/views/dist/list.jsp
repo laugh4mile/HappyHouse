@@ -112,14 +112,14 @@
 							});			
 						});*/
 
-						// 회워 정보 수정 보기.
+						// 회원 정보 수정 보기.
 						$(document).on("click", ".modiBtn", function() {
 							let mid = $(this).parents("tr").attr("data-id");
 							$("#view_" + mid).css("display", "none");
 							$("#mview_" + mid).css("display", "");
 						});
 
-						// 회워 정보 수정 실행.
+						// 회원 정보 수정 실행.
 						$(document)
 								.on(
 										"click",
@@ -160,13 +160,13 @@
 													});
 										});
 
-						// 회워 정보 수정 취소.
+						// 회원 정보 수정 취소.
 						$(document).on("click", ".cancelBtn", function() {
 							let mid = $(this).parents("tr").attr("data-id");
 							$("#view_" + mid).css("display", "");
 							$("#mview_" + mid).css("display", "none");
 						});
-						// 회워 탈퇴.
+						// 회원 탈퇴.
 						$(document)
 								.on(
 										"click",
