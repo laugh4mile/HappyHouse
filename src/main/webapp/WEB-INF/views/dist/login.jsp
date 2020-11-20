@@ -12,7 +12,7 @@
 		$("#loginBtn").click(function() {
 
 			if ($("#inputEmailAddress").val() == "") {
-				alert("이메일 입력!!!");
+				alert("아이디 입력!!!");
 				return;
 			} else if ($("#inputPassword").val() == "") {
 				alert("비밀번호 입력!!!");
@@ -25,6 +25,8 @@
 		$('#mvRegisterBtn').focusin(function() {
 			$(location).attr("href", "${root}/");
 		});
+		
+		
 		$("#registerBtn").click(function() {
 			let registerinfo = JSON.stringify({
 				"email" : $("#email").val(),
@@ -52,6 +54,14 @@
 				}
 			});
 		});
+		
+		$("#find_pw_btn").click(function(){
+			location.href='../user/find_pw_form';
+		});
+		
+		
+		
+		
 	});
 	/* function login() {
 		if (document.getElementById("inputEmailAddress").value == "") {

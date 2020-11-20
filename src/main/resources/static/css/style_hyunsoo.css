@@ -1,0 +1,36 @@
+#member_list_bg {
+	background: rgba(255, 255, 255, 0.9);
+	margin: 10vh 15vw;
+	padding: 5vh 2vw 2vh 2vw;
+	align-content: center;
+	border-radius: 20px;
+}
+
+.table-bg {
+	margin: 10vh 15vw;
+	border-radius: 30px;
+	align-content: center;
+}
+
+.table-spacing {
+	/* margin: 10px 50px; */
+}
+
+table {
+	background-color: #FFF;
+}
+
+.btn-register {
+	margin: 1vw;
+    padding: 0.5vw 3vw;
+    color: #ff1496;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid #ff1496;
+    border-radius: 1vw;
+    transition: .4s;
+}
+
+.btn-register:hover {
+	background-color: #ff1496;
+	color: #FFF;
+}

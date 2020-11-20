@@ -12,6 +12,7 @@
 <title>SSAFY-글작성</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="${root}/css/style_hyunsoo.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 <link href="${root }/css/styles.css" rel="stylesheet" />
@@ -240,23 +241,26 @@
 </head>
 <body>
 	<%@ include file="header.jsp"%>
-	<div class="card shadow-lg border-0 rounded-lg mt-5">
-		<div class="container" align="center">
+	<div id="member_list_bg">
+		<div class="container table-bg" align="center">
 
-			<h2>회원 목록</h2>
+			<h1>회원 목록</h1>
 			<div align="right">
-				<button type="button" class="modiBtn btn btn-outline-info"
+				<button type="button" class="btn-register"
 					data-toggle="modal" data-target="#userRegModal">등록</button>
 			</div>
-			<table class="table table-hover">
+			<table class="table table-hover text-center table-spacing">
 				<colgroup>
-					<col width="170">
-					<col width="120">
-					<col width="120">
-					<col width="120">
-					<%--             <col width="*">
-            <col width="120">
-            <col width="130"> --%>
+<%-- 					<col width="70">
+					<col width="30">
+					<col width="30">
+					<col width="30">
+					<col width="40"> --%>
+					<col width="30%">
+					<col width="20%">
+					<col width="10%">
+					<col width="20%">
+					<col width="20%">
 				</colgroup>
 				<thead>
 					<tr>
@@ -265,14 +269,14 @@
 						<th class="text-center">성</th>
 						<th class="text-center">이름</th>
 						<!-- <th class="text-center">아이디</th>
-	        	<th class="text-center">주소</th>
-	        	<th class="text-center">가입일</th>-->
+	        			<th class="text-center">주소</th>
+	        			<th class="text-center">가입일</th>-->
 						<th class="text-center">수정/삭제</th>
 					</tr>
 				</thead>
 				<tbody id="userlist"></tbody>
 			</table>
-		</div>
+		</div> <!-- container -->
 	</div>
 	<!-- 회원 등록 모달 -->
 	<div class="modal" id="userRegModal">

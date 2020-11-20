@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.ssafy.happyhouse.model.MemberDto;
 
 @Mapper
@@ -19,4 +21,6 @@ public interface LoginDao {
 	public void userModify(MemberDto memberDto);
 
 	public void userDelete(String userid);
+	
+	public int update_pw(MemberDto memberDto) throws Exception;
 }
