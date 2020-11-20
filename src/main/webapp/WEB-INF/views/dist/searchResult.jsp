@@ -84,7 +84,7 @@
 									<div class="card-body">
 										<h4 class="card-title">
 											<p>아마트매매</p>
-											<a href="${root}/map/detailedInfo">
+											<a href="${root}/map/detailedInfo?no=${item.no}">
 												<!-- 파라미터로 뭘 보내는게 좋을까?  -->
 												${item.aptName}
 											</a>
@@ -107,7 +107,7 @@
 									<div class="card-body">
 										<h4 class="card-title">
 											<p>아파트 전월세</p>
-											<a href="${root}/map/detailedInfo">
+											<a href="${root}/map/detailedInfo?no=${item.no}">
 												<!-- 파라미터로 뭘 보내는게 좋을까? -->
 												${item.aptName}
 											</a>
@@ -130,7 +130,7 @@
 									<div class="card-body">
 										<h4 class="card-title">
 											<p>주택 매매</p>
-											<a href="${root}/}">
+											<a href="${root}/map/detailedInfo?no=${item.no}">
 												<!-- 링크 바꾸기  -->
 												${item.aptName}
 											</a>
@@ -153,7 +153,7 @@
 									<div class="card-body">
 										<h4 class="card-title">
 											<p>주택 전월세</p>
-											<a href="${root}/}">
+											<a href="${root}/map/detailedInfo?no=${item.no}">
 												<!-- 링크 바꾸기  -->
 												${item.aptName}
 											</a>
