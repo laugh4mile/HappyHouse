@@ -46,4 +46,9 @@ public class LoginServiceImpl implements LoginService {
 	public void userDelete(String userid) {
 		loginDao.userDelete(userid);
 	}
+
+	@Override
+	public int update_pw(MemberDto memberDto) throws Exception {
+		return loginDao.update_pw(memberDto);
+	}
 }

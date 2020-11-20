@@ -130,7 +130,8 @@ public class UserController {
 		return loginService.userList();
 	}
 	
-	@RequestMapping(value = "/find_pw_form.do")
+
+	@RequestMapping(value = "/find_pw_form")
 	public String find_pw_form() throws Exception{
 		return "/dist/password";
 	}

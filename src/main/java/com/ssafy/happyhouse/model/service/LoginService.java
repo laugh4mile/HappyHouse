@@ -12,4 +12,6 @@ public interface LoginService {
 	public void userRegister(MemberDto memberDto);
 	public void userModify(MemberDto memberDto);
 	public void userDelete(String userid);
+	
+	public int update_pw(MemberDto memberDto) throws Exception;
 }
