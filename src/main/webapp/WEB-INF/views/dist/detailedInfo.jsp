@@ -38,22 +38,6 @@
 		</div>
 		<div id="layoutSidenav_content">
 
-			<!-- Navigation -->
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-				<div class="container">
-					<a class="navbar-brand js-scroll-trigger" href="./index.jsp">Home</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="collapse navbar-collapse" id="navbarResponsive">
-						<ul class="navbar-nav ml-auto">
-							<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">상세정보</a></li>
-							<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">위치 및 주변 시설</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-
 			<header class="bg-primary text-white">
 				<div class="container text-center">
 
@@ -68,7 +52,7 @@
 					<div class="row">
 						<div class="col-lg-8 mx-auto">
 							<h2>상세정보</h2>
-							<img class="card-img" src="./res/img/숭인동숭인한양LEEPS.jfif" alt="">
+							<img class="card-img" src="${root }/img/1.jpg" alt="">
 							<table class="table">
 								<tbody>
 									<tr>
@@ -166,95 +150,48 @@
 			</section>
 
 			<%@ include file="footer.jsp"%>
+			<div style="display:none">wirestock - kr.freepik.com가 제작함</div>
 		</div>
 	</div>
 </body>
 <script>
-//마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
-var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}), 
-    contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
-    markers = [], // 마커를 담을 배열입니다
-    currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
+	//마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
+	var placeOverlay = new kakao.maps.CustomOverlay({
+		zIndex : 1
+	}), contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다 
+	markers = [], // 마커를 담을 배열입니다
+	currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
 
-	var mapContainer;
-	var mapOption;
-	var map;
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	mapOption = {
+		center : new kakao.maps.LatLng(37.5665734, 126.978179), // 지도의 중심좌표
+		level : 5
+	// 지도의 확대 레벨
+	};
 
-	$(document).ready(function() { //페이지 생성시 실행
-		geocode(); //해당 아파트 위도 경도 찾기
-		kakao(); //카카오 카테고리 넣기
-	});//ready
+	// 지도를 생성합니다    
+	var map = new kakao.maps.Map(mapContainer, mapOption);
 
-	function geocode() {
-		let idx = 0;
-		let tmpLat;
-		let tmpLng;
-		var dong = document.getElementById("dong").innerText
-		var aptName = document.getElementById("aptName").innerText
-		var jibun = document.getElementById("jibun").innerText
+	// 장소 검색 객체를 생성합니다
+	var ps = new kakao.maps.services.Places(map);
 
-		$.get("https://maps.googleapis.com/maps/api/geocode/json", {
-			key : 'AIzaSyCv11tfo3HU5dxZAQ6uC5s9AeB_Ux46x7k',
-			address : dong + "+" + aptName + "+" + jibun
-		}, function(data, status) {
-			tmpLat = data.results[0].geometry.location.lat;
-			tmpLng = data.results[0].geometry.location.lng;
+	// 지도에 idle 이벤트를 등록합니다
+	kakao.maps.event.addListener(map, 'idle', searchPlaces);
 
-			console.log(tmpLat + " " + tmpLng);
+	// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
+	contentNode.className = 'placeinfo_wrap';
 
-			var address = new Array();
-			address.title = aptName;
-			address.latlng = new kakao.maps.LatLng(tmpLat, tmpLng);
+	// 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
+	// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다 
+	addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
+	addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
 
-			iaddMarker(address); //마커 찍기
-		}, "json");//get
-	}
+	// 커스텀 오버레이 컨텐츠를 설정합니다
+	placeOverlay.setContent(contentNode);
 
-	// 카카오 지도에 마커 찍기
-	function iaddMarker(positions) {
-		mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		mapOption = {
-			center : positions.latlng, // 지도의 중심좌표
-			level : 3
-		// 지도의 확대 레벨
-		};
-		map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	// 각 카테고리에 클릭 이벤트를 등록합니다
+	addCategoryClickEvent();
 
-		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
-		var imageSize = new kakao.maps.Size(24, 35);
-		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-		var marker = new kakao.maps.Marker({
-			map : map, // 마커를 표시할 지도
-			position : positions.latlng, // 마커를 표시할 위치
-			title : positions.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-			image : markerImage
-		});
-
-		marker.setMap(map);
-	}
-
-	function kakao() {
-		// 장소 검색 객체를 생성합니다
-		var ps = new kakao.maps.services.Places(map);
-
-		// 지도에 idle 이벤트를 등록합니다
-		kakao.maps.event.addListener(map, 'idle', searchPlaces);
-
-		// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
-		contentNode.className = 'placeinfo_wrap';
-
-		// 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
-		// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다 
-		addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
-		addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
-
-		// 커스텀 오버레이 컨텐츠를 설정합니다
-		placeOverlay.setContent(contentNode);
-
-		// 각 카테고리에 클릭 이벤트를 등록합니다
-		addCategoryClickEvent();
-	}
-	
 	// 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다
 	function addEventHandle(target, type, callback) {
 		if (target.addEventListener) {
@@ -400,6 +337,64 @@ var placeOverlay = new kakao.maps.CustomOverlay({zIndex:1}),
 		if (el) {
 			el.className = 'on';
 		}
+	}
+
+	//======================================  맵 스크립트 ====================// 	
+	$(document).ready(function() { //페이지 생성시 실행
+		geocode(); //해당 아파트 위도 경도 찾기
+	});//ready
+
+	function geocode() {
+		let idx = 0;
+		let tmpLat;
+		let tmpLng;
+		var dong = document.getElementById("dong").innerText
+		var aptName = document.getElementById("aptName").innerText
+		var jibun = document.getElementById("jibun").innerText
+
+		$.get("https://maps.googleapis.com/maps/api/geocode/json", {
+			key : 'AIzaSyCv11tfo3HU5dxZAQ6uC5s9AeB_Ux46x7k',
+			address : dong + "+" + aptName + "+" + jibun
+		}, function(data, status) {
+			tmpLat = data.results[0].geometry.location.lat;
+			tmpLng = data.results[0].geometry.location.lng;
+
+			console.log(tmpLat + " " + tmpLng);
+
+			var address = new Array();
+			address.title = aptName;
+			address.latlng = new kakao.maps.LatLng(tmpLat, tmpLng);
+
+			addMarker(address); //마커 찍기
+		}, "json");//get
+	}
+
+	// 카카오 지도에 마커 찍기
+	function addMarker(positions) {
+
+		mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+
+		mapOption = {
+			center : positions.latlng, // 지도의 중심좌표
+			level : 3
+		// 지도의 확대 레벨
+		};
+		console.log(positions);
+
+		map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
+		var imageSize = new kakao.maps.Size(24, 35);
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+		var marker = new kakao.maps.Marker({
+			map : map, // 마커를 표시할 지도
+			position : positions.latlng, // 마커를 표시할 위치
+			title : positions.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			image : markerImage
+		});
+
+		marker.setMap(map);
 	}
 </script>
 </html>
