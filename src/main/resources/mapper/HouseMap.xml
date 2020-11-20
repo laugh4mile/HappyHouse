@@ -102,7 +102,13 @@
 		select no,dong,AptName,code,dealAmount,rentMoney,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun
 		from housedeal
 		where AptName like #{apt} and type=4
-		order by no;
+		order by AptName;
+	</select>
+	
+	<select id="search" parameterType="int" resultType="HouseDealDto">
+		select no,dong,AptName,code,dealAmount,rentMoney,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun
+		from housedeal
+		where no = #{no};
 	</select>
 
 

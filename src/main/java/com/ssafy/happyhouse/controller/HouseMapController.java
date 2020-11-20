@@ -142,7 +142,21 @@ public class HouseMapController {
 	}
 	
 	@GetMapping(value = "/detailedInfo")
-	public String info(Model model) {
+	public String info(int no, Model model) {
+		System.out.println(no);
+		
+		HouseDealDto info = null;
+
+        try {
+            info = houseMapService.search(no);    
+            System.out.println(info);
+            model.addAttribute("info", info);
+
+        } catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", "검색 중 오류가 발생했습니다.");
+			return "error/error";
+        }		
 	
 		return "dist/detailedInfo";
 	}
