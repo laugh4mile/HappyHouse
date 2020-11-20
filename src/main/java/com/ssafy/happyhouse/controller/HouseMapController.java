@@ -24,28 +24,28 @@ public class HouseMapController {
 	private HouseMapService houseMapService;
 
 	@ResponseBody
-	@GetMapping(value = "", headers = {"Content-type=application/json"})
-	public List<SidoGugunCodeDto> getSido() throws Exception{
+	@GetMapping(value = "", headers = { "Content-type=application/json" })
+	public List<SidoGugunCodeDto> getSido() throws Exception {
 		System.out.println(houseMapService.getSido());
 		return houseMapService.getSido();
 	}
 
 	@ResponseBody
-	@GetMapping(value = "/{sido}", headers = {"Content-type=application/json"})
-	public List<SidoGugunCodeDto> getGugun(@PathVariable String sido) throws Exception{
+	@GetMapping(value = "/{sido}", headers = { "Content-type=application/json" })
+	public List<SidoGugunCodeDto> getGugun(@PathVariable String sido) throws Exception {
 		System.out.println(houseMapService.getGugunInSido(sido));
 		return houseMapService.getGugunInSido(sido);
 	}
 
 	@ResponseBody
-	@GetMapping(value = "/{sido}/{gugun}", headers = {"Content-type=application/json"})
-	public List<HouseInfoDto> getDong(@PathVariable String gugun) throws Exception{
+	@GetMapping(value = "/{sido}/{gugun}", headers = { "Content-type=application/json" })
+	public List<HouseInfoDto> getDong(@PathVariable String gugun) throws Exception {
 		return houseMapService.getDongInGugun(gugun);
 	}
 
 	@ResponseBody
-	@GetMapping(value = "/{sido}/{gugun}/{dong}/{type}", headers = {"Content-type=application/json"})
-	public List<HouseDealDto> getAptInType(@PathVariable String dong, @PathVariable String type) throws Exception{
+	@GetMapping(value = "/{sido}/{gugun}/{dong}/{type}", headers = { "Content-type=application/json" })
+	public List<HouseDealDto> getAptInType(@PathVariable String dong, @PathVariable String type) throws Exception {
 		return houseMapService.getAptInType(dong, type);
 	}
 
@@ -68,36 +68,55 @@ public class HouseMapController {
 	public String listAPTMeme() {
 		return "dist/APTmeme";
 	}
-	@GetMapping(value="/searchRoad")
+
+	@GetMapping(value = "/searchRoad")
 	public String searchRoad() {
 		return "dist/searchRoad";
 	}
-	@GetMapping(value="/index")
+
+	@GetMapping(value = "/index")
 	public String index() {
 		return "dist/index";
 	}
 
+	@GetMapping(value = "/test1")
+	public String test1() {
+		return "dist/test1";
+	}
+
+	@GetMapping(value = "/test2")
+	public String test2() {
+		return "dist/test2";
+	}
+
+	@GetMapping(value = "/test3")
+	public String test3() {
+		return "dist/test3";
+	}
+
 	@GetMapping(value = "/searchResult")
 	public String list(String key, String word, Model model) {
-		if(key == null) key="";
-		if(word == null)  word="";
-		key=key.trim();
+		if (key == null)
+			key = "";
+		if (word == null)
+			word = "";
+		key = key.trim();
 		System.out.println(key + " " + word);
 
 		List<HouseDealDto> AptMeme = null;
 		List<HouseDealDto> AptRent = null;
 		List<HouseDealDto> JuMeme = null;
 		List<HouseDealDto> JuRent = null;
-		
+
 		try {
 			String search = "%" + word.trim() + "%";
-			
-			switch(key){			
-			case "dong":			
+
+			switch (key) {
+			case "dong":
 				AptMeme = houseMapService.getAptMemeInDong(search);
 				AptRent = houseMapService.getAptRentInDong(search);
 				JuMeme = houseMapService.getJuMemeInDong(search);
-				JuRent = houseMapService.getJuRentInDong(search);				
+				JuRent = houseMapService.getJuRentInDong(search);
 				break;
 			case "name":
 				AptMeme = houseMapService.getAptMemeInName(search);
@@ -106,19 +125,19 @@ public class HouseMapController {
 				JuRent = houseMapService.getJuRentInName(search);
 				break;
 			}
-			
-			model.addAttribute("word", word );
-			model.addAttribute("AptMeme", AptMeme );
-			model.addAttribute("AptRent", AptRent );
-			model.addAttribute("JuMeme", JuMeme );
-			model.addAttribute("JuRent", JuRent );
-			
+
+			model.addAttribute("word", word);
+			model.addAttribute("AptMeme", AptMeme);
+			model.addAttribute("AptRent", AptRent);
+			model.addAttribute("JuMeme", JuMeme);
+			model.addAttribute("JuRent", JuRent);
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("msg","검색 중 오류가 발생했습니다." );
+			model.addAttribute("msg", "검색 중 오류가 발생했습니다.");
 			return "error/error";
 		}
-		
+
 		return "dist/searchResult";
 	}
 	

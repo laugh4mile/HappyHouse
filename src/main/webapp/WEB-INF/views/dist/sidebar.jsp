@@ -5,7 +5,7 @@
     <div class="sb-sidenav-menu">
         <div class="nav">
             <div class="sb-sidenav-menu-heading">Core</div>
-            <a class="nav-link" href="/">
+            <a class="nav-link" href="${root }/map/index">
                 <div class="sb-nav-link-icon">
                     <i class="fas fa-tachometer-alt"></i>
                 </div>
@@ -30,6 +30,9 @@
                     <a class="nav-link" href="${root }/map/Jumeme">주택 매매</a>
                     <a class="nav-link" href="${root }/map/JuRent">주택 전월세</a>
                     <a class="nav-link" href="${root }/map/searchRoad">길 찾기</a>
+                    <a class="nav-link" href="${root }/map/test1">로드뷰</a>
+                    <a class="nav-link" href="${root }/map/test2">교통정보</a>
+                    <a class="nav-link" href="${root }/map/test3">원형 거리계산</a>
                     <a class="nav-link" href="#">환경 정보</a>
                 </nav>
             </div>
