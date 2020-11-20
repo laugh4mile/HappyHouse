@@ -87,12 +87,12 @@
 }
 
 .card-title > a{
-	font-size: large;
+	font-size: 12pt;
 	text-decoration: none;
 }
 
-.card-title + p{
-	font-size: small;
+.card-title > p{
+	font-size: 12pt;
 }
 
 
