@@ -10261,3 +10261,15 @@ body {
 .sb-sidenav-light .sb-sidenav-footer {
   background-color: #e9ecef;
 }
+
+.search-bar{
+	margin: 50pt;
+}
+
+.member-menu {
+    position: fixed;
+    right: 0;
+    margin: 20pt;
+}}
+
+
