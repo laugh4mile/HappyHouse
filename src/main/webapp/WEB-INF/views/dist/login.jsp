@@ -118,7 +118,16 @@
 										</div>
 										<div
 											class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+											
+											<label>Password</label>
+											<span class="w3-right w3-button w3-hover-white" title="비밀번호 찾기" id="find_pw_btn">
+												<i class="fa fa-exclamation-triangle w3-hover-text-red w3-large"></i>
+											</span>											
+											
 											<a class="small" href="password.jsp">Forgot Password?</a>
+											
+											
+											
 											<!-- <button type="button" class="btn btn-primary" onclick="javascript:login();">Login</button> -->
 											<button type="button" id="loginBtn" class="btn btn-primary">Login</button>
 										</div>

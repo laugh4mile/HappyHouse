@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -47,7 +48,6 @@ public class UserController {
 	@GetMapping(value="/logout")
 	private String logout(HttpSession session) {
 		session.invalidate();
-		
 		return "redirect:/";
 	}
 	
@@ -128,6 +128,11 @@ public class UserController {
 		System.out.println("컨트롤러 - delete");
 		loginService.userDelete(email);
 		return loginService.userList();
+	}
+	
+	@RequestMapping(value = "/find_pw_form.do")
+	public String find_pw_form() throws Exception{
+		return "/dist/password";
 	}
 	
 }
