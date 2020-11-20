@@ -89,4 +89,9 @@ public class HouseMapServiceImpl implements HouseMapService {
 	public List<HouseDealDto> getAptInType(String dong, String type) throws Exception {
 		return housemapdao.getAptInType(dong, type);		
 	}
+
+	@Override
+	public HouseDealDto search(int no) {
+		return housemapdao.search(no);
+	}
 }
