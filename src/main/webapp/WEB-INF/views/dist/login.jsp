@@ -134,7 +134,7 @@
 												<i class="fa fa-exclamation-triangle w3-hover-text-red w3-large"></i>
 											</span>											
 											
-											<a class="small" href="password.jsp">Forgot Password?</a>
+											<a class="small"  href="${root}/user/find_pw_form">Forgot Password?</a>
 											
 											
 											
