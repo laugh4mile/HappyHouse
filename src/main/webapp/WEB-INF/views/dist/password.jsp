@@ -16,13 +16,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
     crossorigin="anonymous"></script>
 <script type="text/javascript">
-$(document).ready(function() {
+	$(document).ready(function() {
+		
+		$("#find_pw_btn").click(function() {
+			location.href = '../user/find_pw_form';
+		});
 	
-	$("#find_pw_btn").click(function() {
-		location.href = '../user/find_pw_form';
 	});
 
-});
 </script>    
     
 </head>
@@ -53,8 +54,8 @@ $(document).ready(function() {
                                         </div>
                                         <div
                                             class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="btn btn-primary" href="login.jsp">Reset
-                                                Password</a>
+                                            <button type="button" class="btn-register btn btn-primary" data-toggle="modal"
+												data-target="#userRegModal">Reset Password</button>
                                         </div>
                                     </form>
                                 </div>
@@ -84,6 +85,38 @@ $(document).ready(function() {
             </footer>
         </div>
     </div>
+    
+    <div class="modal" id="userRegModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h4 class="modal-title">비밀번호 변경</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<div class="modal-body">
+					<form id="memberform" method="post" action="">
+						<input type="hidden" name="act" id="act" value="">
+						
+						<div class="form-group" align="left">
+							<label for="">변경할 비밀번호를 입력해 주세요</label> <input type="password"
+								class="form-control" id="userpwd" name="userpwd" placeholder="">
+						</div>
+						
+						<div class="form-group" align="center">
+							<button type="button" class="btn btn-primary" id="registerBtn">비밀번호 변경</button>
+							<button type="reset" class="btn btn-warning">초기화</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+    
+    
+    
+    
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
