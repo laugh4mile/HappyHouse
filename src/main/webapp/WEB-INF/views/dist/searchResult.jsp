@@ -47,9 +47,8 @@
 			<div class="container-fluid">
 				<h1 class="mt-4">${word}검색결과</h1>
 
-
 				<!-- 검색 결과 내  검색하기 -->
-				<div class="search-bar">
+				<div class="searchResult-bar">
 					<div class="button-group">
 						<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 							방 종류 <span class="caret"></span>
@@ -79,7 +78,7 @@
 								<div class="card h-150">
 									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="https://via.placeholder.com/100X150" alt="">
+										<img class="card-img-top" src="${root }/img/2.jpg" alt="">
 									</a>
 									<div class="card-body">
 										<h4 class="card-title">
@@ -102,7 +101,7 @@
 								<div class="card h-150">
 									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="https://via.placeholder.com/100X150" alt="">
+										<img class="card-img-top" src="${root }/img/3.jpg" alt="">
 									</a>
 									<div class="card-body">
 										<h4 class="card-title">
@@ -125,7 +124,7 @@
 								<div class="card h-150">
 									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="https://via.placeholder.com/100X150" alt="">
+										<img class="card-img-top" src="${root }/img/1.jpg" alt="">
 									</a>
 									<div class="card-body">
 										<h4 class="card-title">
@@ -148,7 +147,7 @@
 								<div class="card h-150">
 									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="https://via.placeholder.com/100X150" alt="">
+										<img class="card-img-top" src="${root }/img/4.jpg" alt="">
 									</a>
 									<div class="card-body">
 										<h4 class="card-title">
