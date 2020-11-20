@@ -24,6 +24,10 @@
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 <script src="${root }/assets/demo/datatables-demo.js"></script>
 
+<!-- 카카오 지도 api -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d0f81655e444c4cae90021cdf7832a59"></script>
+
+
 <script type="text/javascript">
 	function searchSomething() {
 		if (document.getElementById("word").value == "") {
@@ -47,9 +51,10 @@
 			<div class="container-fluid">
 				<h1 class="mt-4">${word}검색결과</h1>
 
+				<div id="map" style="height: 400px;"></div>
 
 				<!-- 검색 결과 내  검색하기 -->
-				<div class="search-bar">
+				<div class="searchResult-bar">
 					<div class="button-group">
 						<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
 							방 종류 <span class="caret"></span>
@@ -79,7 +84,7 @@
 								<div class="card h-150">
 									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="https://via.placeholder.com/100X150" alt="">
+										<img class="card-img-top" src="${root }/img/2.jpg" alt="">
 									</a>
 									<div class="card-body">
 										<h4 class="card-title">
@@ -102,7 +107,7 @@
 								<div class="card h-150">
 									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="https://via.placeholder.com/100X150" alt="">
+										<img class="card-img-top" src="${root }/img/3.jpg" alt="">
 									</a>
 									<div class="card-body">
 										<h4 class="card-title">
@@ -125,7 +130,7 @@
 								<div class="card h-150">
 									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="https://via.placeholder.com/100X150" alt="">
+										<img class="card-img-top" src="${root }/img/1.jpg" alt="">
 									</a>
 									<div class="card-body">
 										<h4 class="card-title">
@@ -148,7 +153,7 @@
 								<div class="card h-150">
 									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="https://via.placeholder.com/100X150" alt="">
+										<img class="card-img-top" src="${root }/img/4.jpg" alt="">
 									</a>
 									<div class="card-body">
 										<h4 class="card-title">
@@ -176,6 +181,113 @@
 	</div>
 </body>
 <script>
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	mapOption = {
+		center : new kakao.maps.LatLng(37.5665734, 126.978179), // 지도의 중심좌표
+		level :5
+	// 지도의 확대 레벨
+	};
+
+	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+	let tmpLat;
+	let tmpLng;
+	<c:forEach var="item" items="${AptMeme}">
+	$.get("https://maps.googleapis.com/maps/api/geocode/json", {
+		key : 'AIzaSyCv11tfo3HU5dxZAQ6uC5s9AeB_Ux46x7k',
+		address : "${item.dong}+${item.aptName}+${item.jibun}"
+	}, function(data, status) {
+		tmpLat = data.results[0].geometry.location.lat;
+		tmpLng = data.results[0].geometry.location.lng;
+
+		console.log(tmpLat + " " + tmpLng);
+
+		var address = new Array();
+		address.title = "${item.aptName}";
+		address.latlng = new kakao.maps.LatLng(tmpLat, tmpLng);
+
+		addMarker(address);
+	}, "json");//get
+	</c:forEach>
+
+	<c:forEach var="item" items="${AptRent}">
+	$.get("https://maps.googleapis.com/maps/api/geocode/json", {
+		key : 'AIzaSyCv11tfo3HU5dxZAQ6uC5s9AeB_Ux46x7k',
+		address : "${item.dong}+${item.aptName}+${item.jibun}"
+	}, function(data, status) {
+		tmpLat = data.results[0].geometry.location.lat;
+		tmpLng = data.results[0].geometry.location.lng;
+
+		console.log(tmpLat + " " + tmpLng);
+
+		var address = new Array();
+		address.title = "${item.aptName}";
+		address.latlng = new kakao.maps.LatLng(tmpLat, tmpLng);
+
+		addMarker(address);
+	}, "json");//get
+	</c:forEach>
+
+	<c:forEach var="item" items="${JuMeme}">
+	$.get("https://maps.googleapis.com/maps/api/geocode/json", {
+		key : 'AIzaSyCv11tfo3HU5dxZAQ6uC5s9AeB_Ux46x7k',
+		address : "${item.dong}+${item.aptName}+${item.jibun}"
+	}, function(data, status) {
+		tmpLat = data.results[0].geometry.location.lat;
+		tmpLng = data.results[0].geometry.location.lng;
+
+		console.log(tmpLat + " " + tmpLng);
+
+		var address = new Array();
+		address.title = "${item.aptName}";
+		address.latlng = new kakao.maps.LatLng(tmpLat, tmpLng);
+
+		addMarker(address);
+	}, "json");//get
+	</c:forEach>
+	
+	<c:forEach var="item" items="${JuRent}">
+	$.get("https://maps.googleapis.com/maps/api/geocode/json", {
+		key : 'AIzaSyCv11tfo3HU5dxZAQ6uC5s9AeB_Ux46x7k',
+		address : "${item.dong}+${item.aptName}+${item.jibun}"
+	}, function(data, status) {
+		tmpLat = data.results[0].geometry.location.lat;
+		tmpLng = data.results[0].geometry.location.lng;
+
+		console.log(tmpLat + " " + tmpLng);
+
+		var address = new Array();
+		address.title = "${item.aptName}";
+		address.latlng = new kakao.maps.LatLng(tmpLat, tmpLng);
+
+		addMarker(address);
+	}, "json");//get
+	</c:forEach>
+
+	// 카카오 지도에 마커 찍기
+	function addMarker(positions) {
+		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+
+		mapOption = {
+			center : positions.latlng, // 지도의 중심좌표
+			level : 3
+		// 지도의 확대 레벨
+		};
+		console.log(positions);
+		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
+		var imageSize = new kakao.maps.Size(24, 35);
+		var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+		var marker = new kakao.maps.Marker({
+			map : map, // 마커를 표시할 지도
+			position : positions.latlng, // 마커를 표시할 위치
+			title : positions.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+			image : markerImage
+		});
+	}
+
+	//-------------------아파트/주택, 매매/전월세 별로 보기 ---------------------//
+
 	$(document).ready(function() {
 		$("#apt").change(function() {
 			if ($("#apt").is(":checked")) {
@@ -221,5 +333,7 @@
 			}
 		});
 	});
+
+	//-------------------아파트/주택, 매매/전월세 별로 보기 ---------------------//
 </script>
 </html>
