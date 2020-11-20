@@ -131,7 +131,7 @@ public class UserController {
 	}
 	
 
-	@RequestMapping(value = "/find_pw_form")
+	@RequestMapping(value = "/find_pw_form", method = RequestMethod.GET)
 	public String find_pw_form() throws Exception{
 		return "/dist/password";
 	}
