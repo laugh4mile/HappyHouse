@@ -243,19 +243,13 @@
 	<%@ include file="header.jsp"%>
 	<div id="member_list_bg">
 		<div class="container table-bg" align="center">
-
 			<h1>회원 목록</h1>
 			<div align="right">
-				<button type="button" class="btn-register"
-					data-toggle="modal" data-target="#userRegModal">등록</button>
+				<button type="button" class="btn-register" data-toggle="modal"
+					data-target="#userRegModal">등록</button>
 			</div>
 			<table class="table table-hover text-center table-spacing">
 				<colgroup>
-<%-- 					<col width="70">
-					<col width="30">
-					<col width="30">
-					<col width="30">
-					<col width="40"> --%>
 					<col width="30%">
 					<col width="20%">
 					<col width="10%">
@@ -268,15 +262,13 @@
 						<th class="text-center">비밀번호</th>
 						<th class="text-center">성</th>
 						<th class="text-center">이름</th>
-						<!-- <th class="text-center">아이디</th>
-	        			<th class="text-center">주소</th>
-	        			<th class="text-center">가입일</th>-->
 						<th class="text-center">수정/삭제</th>
 					</tr>
 				</thead>
 				<tbody id="userlist"></tbody>
 			</table>
-		</div> <!-- container -->
+		</div>
+		<!-- container -->
 	</div>
 	<!-- 회원 등록 모달 -->
 	<div class="modal" id="userRegModal">
