@@ -9738,8 +9738,13 @@ html, body {
 }
 
 .member-menu {
-	position: fixed;
+	position : fixed;
 	right: 0;
+	margin: 20pt;
+}
+.userinfo-menu {
+	position : fixed;
+	right: 60px;
 	margin: 20pt;
 }
 }
