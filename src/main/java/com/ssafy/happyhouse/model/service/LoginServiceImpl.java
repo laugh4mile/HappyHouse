@@ -51,4 +51,9 @@ public class LoginServiceImpl implements LoginService {
 	public int update_pw(MemberDto memberDto) throws Exception {
 		return loginDao.update_pw(memberDto);
 	}
+
+	@Override
+	public String find_pwd(String email) throws Exception {
+		return loginDao.find_pwd(email);
+	}
 }

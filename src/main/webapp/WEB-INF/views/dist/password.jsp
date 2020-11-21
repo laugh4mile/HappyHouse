@@ -17,15 +17,14 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
 	crossorigin="anonymous"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(document).ready(function() {
-
 		$("#find_pw_btn").click(function() {
 			location.href = '../user/find_pw_form';
 		});
 
 	});
-</script>
+</script> -->
 
 </head>
 <body class="bg-primary">
@@ -45,17 +44,17 @@
 								</div>
 								<div class="card-body">
 									<div class="small mb-3 text-muted">Enter your ID and we
-										will send you a link to reset your password.</div>
-									<form  action="../member/find_pwd" method="post">
+										will find your password.</div>
+									<form action="../user/find_pwd" method="post">
 										<div class="form-group">
 											<label class="small mb-1" for="inputEmailAddress">ID</label>
-											<input class="form-control py-4" id="inputEmailAddress"
-												type="email" aria-describedby="emailHelp"
+											<input class="form-control py-4" id="email" name="email" required
+												type="text" aria-describedby="emailHelp"
 												placeholder="Enter ID" />
 										</div>
 										<div
 											class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-											<button type="button" class="btn-register btn btn-primary"
+											<button type="submit" class="btn-register btn btn-primary"
 												id=findBtn>Find Password</button>
 										</div>
 									</form>
@@ -66,6 +65,29 @@
 									</div>
 								</div>
 							</div>
+
+
+							<!-- <div>
+								<form action="../user/find_pwd" method="post">
+									<div class="w3-center w3-large w3-margin-top">
+										<h3>비밀번호 찾기</h3>
+									</div>
+									<div>
+										<p>
+											<label>ID</label> <input class="w3-input" type="text"
+												id="email" name="email" required>
+										</p>
+										<p class="w3-center">
+											<button type="submit" id=findBtn
+												class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">find</button>
+											<button type="button" onclick="history.go(-1);"
+												class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-margin-bottom w3-round">Cancel</button>
+										</p>
+									</div>
+								</form>
+							</div> -->
+
+
 						</div>
 					</div>
 				</div>
