@@ -24,6 +24,7 @@
 			contentType : 'application/json;charset=utf-8',
 			dataType : 'json',
 			success : function(data, status) {
+				console.log(document.location.href);
 				console.log(document.location.href.split("/")[5]);
 
 				$.each(data, function(index, vo) {

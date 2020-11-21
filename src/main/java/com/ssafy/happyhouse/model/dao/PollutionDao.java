@@ -9,6 +9,6 @@ import com.ssafy.happyhouse.model.SidoGugunCodeDto;
 public interface PollutionDao {
 	
 	List<SidoGugunCodeDto> getSido() throws Exception;
-	List<SidoGugunCodeDto> getGugunInSido(String sido) throws Exception;
+	List<SidoGugunCodeDto> getGugun(String sido) throws Exception;
 	List<PollutionDto> getPollutionInDong(String gugun) throws Exception;
 }

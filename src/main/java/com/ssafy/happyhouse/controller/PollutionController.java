@@ -18,18 +18,19 @@ public class PollutionController {
 
 	@Autowired
 	private PollutionService pollutionService;
-	
+
+	@ResponseBody
 	@GetMapping(value = "", headers = { "Content-type=application/json" })
 	public List<SidoGugunCodeDto> getSido() throws Exception {
-		System.out.println(pollutionService.getSido());
+		System.out.println("pollute : " + pollutionService.getSido().get(0).getSidoName());
 		return pollutionService.getSido();
 	}
 
 	@ResponseBody
 	@GetMapping(value = "/{sido}", headers = { "Content-type=application/json" })
 	public List<SidoGugunCodeDto> getGugun(@PathVariable String sido) throws Exception {
-		System.out.println(pollutionService.getGugunInSido(sido));
-		return pollutionService.getGugunInSido(sido);
+		System.out.println("pollute : " + pollutionService.getGugun(sido).get(0).getGugunName());
+		return pollutionService.getGugun(sido);
 	}
 
 
