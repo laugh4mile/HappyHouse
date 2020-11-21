@@ -30,6 +30,7 @@
                     <a class="nav-link" href="${root }/map/Jumeme">주택 매매</a>
                     <a class="nav-link" href="${root }/map/JuRent">주택 전월세</a>
                     <a class="nav-link" href="${root }/map/searchRoad">길 찾기</a>
+                    <a class="nav-link" href="${root }/pollution/PollutionMap">환경정보 표시</a>
                     <a class="nav-link" href="${root }/map/test1">로드뷰</a>
                     <a class="nav-link" href="${root }/map/test2">교통정보</a>
                     <a class="nav-link" href="${root }/map/test3">원형 거리계산</a>
