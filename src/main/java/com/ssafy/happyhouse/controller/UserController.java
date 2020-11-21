@@ -136,4 +136,11 @@ public class UserController {
 		return "/dist/password";
 	}
 	
+	@RequestMapping(value = "/find_pwd", method = RequestMethod.POST)
+	public String find_id(HttpServletResponse response, @RequestParam("email") String email, Model md) throws Exception{
+		md.addAttribute("pwd", loginService.find_pwd(email));
+		System.out.println("오나?");
+		return "/dist/find_pwd";
+	}
+	
 }
