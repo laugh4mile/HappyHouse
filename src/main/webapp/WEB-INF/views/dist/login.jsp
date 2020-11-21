@@ -156,10 +156,6 @@
 										<div
 											class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
 
-											<label>Password</label> <span
-												class="w3-right w3-button w3-hover-white" title="비밀번호 찾기"
-												id="find_pw_btn"> <i
-												class="fa fa-exclamation-triangle w3-hover-text-red w3-large"></i>
 											</span> <a class="small" href="${root}/user/find_pw_form">Forgot
 												Password?</a>
 
