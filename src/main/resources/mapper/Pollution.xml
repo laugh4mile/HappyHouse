@@ -4,6 +4,17 @@
 	
 	
 <mapper namespace="com.ssafy.happyhouse.model.dao.PollutionDao">
+	<select id="getSido" resultType="SidoGugunCodeDto">
+		select left(sido_code,2) as sidoCode, sido_name as sidoName
+		from sidocode
+		order by sido_code;
+	</select>
 
+	<select id="getGugunInSido" parameterType="String" resultType="SidoGugunCodeDto">
+		select left(gugun_code,5) as gugunCode, gugun_name as gugunName
+		from guguncode
+		where left(gugun_code,2) = #{sido}
+		order by gugun_code;
+	</select>
 
 </mapper>
