@@ -23,7 +23,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d0f81655e444c4cae90021cdf7832a59&libraries=services"></script>
 
 </head>
-<body>
+<body class="sb-nav-fixed">
 	<%@ include file="header.jsp"%>
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
