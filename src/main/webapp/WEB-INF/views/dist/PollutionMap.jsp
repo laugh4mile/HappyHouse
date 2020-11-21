@@ -24,8 +24,6 @@
 			contentType : 'application/json;charset=utf-8',
 			dataType : 'json',
 			success : function(data, status) {
-				console.log(document.location.href.split("/")[5]);
-
 				$.each(data, function(index, vo) {
 					$("#sido").append("<option value='"+vo.sidoCode+"'>" + vo.sidoName + "</option>");
 				});//each
@@ -184,17 +182,11 @@
 									<thead>
 										<tr>
 											<th>번호</th>
-											<th>법정동</th>
-											<th>아파트이름</th>
-											<th>지번</th>
+											<th>이름</th>
 											<th>지역코드</th>
-											<th>가격</th>
-											<th>건설연도</th>
-											<th>거래연도</th>
-											<th>거래월</th>
-											<th>거래일</th>
-											<th>면적</th>
-											<th>층수</th>
+											<th>주소(구주소)</th>
+											<th>위도</th>
+											<th>경도</th>
 										</tr>
 									</thead>
 									<tbody id="searchResult">
