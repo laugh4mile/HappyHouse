@@ -34,4 +34,9 @@
 	<update id="update_pw" parameterType="MemberDto">
 		update member set userpwd = #{userpwd} where email = #{email}
 	</update>
+	
+	<!-- userpwd 찾기 -->
+	<select id="find_pwd" parameterType="String" resultType="String">
+		select userpwd from member where email = #{email}
+	</select>
 </mapper>

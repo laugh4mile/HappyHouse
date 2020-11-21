@@ -23,4 +23,8 @@ public interface LoginDao {
 	public void userDelete(String userid);
 	
 	public int update_pw(MemberDto memberDto) throws Exception;
+	
+//	public String find_pwd(String email) throws Exception{
+//		return sqlsession.selectOne("member.find_id", email);
+//	}
 }
