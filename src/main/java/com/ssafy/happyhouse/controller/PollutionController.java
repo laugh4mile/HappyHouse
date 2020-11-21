@@ -31,5 +31,10 @@ public class PollutionController {
 		System.out.println(pollutionService.getGugunInSido(sido));
 		return pollutionService.getGugunInSido(sido);
 	}
-	
+
+
+	@GetMapping(value = "/PollutionMap")
+	public String listAptRent() {
+		return "dist/PollutionMap";
+	}
 }
