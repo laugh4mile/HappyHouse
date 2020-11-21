@@ -14,4 +14,5 @@ public interface LoginService {
 	public void userDelete(String userid);
 	
 	public int update_pw(MemberDto memberDto) throws Exception;
+	public String find_pwd(String email) throws Exception;
 }
