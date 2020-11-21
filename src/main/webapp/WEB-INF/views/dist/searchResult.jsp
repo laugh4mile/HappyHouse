@@ -34,141 +34,142 @@
 	}
 </script>
 </head>
-<body>
+<body class="sb-nav-fixed">
 	<%@ include file="header.jsp"%>
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
 			<%@ include file="sidebar.jsp"%>
 		</div>
 		<div id="layoutSidenav_content">
+				<div class="container-fluid">
+					<h1 class="mt-4">${word}검색결과</h1>
 
-			<div class="container-fluid">
-				<h1 class="mt-4">${word}검색결과</h1>
+					<div id="map" style="height: 400px;"></div>
 
-				<div id="map" style="height: 400px;"></div>
-
-				<!-- 검색 결과 내  검색하기 -->
-				<div class="searchResult-bar">
-					<div class="button-group">
-						<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-							방 종류 <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" id="roomtype">
-							<li><input type="checkbox" checked="checked" value="apt" id="apt" /> &nbsp;아파트</li>
-							<li><input type="checkbox" checked="checked" value="ju" id="ju" /> &nbsp;주택</li>
-						</ul>
+					<!-- 검색 결과 내  검색하기 -->
+					<div class="searchResult-bar">
+						<div class="button-group">
+							<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+								방 종류 <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" id="roomtype">
+								<li><input type="checkbox" checked="checked" value="apt" id="apt" /> &nbsp;아파트</li>
+								<li><input type="checkbox" checked="checked" value="ju" id="ju" /> &nbsp;주택</li>
+							</ul>
+						</div>
+						<div class="button-group">
+							<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+								매물 종류 <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" id="estatetytpe">
+								<li><input type="checkbox" checked="checked" value="meme" id="meme" /> &nbsp;매매</li>
+								<li><input type="checkbox" checked="checked" value="rent" id="rent" /> &nbsp;전/월세</li>
+							</ul>
+						</div>
 					</div>
-					<div class="button-group">
-						<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-							매물 종류 <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" id="estatetytpe">
-							<li><input type="checkbox" checked="checked" value="meme" id="meme" /> &nbsp;매매</li>
-							<li><input type="checkbox" checked="checked" value="rent" id="rent" /> &nbsp;전/월세</li>
-						</ul>
+					<!-- 검색 결과 내  검색하기 -->
+
+					<!-- 게시글 뿌리기 -->
+					<div class="result-cards">
+						<c:if test="${!empty AptMeme}">
+							<c:forEach var="item" items="${AptMeme}">
+								<div class="col-lg-3 col-sm-5 portfolio-item AptMeme">
+									<div class="card h-150">
+										<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+											<!-- 링크 바꾸기  -->
+											<img class="card-img-top" src="${root }/img/2.jpg" alt="">
+										</a>
+										<div class="card-body">
+											<h4 class="card-title">
+												<p>아마트매매</p>
+												<a href="${root}/map/detailedInfo?no=${item.no}">
+													<!-- 파라미터로 뭘 보내는게 좋을까?  -->
+													${item.aptName}
+												</a>
+											</h4>
+											<p class="card-text">${item.dealAmount}만원</p>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</c:if>
+
+						<c:if test="${!empty AptRent}">
+							<c:forEach var="item" items="${AptRent}">
+								<div class="col-lg-3 col-sm-5 portfolio-item AptRent">
+									<div class="card h-150">
+										<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+											<!-- 링크 바꾸기  -->
+											<img class="card-img-top" src="${root }/img/3.jpg" alt="">
+										</a>
+										<div class="card-body">
+											<h4 class="card-title">
+												<p>아파트 전월세</p>
+												<a href="${root}/map/detailedInfo?no=${item.no}">
+													<!-- 파라미터로 뭘 보내는게 좋을까? -->
+													${item.aptName}
+												</a>
+											</h4>
+											<p class="card-text">${item.dealAmount}만원</p>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</c:if>
+
+						<c:if test="${!empty JuMeme}">
+							<c:forEach var="item" items="${JuMeme}">
+								<div class="col-lg-3 col-sm-5 portfolio-item JuMeme">
+									<div class="card h-150">
+										<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+											<!-- 링크 바꾸기  -->
+											<img class="card-img-top" src="${root }/img/1.jpg" alt="">
+										</a>
+										<div class="card-body">
+											<h4 class="card-title">
+												<p>주택 매매</p>
+												<a href="${root}/map/detailedInfo?no=${item.no}">
+													<!-- 링크 바꾸기  -->
+													${item.aptName}
+												</a>
+											</h4>
+											<p class="card-text">${item.dealAmount}만원</p>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</c:if>
+
+						<c:if test="${!empty JuRent}">
+							<c:forEach var="item" items="${JuRent}">
+								<div class="col-lg-3 col-sm-5 portfolio-item JuRent">
+									<div class="card h-150">
+										<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+											<!-- 링크 바꾸기  -->
+											<img class="card-img-top" src="${root }/img/4.jpg" alt="">
+										</a>
+										<div class="card-body">
+											<h4 class="card-title">
+												<p>주택 전월세</p>
+												<a href="${root}/map/detailedInfo?no=${item.no}">
+													<!-- 링크 바꾸기  -->
+													${item.aptName}
+												</a>
+											</h4>
+											<p class="card-text">${item.dealAmount}만원</p>
+										</div>
+									</div>
+								</div>
+							</c:forEach>
+						</c:if>
+
+
 					</div>
-				</div>
-				<!-- 검색 결과 내  검색하기 -->
-
-				<!-- 게시글 뿌리기 -->
-				<div class="result-cards">
-					<c:if test="${!empty AptMeme}">
-						<c:forEach var="item" items="${AptMeme}">
-							<div class="col-lg-3 col-sm-5 portfolio-item AptMeme">
-								<div class="card h-150">
-									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
-										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="${root }/img/2.jpg" alt="">
-									</a>
-									<div class="card-body">
-										<h4 class="card-title">
-											<p>아마트매매</p>
-											<a href="${root}/map/detailedInfo?no=${item.no}">
-												<!-- 파라미터로 뭘 보내는게 좋을까?  -->
-												${item.aptName}
-											</a>
-										</h4>
-										<p class="card-text">${item.dealAmount}만원</p>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-					</c:if>
-
-					<c:if test="${!empty AptRent}">
-						<c:forEach var="item" items="${AptRent}">
-							<div class="col-lg-3 col-sm-5 portfolio-item AptRent">
-								<div class="card h-150">
-									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
-										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="${root }/img/3.jpg" alt="">
-									</a>
-									<div class="card-body">
-										<h4 class="card-title">
-											<p>아파트 전월세</p>
-											<a href="${root}/map/detailedInfo?no=${item.no}">
-												<!-- 파라미터로 뭘 보내는게 좋을까? -->
-												${item.aptName}
-											</a>
-										</h4>
-										<p class="card-text">${item.dealAmount}만원</p>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-					</c:if>
-
-					<c:if test="${!empty JuMeme}">
-						<c:forEach var="item" items="${JuMeme}">
-							<div class="col-lg-3 col-sm-5 portfolio-item JuMeme">
-								<div class="card h-150">
-									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
-										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="${root }/img/1.jpg" alt="">
-									</a>
-									<div class="card-body">
-										<h4 class="card-title">
-											<p>주택 매매</p>
-											<a href="${root}/map/detailedInfo?no=${item.no}">
-												<!-- 링크 바꾸기  -->
-												${item.aptName}
-											</a>
-										</h4>
-										<p class="card-text">${item.dealAmount}만원</p>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-					</c:if>
-
-					<c:if test="${!empty JuRent}">
-						<c:forEach var="item" items="${JuRent}">
-							<div class="col-lg-3 col-sm-5 portfolio-item JuRent">
-								<div class="card h-150">
-									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
-										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="${root }/img/4.jpg" alt="">
-									</a>
-									<div class="card-body">
-										<h4 class="card-title">
-											<p>주택 전월세</p>
-											<a href="${root}/map/detailedInfo?no=${item.no}">
-												<!-- 링크 바꾸기  -->
-												${item.aptName}
-											</a>
-										</h4>
-										<p class="card-text">${item.dealAmount}만원</p>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-					</c:if>
-
+					<!-- 게시글 뿌리기 -->
 
 				</div>
-				<!-- 게시글 뿌리기 -->
 
-			</div>
+
 
 			<%@ include file="footer.jsp"%>
 		</div>
