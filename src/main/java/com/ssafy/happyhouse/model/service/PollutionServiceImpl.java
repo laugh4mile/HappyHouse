@@ -22,8 +22,8 @@ public class PollutionServiceImpl implements PollutionService{
 	}
 
 	@Override
-	public List<SidoGugunCodeDto> getGugunInSido(String sido) throws Exception {
-		return pollutiondao.getGugunInSido(sido);
+	public List<SidoGugunCodeDto> getGugun(String sido) throws Exception {
+		return pollutiondao.getGugun(sido);
 	}
 
 }
