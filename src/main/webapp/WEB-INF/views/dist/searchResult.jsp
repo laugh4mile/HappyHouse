@@ -17,6 +17,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- 카카오 지도 api -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d0f81655e444c4cae90021cdf7832a59"></script>
@@ -80,7 +81,7 @@
 
 								<c:choose>
 									<c:when test="${item.type == 1}">
-										<div class="col-lg-3 col-sm-5 portfolio-item AptMeme ${item.aptName}">
+										<div class="col-lg-3 col-sm-5 portfolio-item AptMeme">
 											<div class="card h-150">
 												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 													<!-- 링크 바꾸기  -->
@@ -96,13 +97,14 @@
 														</a>
 													</h4>
 													<p class="card-text">${item.dealAmount}만원</p>
+													<span id = "${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true" ></i> </span>
 												</div>
 											</div>
 										</div>
 									</c:when>
 
 									<c:when test="${item.type == 3}">
-										<div class="col-lg-3 col-sm-5 portfolio-item AptRent ${item.aptName}">
+										<div class="col-lg-3 col-sm-5 portfolio-item AptRent">
 											<div class="card h-150">
 												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 													<!-- 링크 바꾸기  -->
@@ -118,13 +120,14 @@
 														</a>
 													</h4>
 													<p class="card-text">${item.dealAmount}만원</p>
+													<span id = "${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true" ></i> </span>
 												</div>
 											</div>
 										</div>
 									</c:when>
 
 									<c:when test="${item.type == 2}">
-										<div class="col-lg-3 col-sm-5 portfolio-item JuMeme ${item.aptName}">
+										<div class="col-lg-3 col-sm-5 portfolio-item JuMeme">
 											<div class="card h-150">
 												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 													<!-- 링크 바꾸기  -->
@@ -140,13 +143,14 @@
 														</a>
 													</h4>
 													<p class="card-text">${item.dealAmount}만원</p>
+													<span id = "${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true" ></i> </span>
 												</div>
 											</div>
 										</div>
 									</c:when>
 
 									<c:when test="${item.type == 4}">
-										<div class="col-lg-3 col-sm-5 portfolio-item JuRent ${item.aptName}">
+										<div class="col-lg-3 col-sm-5 portfolio-item JuRent">
 											<div class="card h-150">
 												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 													<!-- 링크 바꾸기  -->
@@ -162,6 +166,7 @@
 														</a>
 													</h4>
 													<p class="card-text">${item.dealAmount}만원</p>
+													<span id = "${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true" ></i> </span>
 												</div>
 											</div>
 										</div>
@@ -208,7 +213,7 @@
 			mapContainer = document.getElementById('map'); // 지도를 표시할 div 
 			mapOption = {
 				center : new kakao.maps.LatLng(tmpLat, tmpLng), // 지도의 중심좌표
-				level : 3
+				level : 4
 			// 지도의 확대 레벨
 			};			
 			
@@ -299,6 +304,21 @@
 			}
 		});
 	});
+	
+	$(document).ready(function(){
+		  $(".heart").click(function(){
+			  var val = "#" + $(this).attr('id');
+			  console.log(val);
+			  
+		    if($(val).hasClass("liked")){
+		      $(val).html('<i class="far fa-heart" aria-hidden="true"></i>');
+		      $(val).removeClass("liked");
+		    }else{
+		      $(val).html('<i class="fa fa-heart" aria-hidden="true"></i>');
+		      $(val).addClass("liked");
+		    }
+		  });
+		});
 
 	//-------------------아파트/주택, 매매/전월세 별로 보기 ---------------------//
 </script>
