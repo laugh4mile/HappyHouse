@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.happyhouse.model.PollutionDto;
 import com.ssafy.happyhouse.model.SidoGugunCodeDto;
 import com.ssafy.happyhouse.model.dao.PollutionDao;
 
@@ -24,6 +25,16 @@ public class PollutionServiceImpl implements PollutionService{
 	@Override
 	public List<SidoGugunCodeDto> getGugun(String sido) throws Exception {
 		return pollutiondao.getGugun(sido);
+	}
+
+	@Override
+	public List<PollutionDto> getDong(String gugun) throws Exception {
+		return pollutiondao.getDong(gugun);
+	}
+
+	@Override
+	public List<PollutionDto> getPollution(String dong) throws Exception {
+		return pollutiondao.getPollution(dong);
 	}
 
 }
