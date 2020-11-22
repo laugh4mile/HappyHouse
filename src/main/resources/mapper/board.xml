@@ -14,7 +14,7 @@
 	<!-- 게시글 상세 조회 -->
 	<select id="selectBoardByNo" resultType="boardDto">
 		select no, title, writer, content, regtime
-		  from vue_board 
+		  from board 
 		 where no = #{no}
 	</select>
 

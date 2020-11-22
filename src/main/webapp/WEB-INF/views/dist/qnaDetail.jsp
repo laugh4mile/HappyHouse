@@ -62,28 +62,6 @@
 								}
 							});
 						});
-				
-				
-				
-				$(document).on("dblclick", "tr.view", function() {
-					let no = $(this).attr("data-id");
-					$.ajax({
-						url:'${root}/board/' + no,  
-						type:'GET',
-						contentType:'application/json;charset=utf-8',
-						success:function(user) {
-							$("#no").text(user.no);
-							$("#writer").text(user.writer);
-							$("#regtime").text(user.regtime);
-							$("#title").text(user.title);
-							$("#content").text(user.content);
-							/* $("#userViewModal").modal(); */
-						},
-						error:function(xhr,status,msg){
-							console.log("상태값 : " + status + " Http에러메시지 : "+msg);
-						}
-					});			
-				});
 				/*
 				
 				$(document).on("dblclick", "tr.view", function() {
@@ -174,37 +152,39 @@
 	function makeList(boards) {
 		$("#boardlist").empty();
 
-		$(boards).each(function(index, board) {
-			let str = "<tr id=\"view_" + board.no + "\" class=\"view\" data-id=\"" + board.no + "\">"
-					+ "	<td>"
-					+ board.no
-					+ "</td>"
-					+ "	<td> <a href=\"/board/${board.id}\" "
-					+ board.title
-					+ "</a> </td>"
-					+ "	<td>"
-					+ board.writer
-					+ "</td>"
-					+ "	<td>"
-					+ board.regtime
-					+ "</td>"
-					+ "	<td><button type=\"button\" class=\"modiBtn btn btn-outline-primary btn-sm\">수정</button> "
-					+ "		<button type=\"button\" class=\"delBtn btn btn-outline-danger btn-sm\">삭제</button></td>"
-					+ "</tr>"
-	
-					+ "<tr id=\"mview_" + board.no + "\" data-id=\"" + board.no + "\" style=\"display: none;\">"
-					+ "	<td>"
-					+ board.no
-					+ "</td>"
-					+ "	<td><input type=\"text\" name=\"title\" id=\"title" + board.no + "\" value=\"" + board.title + "\"></td>"
-					+ "	<td><input type=\"text\" name=\"writer\" id=\"writer" + board.no + "\" value=\"" + board.writer + "\"></td>"
-					+ "	<td><input type=\"text\" name=\"regtime\" id=\"regtime" + board.no + "\" value=\"" + board.regtime + "\"></td>"
-					+ "	<td><button type=\"button\" class=\"modifyBtn btn btn-primary btn-sm\">수정</button> "
-					+ "		<button type=\"button\" class=\"cancelBtn btn btn-danger btn-sm\">취소</button></td>"
-					+ "</tr>";
-	
-			$("#boardlist").append(str);
-		});//each
+		$(boards)
+				.each(
+						function(index, board) {
+							let str = "<tr id=\"view_" + board.no + "\" class=\"view\" data-id=\"" + board.no + "\">"
+									+ "	<td>"
+									+ board.no
+									+ "</td>"
+									+ "	<td>"
+									+ board.title
+									+ "</td>"
+									+ "	<td>"
+									+ board.writer
+									+ "</td>"
+									+ "	<td>"
+									+ board.regtime
+									+ "</td>"
+									+ "	<td><button type=\"button\" class=\"modiBtn btn btn-outline-primary btn-sm\">수정</button> "
+									+ "		<button type=\"button\" class=\"delBtn btn btn-outline-danger btn-sm\">삭제</button></td>"
+									+ "</tr>"
+
+									+ "<tr id=\"mview_" + board.no + "\" data-id=\"" + board.no + "\" style=\"display: none;\">"
+									+ "	<td>"
+									+ board.no
+									+ "</td>"
+									+ "	<td><input type=\"text\" name=\"title\" id=\"title" + board.no + "\" value=\"" + board.title + "\"></td>"
+									+ "	<td><input type=\"text\" name=\"writer\" id=\"writer" + board.no + "\" value=\"" + board.writer + "\"></td>"
+									+ "	<td><input type=\"text\" name=\"regtime\" id=\"regtime" + board.no + "\" value=\"" + board.regtime + "\"></td>"
+									+ "	<td><button type=\"button\" class=\"modifyBtn btn btn-primary btn-sm\">수정</button> "
+									+ "		<button type=\"button\" class=\"cancelBtn btn btn-danger btn-sm\">취소</button></td>"
+									+ "</tr>";
+
+							$("#boardlist").append(str);
+						});//each
 	}
 </script>
 </head>
