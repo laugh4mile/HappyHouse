@@ -10,11 +10,11 @@ import com.ssafy.happyhouse.model.MemberDto;
 
 @Mapper
 public interface LoginDao {
+	public List<MemberDto> userList();
+	
 	public MemberDto login(String email, String userpwd) throws Exception;
 
 	public MemberDto login(Map<String, String> map) throws Exception;
-
-	public List<MemberDto> userList();
 
 	public void userRegister(MemberDto memberDto);
 

@@ -20,7 +20,7 @@
 			function() {
 				//회원 목록
 				$.ajax({
-					url : '${root}/user/users',
+					url : '${root}/board/boards',
 					type : 'GET',
 					contentType : 'application/json;charset=utf-8',
 					dataType : 'json',
@@ -36,10 +36,10 @@
 				$("#registerBtn").click(
 						function() {
 							let registerinfo = JSON.stringify({
-								"email" : $("#email").val(),
-								"userLname" : $("#userLname").val(),
-								"userFname" : $("#userFname").val(),
-								"userpwd" : $("#userpwd").val(),
+								"title" : $("#title").val(),
+								"content" : $("#content").val(),
+								"writer" : $("#writer").val(),
+								"regtime" : $("#regtime").val(),
 							});
 							console.log("여기까지는 된다");
 							$.ajax({
@@ -49,10 +49,10 @@
 								dataType : 'json',
 								data : registerinfo,
 								success : function(users) {
-									$("#email").val('');
-									$("#userLname").val('');
-									$("#userFname").val('');
-									$("#userpwd").val('');
+									$("#no").val('');
+									$("#writer").val('');
+									$("#regtime").val('');
+									$("#title").val('');
 									$("#userRegModal").modal("hide");
 									makeList(users);
 								},
@@ -98,10 +98,10 @@
 						function() {
 							let mid = $(this).parents("tr").attr("data-id");
 							let modifyinfo = JSON.stringify({
-								"email" : mid,
-								"userpwd" : $("#userpwd" + mid).val(),
-								"userLname" : $("#userLname" + mid).val(),
-								"userFname" : $("#userFname" + mid).val()
+								"no" : mid,
+								"title" : $("#title" + mid).val(),
+								"writer" : $("#writer" + mid).val(),
+								"regtime" : $("#regtime" + mid).val()
 							});
 							$.ajax({
 								url : '${root}/user/modi',
@@ -155,30 +155,30 @@
 		$(users)
 				.each(
 						function(index, user) {
-							let str = "<tr id=\"view_" + user.email + "\" class=\"view\" data-id=\"" + user.email + "\">"
+							let str = "<tr id=\"view_" + user.no + "\" class=\"view\" data-id=\"" + user.no + "\">"
 									+ "	<td>"
-									+ user.email
+									+ user.no
 									+ "</td>"
 									+ "	<td>"
-									+ user.userpwd
+									+ user.title
 									+ "</td>"
 									+ "	<td>"
-									+ user.userLname
+									+ user.writer
 									+ "</td>"
 									+ "	<td>"
-									+ user.userFname
+									+ user.regtime
 									+ "</td>"
 									+ "	<td><button type=\"button\" class=\"modiBtn btn btn-outline-primary btn-sm\">수정</button> "
 									+ "		<button type=\"button\" class=\"delBtn btn btn-outline-danger btn-sm\">삭제</button></td>"
 									+ "</tr>"
 
-									+ "<tr id=\"mview_" + user.email + "\" data-id=\"" + user.email + "\" style=\"display: none;\">"
+									+ "<tr id=\"mview_" + user.no + "\" data-id=\"" + user.no + "\" style=\"display: none;\">"
 									+ "	<td>"
-									+ user.email
+									+ user.no
 									+ "</td>"
-									+ "	<td><input type=\"text\" name=\"userpwd\" id=\"userpwd" + user.email + "\" value=\"" + user.userpwd + "\"></td>"
-									+ "	<td><input type=\"text\" name=\"userLname\" id=\"userLname" + user.email + "\" value=\"" + user.userLname + "\"></td>"
-									+ "	<td><input type=\"text\" name=\"userFname\" id=\"userFname" + user.email + "\" value=\"" + user.userFname + "\"></td>"
+									+ "	<td><input type=\"text\" name=\"title\" id=\"title" + user.no + "\" value=\"" + user.title + "\"></td>"
+									+ "	<td><input type=\"text\" name=\"writer\" id=\"writer" + user.no + "\" value=\"" + user.writer + "\"></td>"
+									+ "	<td><input type=\"text\" name=\"regtime\" id=\"regtime" + user.no + "\" value=\"" + user.regtime + "\"></td>"
 									+ "	<td><button type=\"button\" class=\"modifyBtn btn btn-primary btn-sm\">수정</button> "
 									+ "		<button type=\"button\" class=\"cancelBtn btn btn-danger btn-sm\">취소</button></td>"
 									+ "</tr>";
@@ -202,25 +202,23 @@
 			<main>
 				<div id="member_list_bg">
 					<div class="container table-bg" align="center">
-						<h1>회원 목록</h1>
+						<h1>Q&A 게시판</h1>
 						<div align="right">
-							<button type="button" class="btn-register" data-toggle="modal" data-target="#userRegModal">등록</button>
+							<button type="button" class="btn-register">등록</button>
 						</div>
 						<table class="table table-hover text-center table-spacing">
 							<colgroup>
-								<col width="30%">
-								<col width="20%">
-								<col width="10%">
-								<col width="20%">
+								<col width="15%">
+								<col width="40%">
+								<col width="25%">
 								<col width="20%">
 							</colgroup>
 							<thead>
 								<tr>
-									<th class="text-center">이메일</th>
-									<th class="text-center">비밀번호</th>
-									<th class="text-center">성</th>
-									<th class="text-center">이름</th>
-									<th class="text-center">수정/삭제</th>
+									<th class="text-center">번호</th>
+									<th class="text-center">질문 제목</th>
+									<th class="text-center">질문자</th>
+									<th class="text-center">날짜</th>
 								</tr>
 							</thead>
 							<tbody id="userlist"></tbody>
@@ -228,40 +226,7 @@
 					</div>
 					<!-- container -->
 				</div>
-				<!-- 회원 등록 모달 -->
-				<div class="modal" id="userRegModal">
-					<div class="modal-dialog">
-						<div class="modal-content">
 
-							<div class="modal-header">
-								<h4 class="modal-title">회원등록</h4>
-								<button type="button" class="close" data-dismiss="modal">&times;</button>
-							</div>
-
-							<div class="modal-body">
-								<form id="memberform" method="post" action="">
-									<input type="hidden" name="act" id="act" value="">
-									<div class="form-group" align="left">
-										<label for="email">이메일</label><br> <input type="text" class="form-control" id="email" name="email" placeholder="">
-									</div>
-									<div class="form-group" align="left">
-										<label for="">비밀번호</label> <input type="password" class="form-control" id="userpwd" name="userpwd" placeholder="">
-									</div>
-									<div class="form-group" align="left">
-										<label for="">성</label> <input type="text" class="form-control" id="userLname" name="userLname" placeholder="">
-									</div>
-									<div class="form-group" align="left">
-										<label for="name">이름</label> <input type="text" class="form-control" id="userFname" name="userFname" placeholder="">
-									</div>
-									<div class="form-group" align="center">
-										<button type="button" class="btn btn-primary" id="registerBtn">회원가입</button>
-										<button type="reset" class="btn btn-warning">초기화</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
 			</main>
 			<%@ include file="footer.jsp"%>
 		</div>
@@ -270,8 +235,15 @@
 	<script src="${root }/js/scripts.js"></script>
 	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
-	<script src="${root }/assets/demo/datatables-demo.js"></script>
 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+
+	<script src="${root }/assets/demo/datatables-demo.js"></script>
+	
 </body>
 	</html>
 </c:if>

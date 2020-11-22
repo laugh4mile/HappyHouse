@@ -39,7 +39,7 @@
 				</nav>
 			</div>
 			
-			<a class="nav-link" href="searchResult.jsp">
+			<a class="nav-link" href="${root}/board/list">
 				<div class="sb-nav-link-icon">
 					<i class="fas fa-bullhorn"></i>
 				</div> Q&A
