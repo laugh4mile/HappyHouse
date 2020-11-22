@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.happyhouse.model.dao.CommercialDao">
+	<select id="getSido" resultType="SidoGugunCodeDto">
+		select left(sido_code,2) as sidoCode, sido_name as sidoName
+		from sidocode
+		order by sido_code;
+	</select>
+
+	<select id="getGugun" parameterType="String" resultType="SidoGugunCodeDto">
+		select left(gugun_code,5) as gugunCode, gugun_name as gugunName
+		from guguncode
+		where left(gugun_code,2) = #{sido}
+		order by gugun_code;
+	</select>
+
+	<select id="getDong" parameterType="String" resultType="CommercialDto">
+		select right(dongcode,5) as dongCode, dong	
+		from dongcode
+		where gugun like (select gugun_name from guguncode where left(gugun_code,5) = #{gugun})
+		order by dong;
+		
+	</select>
+
+	<select id="getPollution" parameterType="String" resultType="CommercialDto">
+		select no, name, dongcode, address, lng, lat
+		from pollution
+		where dong like #{dong}
+		order by name;
+	</select>
+</mapper>
