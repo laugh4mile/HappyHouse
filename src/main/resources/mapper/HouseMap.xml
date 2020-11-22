@@ -104,7 +104,23 @@
 		where AptName like #{apt} and type=4
 		order by AptName;
 	</select>
-	
+
+
+	<select id="getAllInName" parameterType="String" resultType="HouseDealDto">
+		select no,dong,AptName,code,dealAmount,rentMoney,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun,rentMoney,type
+		from housedeal
+		where AptName like #{apt}
+		order by AptName;
+	</select>
+
+	<select id="getAllInDong" parameterType="String" resultType="HouseDealDto">
+		select no,dong,AptName,code,dealAmount,rentMoney,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun,rentMoney,type
+		from housedeal
+		where dong like #{dong}
+		order by AptName;
+	</select>
+
+
 	<select id="search" parameterType="int" resultType="HouseDealDto">
 		select no,dong,AptName,code,dealAmount,rentMoney,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun,type
 		from housedeal
