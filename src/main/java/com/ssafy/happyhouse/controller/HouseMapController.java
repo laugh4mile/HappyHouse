@@ -103,34 +103,22 @@ public class HouseMapController {
 		key = key.trim();
 		System.out.println(key + " " + word);
 
-		List<HouseDealDto> AptMeme = null;
-		List<HouseDealDto> AptRent = null;
-		List<HouseDealDto> JuMeme = null;
-		List<HouseDealDto> JuRent = null;
+		List<HouseDealDto> result = null;
 
 		try {
 			String search = "%" + word.trim() + "%";
 
 			switch (key) {
 			case "dong":
-				AptMeme = houseMapService.getAptMemeInDong(search);
-				AptRent = houseMapService.getAptRentInDong(search);
-				JuMeme = houseMapService.getJuMemeInDong(search);
-				JuRent = houseMapService.getJuRentInDong(search);
+				result = houseMapService.getAllInDong(search);
 				break;
 			case "name":
-				AptMeme = houseMapService.getAptMemeInName(search);
-				AptRent = houseMapService.getAptRentInName(search);
-				JuMeme = houseMapService.getJuMemeInName(search);
-				JuRent = houseMapService.getJuRentInName(search);
+				result = houseMapService.getAllInName(search);
 				break;
 			}
 
 			model.addAttribute("word", word);
-			model.addAttribute("AptMeme", AptMeme);
-			model.addAttribute("AptRent", AptRent);
-			model.addAttribute("JuMeme", JuMeme);
-			model.addAttribute("JuRent", JuRent);
+			model.addAttribute("result", result);
 
 		} catch (Exception e) {
 			e.printStackTrace();

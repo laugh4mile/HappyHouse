@@ -94,4 +94,14 @@ public class HouseMapServiceImpl implements HouseMapService {
 	public HouseDealDto search(int no) {
 		return housemapdao.search(no);
 	}
+
+	@Override
+	public List<HouseDealDto> getAllInDong(String dong) {
+		return housemapdao.getAllInDong(dong);
+	}
+
+	@Override
+	public List<HouseDealDto> getAllInName(String apt) {
+		return housemapdao.getAllInName(apt);
+	}
 }

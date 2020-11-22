@@ -22,5 +22,7 @@ public interface HouseMapService {
 	List<HouseDealDto> getJuRentInName(String apt) throws Exception;
 	List<HouseDealDto> getAptInType(String dong, String type) throws Exception;
 	HouseDealDto search(int no);
+	List<HouseDealDto> getAllInDong(String dong);
+	List<HouseDealDto> getAllInName(String apt);
 	
 }
