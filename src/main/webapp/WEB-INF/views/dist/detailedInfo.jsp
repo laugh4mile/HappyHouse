@@ -85,7 +85,7 @@
 								<div class="card col-sm-12 mt-1" style="min-height: 400px;">
 									<div class="card-body">
 										<div class="map_wrap">
-											<div id="map" style="width: 100%; height: 400px; margin: auto;"></div>
+											<div id="map" style="height: 350px; margin: auto;"></div>
 
 
 											<ul id="category">
@@ -100,43 +100,6 @@
 									</div>
 								</div>
 							</section>
-							<%-- ===================================시구군읍면동구글맵================================== --%>
-							<!-- 							<div>
-								<ul class="nav nav-pills">
-									<li class="active"><a class="nav-link active" data-toggle="pill" href="#menu1">편의시설</a></li>
-									<li><a class="nav-link" data-toggle="pill" href="#menu2">안전시설</a></li>
-									<li><a class="nav-link" data-toggle="pill" href="#menu3">학군정보</a></li>
-								</ul>
-								<div class="tab-content">
-									<div id="menu1" class="tab-pane active">
-										<h3>편의시설</h3>
-										<ul class="tap-item">
-											<li>지하철역</li>
-											<li>마트</li>
-											<li>편의점</li>
-											<li>은행</li>
-											<li>약국</li>
-										</ul>
-									</div>
-									<div id="menu2" class="tab-pane fade">
-										<h3>안전시설</h3>
-										<ul class="tap-item">
-											<li>경찰서/파출소</li>
-											<li>CCTV</li>
-										</ul>
-									</div>
-									<div id="menu3" class="tab-pane fade">
-										<h3>학군정보</h3>
-										<ul class="tap-item">
-											<li>어린이집</li>
-											<li>유치원</li>
-											<li>초등학교</li>
-											<li>중학교</li>
-											<li>고등학교</li>
-										</ul>
-									</div>
-								</div>
-							</div> -->
 						</div>
 					</div>
 				</div>
@@ -160,35 +123,43 @@
 	markers = [], // 마커를 담을 배열입니다
 	currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
 
-	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-	mapOption = {
-		center : new kakao.maps.LatLng(37.5665734, 126.978179), // 지도의 중심좌표
-		level : 5
-	// 지도의 확대 레벨
-	};
-
+	var mapContainer; // 지도를 표시할 div 
+	var mapOption;
 	// 지도를 생성합니다    
-	var map = new kakao.maps.Map(mapContainer, mapOption);
+	var map;
+	var ps;
+	
+	$(document).ready(function() { //페이지 생성시 실행
+		geocode(); //해당 아파트 위도 경도 찾기
+	});//ready
+	
+	window.onload = function(){
+		next();
+	}
+	
 
-	// 장소 검색 객체를 생성합니다
-	var ps = new kakao.maps.services.Places(map);
+	function next() {
+		// 장소 검색 객체를 생성합니다
+		ps = new kakao.maps.services.Places(map);
 
-	// 지도에 idle 이벤트를 등록합니다
-	kakao.maps.event.addListener(map, 'idle', searchPlaces);
+		// 지도에 idle 이벤트를 등록합니다
+		kakao.maps.event.addListener(map, 'idle', searchPlaces);
 
-	// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
-	contentNode.className = 'placeinfo_wrap';
+		// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
+		contentNode.className = 'placeinfo_wrap';
 
-	// 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
-	// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다 
-	addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
-	addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
+		// 커스텀 오버레이의 컨텐츠 노드에 mousedown, touchstart 이벤트가 발생했을때
+		// 지도 객체에 이벤트가 전달되지 않도록 이벤트 핸들러로 kakao.maps.event.preventMap 메소드를 등록합니다 
+		addEventHandle(contentNode, 'mousedown', kakao.maps.event.preventMap);
+		addEventHandle(contentNode, 'touchstart', kakao.maps.event.preventMap);
 
-	// 커스텀 오버레이 컨텐츠를 설정합니다
-	placeOverlay.setContent(contentNode);
+		// 커스텀 오버레이 컨텐츠를 설정합니다
+		placeOverlay.setContent(contentNode);
 
-	// 각 카테고리에 클릭 이벤트를 등록합니다
-	addCategoryClickEvent();
+		// 각 카테고리에 클릭 이벤트를 등록합니다
+		addCategoryClickEvent();
+	}
+
 
 	// 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다
 	function addEventHandle(target, type, callback) {
@@ -338,9 +309,7 @@
 	}
 
 	//======================================  맵 스크립트 ====================// 	
-	$(document).ready(function() { //페이지 생성시 실행
-		geocode(); //해당 아파트 위도 경도 찾기
-	});//ready
+
 
 	function geocode() {
 		let idx = 0;
@@ -363,18 +332,17 @@
 			address.title = aptName;
 			address.latlng = new kakao.maps.LatLng(tmpLat, tmpLng);
 
-			addMarker(address); //마커 찍기
+			iaddMarker(address); //마커 찍기
 		}, "json");//get
 	}
 
 	// 카카오 지도에 마커 찍기
-	function addMarker(positions) {
+	function iaddMarker(positions) {
 
-		mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-
+		mapContainer = document.getElementById('map'); // 지도를 표시할 div 
 		mapOption = {
 			center : positions.latlng, // 지도의 중심좌표
-			level : 3
+			level : 5
 		// 지도의 확대 레벨
 		};
 		console.log(positions);
