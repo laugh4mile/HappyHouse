@@ -80,7 +80,7 @@
 
 								<c:choose>
 									<c:when test="${item.type == 1}">
-										<div class="col-lg-3 col-sm-5 portfolio-item AptMeme">
+										<div class="col-lg-3 col-sm-5 portfolio-item AptMeme ${item.aptName}">
 											<div class="card h-150">
 												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 													<!-- 링크 바꾸기  -->
@@ -102,7 +102,7 @@
 									</c:when>
 
 									<c:when test="${item.type == 3}">
-										<div class="col-lg-3 col-sm-5 portfolio-item AptRent">
+										<div class="col-lg-3 col-sm-5 portfolio-item AptRent ${item.aptName}">
 											<div class="card h-150">
 												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 													<!-- 링크 바꾸기  -->
@@ -124,7 +124,7 @@
 									</c:when>
 
 									<c:when test="${item.type == 2}">
-										<div class="col-lg-3 col-sm-5 portfolio-item JuMeme">
+										<div class="col-lg-3 col-sm-5 portfolio-item JuMeme ${item.aptName}">
 											<div class="card h-150">
 												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 													<!-- 링크 바꾸기  -->
@@ -146,7 +146,7 @@
 									</c:when>
 
 									<c:when test="${item.type == 4}">
-										<div class="col-lg-3 col-sm-5 portfolio-item JuRent">
+										<div class="col-lg-3 col-sm-5 portfolio-item JuRent ${item.aptName}">
 											<div class="card h-150">
 												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 													<!-- 링크 바꾸기  -->
@@ -167,17 +167,9 @@
 										</div>
 									</c:when>
 
-
-
-
-
 								</c:choose>
 							</c:forEach>
-
-
-
-
-
+							
 						</div>
 					</c:when>
 					<c:otherwise>
@@ -241,8 +233,6 @@
 		</c:forEach>		
 	</c:if>
 
-
-
 	// 카카오 지도에 마커 찍기
 	function addMarker(positions) {
 		var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
@@ -261,8 +251,6 @@
 			location.href="${root}/map/detailedInfo?no="+link;
 		});
 	}
-	
-
 
 	//-------------------아파트/주택, 매매/전월세 별로 보기 ---------------------//
 
