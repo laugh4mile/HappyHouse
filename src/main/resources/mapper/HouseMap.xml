@@ -50,63 +50,63 @@
 	</select>
 
 	<select id="getAptMemeInDong" parameterType="String" resultType="HouseDealDto">
-		select no,dong,AptName,code,dealAmount,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun
+		select no,dong,AptName,code,dealAmount,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun,type
 		from housedeal
 		where dong like #{dong} and type=1
 		order by AptName;
 	</select>
 
 	<select id="getJuMemeInDong" parameterType="String" resultType="HouseDealDto">
-		select no,dong,AptName,code,dealAmount,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun
+		select no,dong,AptName,code,dealAmount,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun,type
 		from housedeal
 		where dong like #{dong} and type=2
 		order by AptName;
 	</select>
 
 	<select id="getAptRentInDong" parameterType="String" resultType="HouseDealDto">
-		select no,dong,AptName,code,dealAmount,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun,rentMoney
+		select no,dong,AptName,code,dealAmount,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun,rentMoney,type
 		from housedeal
 		where dong like #{dong} and type=3
 		order by AptName;
 	</select>
 
 	<select id="getJuRentInDong" parameterType="String" resultType="HouseDealDto">
-		select no,dong,AptName,code,dealAmount,rentMoney,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun
+		select no,dong,AptName,code,dealAmount,rentMoney,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun,type
 		from housedeal
 		where dong like #{dong} and type=4
 		order by AptName;
 	</select>
 
 	<select id="getAptMemeInName" parameterType="String" resultType="HouseDealDto">
-		select no,dong,AptName,code,dealAmount,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun
+		select no,dong,AptName,code,dealAmount,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun,type
 		from housedeal
 		where AptName like #{apt} and type=1
 		order by AptName;
 	</select>
 
 	<select id="getJuMemeInName" parameterType="String" resultType="HouseDealDto">
-		select no,dong,AptName,code,dealAmount,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun
+		select no,dong,AptName,code,dealAmount,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun,type
 		from housedeal
 		where AptName like #{apt} and type=2
 		order by AptName;
 	</select>
 
 	<select id="getAptRentInName" parameterType="String" resultType="HouseDealDto">
-		select no,dong,AptName,code,dealAmount,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun,rentMoney
+		select no,dong,AptName,code,dealAmount,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun,rentMoney,type
 		from housedeal
 		where AptName like #{apt} and type=3
 		order by AptName;
 	</select>
 
 	<select id="getJuRentInName" parameterType="String" resultType="HouseDealDto">
-		select no,dong,AptName,code,dealAmount,rentMoney,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun
+		select no,dong,AptName,code,dealAmount,rentMoney,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun,type
 		from housedeal
 		where AptName like #{apt} and type=4
 		order by AptName;
 	</select>
 	
 	<select id="search" parameterType="int" resultType="HouseDealDto">
-		select no,dong,AptName,code,dealAmount,rentMoney,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun
+		select no,dong,AptName,code,dealAmount,rentMoney,buildYear,dealYear,dealMonth,dealDay,area,floor,jibun,type
 		from housedeal
 		where no = #{no};
 	</select>
