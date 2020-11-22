@@ -10,5 +10,6 @@ public interface PollutionDao {
 	
 	List<SidoGugunCodeDto> getSido() throws Exception;
 	List<SidoGugunCodeDto> getGugun(String sido) throws Exception;
-	List<PollutionDto> getPollutionInDong(String gugun) throws Exception;
+	List<PollutionDto> getDong(String gugun) throws Exception;
+	List<PollutionDto> getPollution(String dong) throws Exception;
 }

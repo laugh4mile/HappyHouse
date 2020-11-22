@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ssafy.happyhouse.model.PollutionDto;
 import com.ssafy.happyhouse.model.SidoGugunCodeDto;
 import com.ssafy.happyhouse.model.service.PollutionService;
 
@@ -33,6 +34,19 @@ public class PollutionController {
 		return pollutionService.getGugun(sido);
 	}
 
+	@ResponseBody
+	@GetMapping(value = "/{sido}/{gugun}", headers = { "Content-type=application/json" })
+	public List<PollutionDto> getDong(@PathVariable String gugun) throws Exception {
+		System.out.println("pollute : " + pollutionService.getDong(gugun).get(0).getDong());
+		return pollutionService.getDong(gugun);
+	}
+
+	@ResponseBody
+	@GetMapping(value = "/{sido}/{gugun}/{dong}", headers = { "Content-type=application/json" })
+	public List<PollutionDto> getPollution(@PathVariable String dong) throws Exception {
+		System.out.println("pollute : " + pollutionService.getPollution(dong));
+		return pollutionService.getPollution(dong);
+	}
 
 	@GetMapping(value = "/PollutionMap")
 	public String listAptRent() {
