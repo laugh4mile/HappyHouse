@@ -26,8 +26,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ssafy.happyhouse.model.MemberDto;
 import com.ssafy.happyhouse.model.service.LoginService;
 
-
-
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -63,16 +61,15 @@ public class UserController {
 			System.out.println(memberDto);
 			if(memberDto != null) {
 				session.setAttribute("userinfo", memberDto);
-				System.out.println(session.getAttribute("userinfo"));
-				System.out.println("맵 : " +  map);
-				System.out.println("id pwd : " + map.get("email")+" "+map.get("userpwd"));
-				System.out.println("세션 : " + session);
+//				System.out.println(session.getAttribute("userinfo"));
+//				System.out.println("맵 : " +  map);
+//				System.out.println("id pwd : " + map.get("email")+" "+map.get("userpwd"));
+//				System.out.println("세션 : " + session);
 				Cookie cookie = new Cookie("ssafy_id", memberDto.getEmail());
-				System.out.println("쿠키 id : " + cookie.getName());
+//				System.out.println("쿠키 id : " + cookie.getName());
 				cookie.setPath("/");
 				if(memberDto.getEmail().equals(map.get("email"))) {
-					System.out.println("쿠키 잘 되냐??");
-					cookie.setMaxAge(60);//1분 저장.
+					cookie.setMaxAge(60*5);//5분 저장.
 				} else {
 					cookie.setMaxAge(0);
 				}
@@ -108,7 +105,6 @@ public class UserController {
 	@ResponseBody
 	@PostMapping(value = "/regi", headers = { "Content-type=application/json" })
 	public List<MemberDto> userRegister(@RequestBody MemberDto memberDto) {
-		System.out.println("여기까지는 오는데..");
 		System.out.println(memberDto.getEmail());
 		loginService.userRegister(memberDto);
 		return loginService.userList();
@@ -139,7 +135,6 @@ public class UserController {
 	@RequestMapping(value = "/find_pwd", method = RequestMethod.POST)
 	public String find_id(HttpServletResponse response, @RequestParam("email") String email, Model md) throws Exception{
 		md.addAttribute("pwd", loginService.find_pwd(email));
-		System.out.println("오나?");
 		return "/dist/find_pwd";
 	}
 	
