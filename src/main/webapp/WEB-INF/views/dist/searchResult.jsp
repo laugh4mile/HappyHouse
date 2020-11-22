@@ -44,133 +44,148 @@
 			<div class="container-fluid">
 				<h1 class="mt-4">${word}검색결과</h1>
 
-				<div id="map" style="height: 600px;"></div>
+				<c:choose>
+					<c:when test="${!empty result}">
+						<div id="map" style="height: 600px;"></div>
 
-				<!-- 검색 결과 내  검색하기 -->
-				<div class="searchResult-bar">
-					<div class="button-group">
-						<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-							방 종류 <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" id="roomtype">
-							<li><input type="checkbox" checked="checked" value="apt" id="apt" /> &nbsp;아파트</li>
-							<li><input type="checkbox" checked="checked" value="ju" id="ju" /> &nbsp;주택</li>
-						</ul>
-					</div>
-					<div class="button-group">
-						<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-							매물 종류 <span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" id="estatetytpe">
-							<li><input type="checkbox" checked="checked" value="meme" id="meme" /> &nbsp;매매</li>
-							<li><input type="checkbox" checked="checked" value="rent" id="rent" /> &nbsp;전/월세</li>
-						</ul>
-					</div>
-				</div>
-				<!-- 검색 결과 내  검색하기 -->
-
-				<!-- 게시글 뿌리기 -->
-				<div class="result-cards">
-					<c:if test="${!empty AptMeme}">
-						<c:forEach var="item" items="${AptMeme}">
-							<div class="col-lg-3 col-sm-5 portfolio-item AptMeme">
-								<div class="card h-150">
-									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
-										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="${root }/img/2.jpg" alt="">
-									</a>
-									<div class="card-body">
-										<h4 class="card-title">
-											<p>아마트매매</p>
-											<a href="${root}/map/detailedInfo?no=${item.no}">
-												<!-- 파라미터로 뭘 보내는게 좋을까?  -->
-												${item.aptName}
-											</a>
-										</h4>
-										<p class="card-text">${item.dealAmount}만원</p>
-									</div>
-								</div>
+						<!-- 검색 결과 내  검색하기 -->
+						<div class="searchResult-bar">
+							<div class="button-group">
+								<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+									방 종류 <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" id="roomtype">
+									<li><input type="checkbox" checked="checked" value="apt" id="apt" /> &nbsp;아파트</li>
+									<li><input type="checkbox" checked="checked" value="ju" id="ju" /> &nbsp;주택</li>
+								</ul>
 							</div>
-						</c:forEach>
-					</c:if>
-
-					<c:if test="${!empty AptRent}">
-						<c:forEach var="item" items="${AptRent}">
-							<div class="col-lg-3 col-sm-5 portfolio-item AptRent">
-								<div class="card h-150">
-									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
-										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="${root }/img/3.jpg" alt="">
-									</a>
-									<div class="card-body">
-										<h4 class="card-title">
-											<p>아파트 전월세</p>
-											<a href="${root}/map/detailedInfo?no=${item.no}">
-												<!-- 파라미터로 뭘 보내는게 좋을까? -->
-												${item.aptName}
-											</a>
-										</h4>
-										<p class="card-text">${item.dealAmount}만원</p>
-									</div>
-								</div>
+							<div class="button-group">
+								<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+									매물 종류 <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu" id="estatetytpe">
+									<li><input type="checkbox" checked="checked" value="meme" id="meme" /> &nbsp;매매</li>
+									<li><input type="checkbox" checked="checked" value="rent" id="rent" /> &nbsp;전/월세</li>
+								</ul>
 							</div>
-						</c:forEach>
-					</c:if>
+						</div>
+						<!-- 검색 결과 내  검색하기 -->
 
-					<c:if test="${!empty JuMeme}">
-						<c:forEach var="item" items="${JuMeme}">
-							<div class="col-lg-3 col-sm-5 portfolio-item JuMeme">
-								<div class="card h-150">
-									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
-										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="${root }/img/1.jpg" alt="">
-									</a>
-									<div class="card-body">
-										<h4 class="card-title">
-											<p>주택 매매</p>
-											<a href="${root}/map/detailedInfo?no=${item.no}">
-												<!-- 링크 바꾸기  -->
-												${item.aptName}
-											</a>
-										</h4>
-										<p class="card-text">${item.dealAmount}만원</p>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-					</c:if>
-
-					<c:if test="${!empty JuRent}">
-						<c:forEach var="item" items="${JuRent}">
-							<div class="col-lg-3 col-sm-5 portfolio-item JuRent">
-								<div class="card h-150">
-									<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
-										<!-- 링크 바꾸기  -->
-										<img class="card-img-top" src="${root }/img/4.jpg" alt="">
-									</a>
-									<div class="card-body">
-										<h4 class="card-title">
-											<p>주택 전월세</p>
-											<a href="${root}/map/detailedInfo?no=${item.no}">
-												<!-- 링크 바꾸기  -->
-												${item.aptName}
-											</a>
-										</h4>
-										<p class="card-text">${item.dealAmount}만원</p>
-									</div>
-								</div>
-							</div>
-						</c:forEach>
-					</c:if>
+						<!-- 게시글 뿌리기 -->
+						<div class="result-cards">
 
 
-				</div>
-				<!-- 게시글 뿌리기 -->
+							<c:forEach var="item" items="${result}">
+								<!-- 아파트 매매 / 아파트 전월세 / 주택 매매 / 주택 전월세를  type을 통해 구별해내기 -->
 
+								<c:choose>
+									<c:when test="${item.type == 1}">
+										<div class="col-lg-3 col-sm-5 portfolio-item AptMeme">
+											<div class="card h-150">
+												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+													<!-- 링크 바꾸기  -->
+													<img class="card-img-top" src="${root }/img/2.jpg" alt="">
+												</a>
+												<div class="card-body">
+													<h4 class="card-title">
+														아마트매매
+														<br>
+														<a href="${root}/map/detailedInfo?no=${item.no}">
+															<!-- 파라미터로 뭘 보내는게 좋을까?  -->
+															${item.aptName}
+														</a>
+													</h4>
+													<p class="card-text">${item.dealAmount}만원</p>
+												</div>
+											</div>
+										</div>
+									</c:when>
+
+									<c:when test="${item.type == 3}">
+										<div class="col-lg-3 col-sm-5 portfolio-item AptRent">
+											<div class="card h-150">
+												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+													<!-- 링크 바꾸기  -->
+													<img class="card-img-top" src="${root }/img/2.jpg" alt="">
+												</a>
+												<div class="card-body">
+													<h4 class="card-title">
+														아파트 전/월세
+														<br>
+														<a href="${root}/map/detailedInfo?no=${item.no}">
+															<!-- 파라미터로 뭘 보내는게 좋을까?  -->
+															${item.aptName}
+														</a>
+													</h4>
+													<p class="card-text">${item.dealAmount}만원</p>
+												</div>
+											</div>
+										</div>
+									</c:when>
+
+									<c:when test="${item.type == 2}">
+										<div class="col-lg-3 col-sm-5 portfolio-item JuMeme">
+											<div class="card h-150">
+												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+													<!-- 링크 바꾸기  -->
+													<img class="card-img-top" src="${root }/img/2.jpg" alt="">
+												</a>
+												<div class="card-body">
+													<h4 class="card-title">
+														주택 매매
+														<br>
+														<a href="${root}/map/detailedInfo?no=${item.no}">
+															<!-- 파라미터로 뭘 보내는게 좋을까?  -->
+															${item.aptName}
+														</a>
+													</h4>
+													<p class="card-text">${item.dealAmount}만원</p>
+												</div>
+											</div>
+										</div>
+									</c:when>
+
+									<c:when test="${item.type == 4}">
+										<div class="col-lg-3 col-sm-5 portfolio-item JuRent">
+											<div class="card h-150">
+												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+													<!-- 링크 바꾸기  -->
+													<img class="card-img-top" src="${root }/img/2.jpg" alt="">
+												</a>
+												<div class="card-body">
+													<h4 class="card-title">
+														주택 전/월세
+														<br>
+														<a href="${root}/map/detailedInfo?no=${item.no}">
+															<!-- 파라미터로 뭘 보내는게 좋을까?  -->
+															${item.aptName}
+														</a>
+													</h4>
+													<p class="card-text">${item.dealAmount}만원</p>
+												</div>
+											</div>
+										</div>
+									</c:when>
+
+
+
+
+
+								</c:choose>
+							</c:forEach>
+
+
+
+
+
+						</div>
+					</c:when>
+					<c:otherwise>
+							검색 결과가 없습니다.			
+					</c:otherwise>
+				</c:choose>
 			</div>
-
-
-
+			<!-- 게시글 뿌리기 -->
 			<%@ include file="footer.jsp"%>
 		</div>
 	</div>
@@ -189,35 +204,15 @@
 	let tmpLat;
 	let tmpLng;
 
-	<c:if test="${!empty AptMeme}">
+	<c:if test="${!empty result}">
 		$.get("https://maps.googleapis.com/maps/api/geocode/json", {
 			key : 'AIzaSyCv11tfo3HU5dxZAQ6uC5s9AeB_Ux46x7k',
-			address : "${AptMeme[0].dong}+${AptMeme[0].aptName}+${AptMeme[0].jibun}"
+			address : "${result[0].dong}+${result[0].aptName}+${result[0].jibun}"
 		}, function(data, status) {
 			
 			tmpLat = data.results[0].geometry.location.lat;
 			tmpLng = data.results[0].geometry.location.lng;
 
-			mapContainer = document.getElementById('map'); // 지도를 표시할 div 
-			mapOption = {
-				center : new kakao.maps.LatLng(tmpLat, tmpLng), // 지도의 중심좌표
-				level : 6
-			// 지도의 확대 레벨
-			};			
-			
-			map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-		}, "json");//get
-	</c:if>
-		
-	<c:if test="${!empty AptRent}">
-		$.get("https://maps.googleapis.com/maps/api/geocode/json", {
-			key : 'AIzaSyCv11tfo3HU5dxZAQ6uC5s9AeB_Ux46x7k',
-			address : "${AptRent[0].dong}+${AptRent[0].aptName}+${AptRent[0].jibun}"
-		}, function(data, status) {
-			
-			tmpLat = data.results[0].geometry.location.lat;
-			tmpLng = data.results[0].geometry.location.lng;
-	
 			mapContainer = document.getElementById('map'); // 지도를 표시할 div 
 			mapOption = {
 				center : new kakao.maps.LatLng(tmpLat, tmpLng), // 지도의 중심좌표
@@ -227,114 +222,26 @@
 			
 			map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 		}, "json");//get
-	</c:if>
-	
-	<c:if test="${!empty JuMeme}">
+		
+		<c:forEach var="item" items="${result}">
+		link = "${item.no}";
 		$.get("https://maps.googleapis.com/maps/api/geocode/json", {
 			key : 'AIzaSyCv11tfo3HU5dxZAQ6uC5s9AeB_Ux46x7k',
-			address : "${JuMeme[0].dong}+${JuMeme[0].aptName}+${JuMeme[0].jibun}"
+			address : "${item.dong}+${item.aptName}+${item.jibun}"
 		}, function(data, status) {
-			
 			tmpLat = data.results[0].geometry.location.lat;
 			tmpLng = data.results[0].geometry.location.lng;
-		
-			mapContainer = document.getElementById('map'); // 지도를 표시할 div 
-			mapOption = {
-				center : new kakao.maps.LatLng(tmpLat, tmpLng), // 지도의 중심좌표
-				level : 6
-			// 지도의 확대 레벨
-			};			
-			
-			map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+			var address = new Array();
+			address.title = "${item.aptName}";
+			address.latlng = new kakao.maps.LatLng(tmpLat, tmpLng);
+
+			addMarker(address);
 		}, "json");//get
+		</c:forEach>		
 	</c:if>
 
-	<c:if test="${!empty JuRent}">
-		$.get("https://maps.googleapis.com/maps/api/geocode/json", {
-			key : 'AIzaSyCv11tfo3HU5dxZAQ6uC5s9AeB_Ux46x7k',
-			address : "${JuRent[0].dong}+${JuRent[0].aptName}+${JuRent[0].jibun}"
-		}, function(data, status) {
-			
-			tmpLat = data.results[0].geometry.location.lat;
-			tmpLng = data.results[0].geometry.location.lng;
-		
-			mapContainer = document.getElementById('map'); // 지도를 표시할 div 
-			mapOption = {
-				center : new kakao.maps.LatLng(tmpLat, tmpLng), // 지도의 중심좌표
-				level : 6
-			// 지도의 확대 레벨
-			};			
-			
-			map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-		}, "json");//get
-	</c:if>
 
-	<c:forEach var="item" items="${AptMeme}">
-	link = "${item.no}";
-	$.get("https://maps.googleapis.com/maps/api/geocode/json", {
-		key : 'AIzaSyCv11tfo3HU5dxZAQ6uC5s9AeB_Ux46x7k',
-		address : "${item.dong}+${item.aptName}+${item.jibun}"
-	}, function(data, status) {
-		tmpLat = data.results[0].geometry.location.lat;
-		tmpLng = data.results[0].geometry.location.lng;
-
-		var address = new Array();
-		address.title = "${item.aptName}";
-		address.latlng = new kakao.maps.LatLng(tmpLat, tmpLng);
-
-		addMarker(address);
-	}, "json");//get
-	</c:forEach>
-
-	<c:forEach var="item" items="${AptRent}">
-	link = "${item.no}";
-	$.get("https://maps.googleapis.com/maps/api/geocode/json", {
-		key : 'AIzaSyCv11tfo3HU5dxZAQ6uC5s9AeB_Ux46x7k',
-		address : "${item.dong}+${item.aptName}+${item.jibun}"
-	}, function(data, status) {
-		tmpLat = data.results[0].geometry.location.lat;
-		tmpLng = data.results[0].geometry.location.lng;
-
-		var address = new Array();
-		address.title = "${item.aptName}";
-		address.latlng = new kakao.maps.LatLng(tmpLat, tmpLng);
-
-		addMarker(address);
-	}, "json");//get
-	</c:forEach>
-
-	<c:forEach var="item" items="${JuMeme}">
-	link = "${item.no}";
-	$.get("https://maps.googleapis.com/maps/api/geocode/json", {
-		key : 'AIzaSyCv11tfo3HU5dxZAQ6uC5s9AeB_Ux46x7k',
-		address : "${item.dong}+${item.aptName}+${item.jibun}"
-	}, function(data, status) {
-		tmpLat = data.results[0].geometry.location.lat;
-		tmpLng = data.results[0].geometry.location.lng;
-
-		var address = new Array();
-		address.title = "${item.aptName}";
-		address.latlng = new kakao.maps.LatLng(tmpLat, tmpLng);
-
-		addMarker(address);
-	}, "json");//get
-	</c:forEach>
-
-	<c:forEach var="item" items="${JuRent}">
-	$.get("https://maps.googleapis.com/maps/api/geocode/json", {
-		key : 'AIzaSyCv11tfo3HU5dxZAQ6uC5s9AeB_Ux46x7k',
-		address : "${item.dong}+${item.aptName}+${item.jibun}"
-	}, function(data, status) {
-		tmpLat = data.results[0].geometry.location.lat;
-		tmpLng = data.results[0].geometry.location.lng;
-
-		var address = new Array();
-		address.title = "${item.aptName}";
-		address.latlng = new kakao.maps.LatLng(tmpLat, tmpLng);
-
-		addMarker(address);
-	}, "json");//get
-	</c:forEach>
 
 	// 카카오 지도에 마커 찍기
 	function addMarker(positions) {
