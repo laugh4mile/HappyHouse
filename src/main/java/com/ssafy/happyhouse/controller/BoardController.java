@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,14 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ssafy.happyhouse.model.BoardDto;
 import com.ssafy.happyhouse.model.service.BoardService;
 
 
 
-@RestController
+@Controller
 @RequestMapping("/board")
 public class BoardController {
 
@@ -31,12 +32,24 @@ public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
-
-	@GetMapping
-	public ResponseEntity<List<BoardDto>> retrieveBoard() throws Exception {
-		logger.debug("retrieveBoard - 호출");
-		return new ResponseEntity<List<BoardDto>>(boardService.retrieveBoard(), HttpStatus.OK);
+	
+	@GetMapping(value = "/list")
+	private String list() {
+		return "dist/qnaBoard";
 	}
+	
+	@ResponseBody
+	@GetMapping(value = "/boards", headers = { "Content-type=application/json" })
+	public List<BoardDto> retrieveBoard() {
+		return boardService.retrieveBoard();
+	}
+	
+
+//	@GetMapping
+//	public ResponseEntity<List<BoardDto>> retrieveBoard() throws Exception {
+//		logger.debug("retrieveBoard - 호출");
+//		return new ResponseEntity<List<BoardDto>>(boardService.retrieveBoard(), HttpStatus.OK);
+//	}
 
 	@GetMapping("{no}")
 	public ResponseEntity<BoardDto> detailBoard(@PathVariable int no) {

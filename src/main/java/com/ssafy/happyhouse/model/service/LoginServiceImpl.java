@@ -13,18 +13,18 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
 	LoginDao loginDao;
 
+    @Override
+    public List<MemberDto> userList() {
+    	// TODO Auto-generated method stub
+    	return loginDao.userList();
+    }
+    
 	@Override
 	public MemberDto login(Map<String, String> map) throws Exception {
 		if(map.get("email") == null || map.get("userpwd") == null)
 			return null;
 //		return loginDao.login(map.get("email"), map.get("userpwd"));
 		return loginDao.login(map);
-	}
-
-	@Override
-	public List<MemberDto> userList() {
-		// TODO Auto-generated method stub
-		return loginDao.userList();
 	}
 
 	@Override

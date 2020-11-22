@@ -33,21 +33,43 @@ public class UserController {
     @Autowired
 	private LoginService loginService;
 
-	@GetMapping(value="/lookup")
-	private String lookupMember(HttpServletRequest request, HttpServletResponse response) {
-		return "redirect:dist/mypage";
+
+	@GetMapping(value = "/list")
+	private String list() {
+		return "dist/list";
+	}
+	
+	@ResponseBody
+	@GetMapping(value = "/users", headers = { "Content-type=application/json" })
+	public List<MemberDto> userList() {
+		return loginService.userList();
 	}
 
-	@GetMapping(value="/search")
-	private String searchMember(HttpServletRequest request, HttpServletResponse response) {
-	    return "";
+	@ResponseBody
+	@PostMapping(value = "/regi", headers = { "Content-type=application/json" })
+	public List<MemberDto> userRegister(@RequestBody MemberDto memberDto) {
+		System.out.println("왜또안되냐");
+		System.out.println(memberDto.getEmail());
+		loginService.userRegister(memberDto);
+		return loginService.userList();
 	}
 
-	@GetMapping(value="/logout")
-	private String logout(HttpSession session) {
-		session.invalidate();
-		return "redirect:/";
+	@ResponseBody
+	@PutMapping(value = "/modi", headers = { "Content-type=application/json" })
+	public List<MemberDto> userModify(@RequestBody MemberDto memberDto) {
+		System.out.println("컨트롤러 - modify");
+		loginService.userModify(memberDto);
+		return loginService.userList();
 	}
+	
+	@ResponseBody
+	@DeleteMapping(value = "/delete/{email}",headers = { "Content-type=application/json" })
+	public List<MemberDto> userDelete(@PathVariable("email") String email) {
+		System.out.println("컨트롤러 - delete");
+		loginService.userDelete(email);
+		return loginService.userList();
+	}
+	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
@@ -91,41 +113,6 @@ public class UserController {
 	}
 	
 
-	@GetMapping(value = "/list")
-	private String list() {
-		return "dist/list";
-	}
-	
-	@ResponseBody
-	@GetMapping(value = "/users", headers = { "Content-type=application/json" })
-	public List<MemberDto> userList() {
-		return loginService.userList();
-	}
-
-	@ResponseBody
-	@PostMapping(value = "/regi", headers = { "Content-type=application/json" })
-	public List<MemberDto> userRegister(@RequestBody MemberDto memberDto) {
-		System.out.println(memberDto.getEmail());
-		loginService.userRegister(memberDto);
-		return loginService.userList();
-	}
-
-	@ResponseBody
-	@PutMapping(value = "/modi", headers = { "Content-type=application/json" })
-	public List<MemberDto> userModify(@RequestBody MemberDto memberDto) {
-		System.out.println("컨트롤러 - modify");
-		loginService.userModify(memberDto);
-		return loginService.userList();
-	}
-	
-	@ResponseBody
-	@DeleteMapping(value = "/delete/{email}",headers = { "Content-type=application/json" })
-	public List<MemberDto> userDelete(@PathVariable("email") String email) {
-		System.out.println("컨트롤러 - delete");
-		loginService.userDelete(email);
-		return loginService.userList();
-	}
-	
 
 	@RequestMapping(value = "/find_pw_form", method = RequestMethod.GET)
 	public String find_pw_form() throws Exception{
@@ -138,4 +125,20 @@ public class UserController {
 		return "/dist/find_pwd";
 	}
 	
+	@GetMapping(value="/lookup")
+	private String lookupMember(HttpServletRequest request, HttpServletResponse response) {
+		return "redirect:dist/mypage";
+	}
+	
+	@GetMapping(value="/search")
+	private String searchMember(HttpServletRequest request, HttpServletResponse response) {
+		return "";
+	}
+	
+
+	@GetMapping(value="/logout")
+	private String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
 }
