@@ -44,18 +44,22 @@ public class BoardController {
 		return boardService.retrieveBoard();
 	}
 	
-
-//	@GetMapping
-//	public ResponseEntity<List<BoardDto>> retrieveBoard() throws Exception {
-//		logger.debug("retrieveBoard - 호출");
-//		return new ResponseEntity<List<BoardDto>>(boardService.retrieveBoard(), HttpStatus.OK);
-//	}
-
-	@GetMapping("{no}")
-	public ResponseEntity<BoardDto> detailBoard(@PathVariable int no) {
-		logger.debug("detailBoard - 호출");
-		return new ResponseEntity<BoardDto>(boardService.detailBoard(no), HttpStatus.OK);
+	@ResponseBody
+	@GetMapping(value = "{no}")
+	public String detailBoard(@PathVariable int no) {
+		System.out.println("뭐지?zz");
+//		logger.debug("detailBoard - 호출");
+		boardService.detailBoard(no);
+		return "dist/qnaDetail";
 	}
+	
+//	@ResponseBody
+//	@GetMapping("{no}")
+//	public BoardDto detailBoard(@PathVariable int no) {
+//		System.out.println("뭐지?");
+////		logger.debug("detailBoard - 호출");
+//		return boardService.detailBoard(no);
+//	}
 
 	@PostMapping
 	public ResponseEntity<String> writeBoard(@RequestBody BoardDto board) {
