@@ -16,4 +16,18 @@
 		order by gugun_code;
 	</select>
 
+	<select id="getDong" parameterType="String" resultType="PollutionDto">
+		select right(dongcode,5) as dongCode, dong	
+		from dongcode
+		where gugun like (select gugun_name from guguncode where left(gugun_code,5) = #{gugun})
+		order by dong;
+		
+	</select>
+
+	<select id="getPollution" parameterType="String" resultType="PollutionDto">
+		select no, name, dongcode, address, lng, lat
+		from pollution
+		where dong like #{dong}
+		order by name;
+	</select>
 </mapper>
