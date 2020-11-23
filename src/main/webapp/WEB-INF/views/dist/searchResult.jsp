@@ -22,18 +22,6 @@
 <!-- 카카오 지도 api -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d0f81655e444c4cae90021cdf7832a59"></script>
 
-
-<script type="text/javascript">
-	function searchSomething() {
-		if (document.getElementById("word").value == "") {
-			alert("검색어 입력!!!");
-			return;
-		} else {
-			document.getElementById("searchform").action = "${root}/map";
-			document.getElementById("searchform").submit();
-		}
-	}
-</script>
 </head>
 <body class="sb-nav-fixed">
 	<%@ include file="header.jsp"%>
@@ -213,7 +201,7 @@
 			mapContainer = document.getElementById('map'); // 지도를 표시할 div 
 			mapOption = {
 				center : new kakao.maps.LatLng(tmpLat, tmpLng), // 지도의 중심좌표
-				level : 4
+				level : 5
 			// 지도의 확대 레벨
 			};			
 			

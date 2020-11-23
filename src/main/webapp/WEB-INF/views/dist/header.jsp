@@ -20,9 +20,12 @@
 	</div>
 	<div class="member-menu">
 		<ul class="navbar-nav ml-auto ml-md-0">
-			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-user fa-fw"></i>
-			</a>
+			<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<i class="fas fa-user fa-fw"></i>
+				</a>
 				<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+					<a class="dropdown-item" href="${root}/user/mypage">MyPage</a>
+					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="${root}/user/list">UserList</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="${root}/user/logout">Logout</a>
