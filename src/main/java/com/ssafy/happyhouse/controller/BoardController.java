@@ -70,9 +70,18 @@ public class BoardController {
 	
 	@ResponseBody
 	@DeleteMapping(value = "/delete/{no}",headers = { "Content-type=application/json" })
-	public List<BoardDto> userDelete(@PathVariable("no") int no) {
+	public List<BoardDto> boardDelete(@PathVariable("no") int no) {
 		System.out.println("컨트롤러 - delete");
 		boardService.deleteBoard(no);
+		return boardService.retrieveBoard();
+	}
+	
+	@ResponseBody
+	@PutMapping(value = "/modi", headers = { "Content-type=application/json" })
+	public List<BoardDto> boardModify(@RequestBody BoardDto boardDto) {
+		System.out.println("보드컨트롤러 - modify");
+		System.out.println(boardDto);
+		boardService.updateBoard(boardDto);
 		return boardService.retrieveBoard();
 	}
 	
