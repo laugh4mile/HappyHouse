@@ -13,6 +13,6 @@ public interface CommercialDao {
 	List<SidoGugunCodeDto> getSido() throws Exception;
 	List<SidoGugunCodeDto> getGugun(String sido) throws Exception;
 	List<CommercialDto> getDong(String gugun) throws Exception;
-	List<CommercialDto> getPollution(String dong) throws Exception;
+	List<CommercialDto> getCommercial(String dong) throws Exception;
 	
 }

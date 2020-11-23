@@ -28,6 +28,6 @@
 		select no, name, dongcode, address, lng, lat
 		from pollution
 		where dong like #{dong}
-		order by name;
+		order by no;
 	</select>
 </mapper>

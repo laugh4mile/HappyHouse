@@ -24,28 +24,28 @@ public class CommercialController {
 	@ResponseBody
 	@GetMapping(value = "", headers = { "Content-type=application/json" })
 	public List<SidoGugunCodeDto> getSido() throws Exception {
-		System.out.println("pollute : " + commercialService.getSido().get(0).getSidoName());
+		System.out.println("Commercial : " + commercialService.getSido().get(0).getSidoName());
 		return commercialService.getSido();
 	}
 
 	@ResponseBody
 	@GetMapping(value = "/{sido}", headers = { "Content-type=application/json" })
 	public List<SidoGugunCodeDto> getGugun(@PathVariable String sido) throws Exception {
-		System.out.println("pollute : " + commercialService.getGugun(sido).get(0).getGugunName());
+		System.out.println("Commercial : " + commercialService.getGugun(sido).get(0).getGugunName());
 		return commercialService.getGugun(sido);
 	}
 
 	@ResponseBody
 	@GetMapping(value = "/{sido}/{gugun}", headers = { "Content-type=application/json" })
 	public List<CommercialDto> getDong(@PathVariable String gugun) throws Exception {
-		System.out.println("pollute : " + commercialService.getDong(gugun).get(0).getDong());
+		System.out.println("Commercial : " + commercialService.getDong(gugun).get(0).getDong());
 		return commercialService.getDong(gugun);
 	}
 
 	@ResponseBody
 	@GetMapping(value = "/{sido}/{gugun}/{dong}", headers = { "Content-type=application/json" })
-	public List<CommercialDto> getPollution(@PathVariable String dong) throws Exception {
-		System.out.println("pollute : " + commercialService.getCommercial(dong));
+	public List<CommercialDto> getCommercial(@PathVariable String dong) throws Exception {
+		System.out.println("Commercial : " + commercialService.getCommercial(dong));
 		return commercialService.getCommercial(dong);
 	}
 

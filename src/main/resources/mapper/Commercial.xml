@@ -24,10 +24,10 @@
 		
 	</select>
 
-	<select id="getPollution" parameterType="String" resultType="CommercialDto">
-		select no, name, dongcode, address, lng, lat
-		from pollution
+	<select id="getCommercial" parameterType="String" resultType="CommercialDto">
+		select no, shopname, address, postcode, substring(lng,2, char_length(lng)-2) as lng, substring(lat,2, char_length(lat)-2)lat
+		from store
 		where dong like #{dong}
-		order by name;
+		order by no;
 	</select>
 </mapper>
