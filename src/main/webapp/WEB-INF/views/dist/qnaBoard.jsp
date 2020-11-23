@@ -188,9 +188,9 @@
 					+ "	<td>"
 					+ board.regtime
 					+ "</td>"
-					+ "	<td><button type=\"button\" class=\"modiBtn btn btn-outline-primary btn-sm\">수정</button> "
+					/* + "	<td><button type=\"button\" class=\"modiBtn btn btn-outline-primary btn-sm\">수정</button> "
 					+ "		<button type=\"button\" class=\"delBtn btn btn-outline-danger btn-sm\">삭제</button></td>"
-					+ "</tr>"
+					+ "</tr>" */
 	
 					+ "<tr id=\"mview_" + board.no + "\" data-id=\"" + board.no + "\" style=\"display: none;\">"
 					+ "	<td>"
@@ -223,7 +223,7 @@
 					<div class="container table-bg" align="center">
 						<h1>Q&A 게시판</h1>
 						<div align="right">
-							<button type="button" class="btn-register">질문 등록</button>
+							<button type="button" class="btn-register" onclick="location.href='${root}/board/goWrite'">질문 등록</button>
 						</div>
 						<table class="table table-hover text-center table-spacing">
 							<colgroup>

@@ -45,32 +45,20 @@ public class BoardController {
 		return boardService.retrieveBoard();
 	}
 	
-//	@ResponseBody
-//	@GetMapping(value = "{no}")
-//	public String detailBoard(@PathVariable int no) {
-//		System.out.println("뭐지?zz");
-////		logger.debug("detailBoard - 호출");
-//		boardService.detailBoard(no);
-//		return "dist/qnaDetail";
-//	}
-	
 	@GetMapping("{no}")
 	//?주소 -> 쿼리스트링 받는 것
-	// /post/{id} -> 파라메터를 받는 것
+	// {nd} -> 파라메터를 받는 것
 	public String getPost(@PathVariable int no, Model model) {
-		System.out.println("됨?");
 		model.addAttribute("postDetailRespDto", boardService.detailBoard(no));
 		return "dist/qnaDetail"; 
 	}
 	
-//	@ResponseBody
-//	@GetMapping("{no}")
-//	public BoardDto detailBoard(@PathVariable int no) {
-//		System.out.println("뭐지?");
-////		logger.debug("detailBoard - 호출");
-//		return boardService.detailBoard(no);
-//	}
-
+	@GetMapping(value = "/goWrite")
+	private String goWrite() {
+		return "dist/qnaWrite";
+	}
+	
+	
 	@PostMapping
 	public ResponseEntity<String> writeBoard(@RequestBody BoardDto board) {
 		logger.debug("writeBoard - 호출"); 
