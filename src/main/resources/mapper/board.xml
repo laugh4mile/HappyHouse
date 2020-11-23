@@ -39,7 +39,7 @@
 	<!-- 게시글 삭제 -->
 	<delete id="deleteBoard" parameterType="int">
 		delete 
-		  from vue_board
+		  from board
 		 where no = #{no}
 	</delete>
 
