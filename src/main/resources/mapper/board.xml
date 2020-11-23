@@ -29,7 +29,7 @@
 	
 	<!-- 게시글 수정 -->
 	<update id="updateBoard" parameterType="boardDto">
-		update vue_board 
+		update board 
 		   set title = #{title}, 
 		   	   writer = #{writer}, 
 		   	   content = #{content}

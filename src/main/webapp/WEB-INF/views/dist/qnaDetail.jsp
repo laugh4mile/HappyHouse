@@ -99,21 +99,27 @@
 						"click",
 						".modifyBtn",
 						function() {
-							let mid = $(this).parents("tr").attr("data-id");
+							let mid = ${postDetailRespDto.no};
 							let modifyinfo = JSON.stringify({
-								"no" : mid,
+								"no" : ${postDetailRespDto.no},
 								"title" : $("#title" + mid).val(),
-								"writer" : $("#writer" + mid).val(),
-								"regtime" : $("#regtime" + mid).val()
+								/* "writer" : $("#writer" + mid).val(), */
+								"writer" : ${userinfo.email},
+								"content" : $("#content" + mid).val(),
 							});
+							console.log(mid);
+							console.log($("#title" + mid).val());
+							console.log($("#writer" + mid).val());
+							console.log($("#content" + mid).val());
+							console.log(modifyinfo);
 							$.ajax({
-								url : '${root}/user/modi',
+								url : '${root}/board/modi',
 								type : 'PUT',
 								contentType : 'application/json;charset=utf-8',
 								dataType : 'json',
 								data : modifyinfo,
 								success : function(boards) {
-									makeList(boards);
+									location.href = '${root}/board/'+mid;
 								},
 								error : function(xhr, status, msg) {
 									console.log("상태값 : " + status
@@ -232,8 +238,6 @@
 									<td>${postDetailRespDto.title }</td>
 									<td>${postDetailRespDto.writer }</td>
 									<td>${postDetailRespDto.regtime }</td>
-									
-									
 								</tr>
 								<tr id="view_${postDetailRespDto.no}_content" class="view" data-id="${postDetailRespDto.no}">
 									<td colspan="4">${postDetailRespDto.content }</td>
@@ -243,7 +247,7 @@
 								<tr id="mview_${postDetailRespDto.no}" data-id="${postDetailRespDto.no}" style="display: none;">
 									<!-- <td><input type=\"text\" name=\"title\" id=\"title" + board.no + "\" value=\"" + board.title + "\"></td> -->
 									<td>${postDetailRespDto.no }</td>
-									<td> <input type="text" name="title" id="title${postDetailRespDto.no}" value="${postDetailRespDto.title}"></td>
+									<td> <input type="text" name="title${postDetailRespDto.no}" id="title${postDetailRespDto.no}" value="${postDetailRespDto.title}"></td>
 									<td>${postDetailRespDto.writer }</td>
 									<td>${postDetailRespDto.regtime }</td>
 									<td>
@@ -253,7 +257,7 @@
 									
 								</tr>
 								<tr id="mview_${postDetailRespDto.no}_content" data-id="${postDetailRespDto.no}" style="display: none;">
-									<td colspan="4"> <textarea rows="10%" cols="60%" id="content" name="content" placeholder="$" style="padding: 0;">${postDetailRespDto.content }</textarea>
+									<td colspan="4"> <textarea rows="10%" cols="60%" id="content${postDetailRespDto.no}" name="content${postDetailRespDto.no}" placeholder="$" style="padding: 0;">${postDetailRespDto.content }</textarea>
 									</td>
 								</tr>
 								
