@@ -215,8 +215,8 @@
 							<thead>
 								<tr>
 									<th class="text-center">번호</th>
-									<th class="text-center">질문 제목</th>
-									<th class="text-center">질문자</th>
+									<th class="text-center">제목</th>
+									<th class="text-center">작성자</th>
 									<th class="text-center">날짜</th>
 									
 								</tr>
