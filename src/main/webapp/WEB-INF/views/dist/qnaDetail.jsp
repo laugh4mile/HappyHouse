@@ -54,8 +54,8 @@
 									$("#regtime").val('');
 									$("#title").val('');
 									$("#userRegModal").modal("hide");
-									makeList(boards);
-								},
+/* 									makeList(boards);
+ */								},
 								error : function(xhr, status, msg) {
 									console.log("상태값 : " + status
 											+ " Http에러메시지 : " + msg);
@@ -86,9 +86,12 @@
 
 				// 회원 정보 수정 보기.
 				$(document).on("click", ".modiBtn", function() {
-					let mid = $(this).parents("tr").attr("data-id");
-					$("#view_" + mid).css("display", "none");
-					$("#mview_" + mid).css("display", "");
+					console.log("수정까진 오나?");
+					console.log(${postDetailRespDto.no});
+					$("#view_" + ${postDetailRespDto.no}).css("display", "none");
+					$("#view_" + ${postDetailRespDto.no}+"_content").css("display", "none");
+					$("#mview_" + ${postDetailRespDto.no}).css("display", "");
+					$("#mview_" + ${postDetailRespDto.no}+"_content").css("display", "");
 				});
 
 				// 회원 정보 수정 실행.
@@ -121,21 +124,22 @@
 
 				// 회원 정보 수정 취소.
 				$(document).on("click", ".cancelBtn", function() {
-					let mid = $(this).parents("tr").attr("data-id");
-					$("#view_" + mid).css("display", "");
-					$("#mview_" + mid).css("display", "none");
+					$("#view_" + ${postDetailRespDto.no}).css("display", "");
+					$("#view_" + ${postDetailRespDto.no}+"_content").css("display", "");
+					$("#mview_" + ${postDetailRespDto.no}).css("display", "none");
+					$("#mview_" + ${postDetailRespDto.no}+"_content").css("display", "none");
 				});
 				// 회원 탈퇴.
 				$(document).on("click", ".delBtn", function() {
 					if (confirm("정말 삭제?")) {
-						let delid = $(this).parents("tr").attr("data-id");
+						let delid = ${postDetailRespDto.no};
 						$.ajax({
-							url : '${root}/user/delete/' + delid,
+							url : '${root}/board/delete/' + delid,
 							type : 'DELETE',
 							contentType : 'application/json;charset=utf-8',
 							dataType : 'json',
 							success : function(boards) {
-								makeList(boards);
+								location.href = '${root}/board/list';
 							},
 							error : function(xhr, status, msg) {
 								/* console
@@ -203,14 +207,16 @@
 					<div class="container table-bg" align="center">
 						<h1>Q&A 게시판</h1>
 						<div align="right">
-							<button type="button" class="btn-register">질문 등록</button>
+							<button type="button" class="modiBtn btn btn-outline-primary btn-sm">수정</button>
+							<button type="button" class="delBtn btn btn-outline-danger btn-sm">삭제</button>
 						</div>
 						<table class="table table-hover text-center table-spacing">
 							<colgroup>
 								<col width="15%">
-								<col width="40%">
-								<col width="25%">
+								<col width="35%">
 								<col width="20%">
+								<col width="20%">
+								<col width="10%">
 							</colgroup>
 							<thead>
 								<tr>
@@ -218,18 +224,40 @@
 									<th class="text-center">제목</th>
 									<th class="text-center">작성자</th>
 									<th class="text-center">날짜</th>
+									<th class="text-center">수정/삭제</th>
 									
 								</tr>
-								<tr>
+								<tr id="view_${postDetailRespDto.no}" class="view" data-id="${postDetailRespDto.no}">
 									<td>${postDetailRespDto.no }</td>
 									<td>${postDetailRespDto.title }</td>
 									<td>${postDetailRespDto.writer }</td>
 									<td>${postDetailRespDto.regtime }</td>
 									
+									
 								</tr>
-								<tr>
-									<td colspan="4" rowspan="2">${postDetailRespDto.content }</td>
+								<tr id="view_${postDetailRespDto.no}_content" class="view" data-id="${postDetailRespDto.no}">
+									<td colspan="4">${postDetailRespDto.content }</td>
 								</tr>
+								
+								
+								<tr id="mview_${postDetailRespDto.no}" data-id="${postDetailRespDto.no}" style="display: none;">
+									<!-- <td><input type=\"text\" name=\"title\" id=\"title" + board.no + "\" value=\"" + board.title + "\"></td> -->
+									<td>${postDetailRespDto.no }</td>
+									<td> <input type="text" name="title" id="title${postDetailRespDto.no}" value="${postDetailRespDto.title}"></td>
+									<td>${postDetailRespDto.writer }</td>
+									<td>${postDetailRespDto.regtime }</td>
+									<td>
+										<button type="button" class="modifyBtn btn btn-primary btn-sm">수정</button> 
+										<button type="button" class="cancelBtn btn btn-danger btn-sm">취소</button>
+									</td>
+									
+								</tr>
+								<tr id="mview_${postDetailRespDto.no}_content" data-id="${postDetailRespDto.no}" style="display: none;">
+									<td colspan="4"> <textarea rows="10%" cols="60%" id="content" name="content" placeholder="$" style="padding: 0;">${postDetailRespDto.content }</textarea>
+									</td>
+								</tr>
+								
+								
 								<tr>
 								</tr>
 							</thead>

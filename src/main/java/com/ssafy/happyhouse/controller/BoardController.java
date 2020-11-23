@@ -68,6 +68,14 @@ public class BoardController {
 		return boardService.retrieveBoard();
 	}
 	
+	@ResponseBody
+	@DeleteMapping(value = "/delete/{no}",headers = { "Content-type=application/json" })
+	public List<BoardDto> userDelete(@PathVariable("no") int no) {
+		System.out.println("컨트롤러 - delete");
+		boardService.deleteBoard(no);
+		return boardService.retrieveBoard();
+	}
+	
 	@PostMapping
 	public ResponseEntity<String> writeBoard(@RequestBody BoardDto board) {
 		logger.debug("writeBoard - 호출"); 
@@ -77,6 +85,7 @@ public class BoardController {
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 
+	
 	@PutMapping("{no}")
 	public ResponseEntity<String> updateBoard(@PathVariable int no, @RequestBody BoardDto board) {
 		logger.debug("updateBoard - 호출");

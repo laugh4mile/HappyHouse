@@ -60,7 +60,7 @@
 				<div class="container-fluid">
 					<div id="member_list_bg">
 						<div class="container table-bg" align="center">
-							<h1>질문 등록 ${userinfo.email}</h1>
+							<h1>질문 등록 </h1>
 							<div class="col-md-10 col-lg-8 col-xl-7 mx-auto search-bar">
 								<form id="memberform" method="post" action="">
 									<input type="hidden" name="act" id="act" value="">
