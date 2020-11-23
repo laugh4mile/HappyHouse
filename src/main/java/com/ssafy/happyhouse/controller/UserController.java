@@ -141,4 +141,9 @@ public class UserController {
 		session.invalidate();
 		return "redirect:/";
 	}
+	
+	@GetMapping(value="/mypage")
+	private String mypage() {
+		return "/dist/mypage";
+	}
 }
