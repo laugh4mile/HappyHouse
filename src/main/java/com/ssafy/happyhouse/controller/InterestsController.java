@@ -17,8 +17,8 @@ import com.ssafy.happyhouse.model.service.InterestsService;
 @Controller
 @RequestMapping("/interests")
 public class InterestsController {
-	@Autowired
-	private InterestsService interestsService;
+//	@Autowired
+//	private InterestsService interestsService;
 
 	@GetMapping(value = "/list")
 	public String list(HttpSession session, Model model) {
