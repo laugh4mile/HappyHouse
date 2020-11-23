@@ -35,7 +35,7 @@ public class CommercialServiceImpl implements CommercialService {
 
 	@Override
 	public List<CommercialDto> getCommercial(String dong) throws Exception {
-		return commercialdao.getPollution(dong);
+		return commercialdao.getCommercial(dong);
 	}
 
 }

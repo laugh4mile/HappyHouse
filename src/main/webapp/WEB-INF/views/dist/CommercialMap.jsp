@@ -19,7 +19,7 @@
 	let colorArr = [ 'table-primary', 'table-success', 'table-danger' ];
 	$(document).ready(function() {
 		$.ajax({
-			url : '${pageContext.request.contextPath}/pollution',
+			url : '${pageContext.request.contextPath}/commercial',
 			post : 'GET',
 			contentType : 'application/json;charset=utf-8',
 			dataType : 'json',
@@ -33,7 +33,7 @@
 	$(document).ready(function() {
 		$("#sido").change(function() {
 			$.ajax({
-				url : '${pageContext.request.contextPath}/pollution/' + $("#sido").val(),
+				url : '${pageContext.request.contextPath}/commercial/' + $("#sido").val(),
 				post : 'GET',
 				contentType : 'application/json;charset=utf-8',
 				dataType : 'json',
@@ -48,7 +48,7 @@
 		});//change
 		$("#gugun").change(function() {
 			$.ajax({
-				url : '${root}/pollution/' + $("#sido").val() + '/' + $("#gugun").val(),
+				url : '${root}/commercial/' + $("#sido").val() + '/' + $("#gugun").val(),
 				post : 'GET',
 				contentType : 'application/json;charset=utf-8',
 				dataType : 'json',
@@ -63,7 +63,7 @@
 		});//change
 		$("#dong").change(function() {
 			$.ajax({
-				url : '${root}/pollution/' + $("#sido").val() + '/' + $("#gugun").val() + '/' + $("#dong").val(),
+				url : '${root}/commercial/' + $("#sido").val() + '/' + $("#gugun").val() + '/' + $("#dong").val(),
 				post : 'GET',
 				contentType : 'application/json;charset=utf-8',
 				dataType : 'json',
@@ -72,10 +72,10 @@
 					$("#searchResult").empty();
 					$.each(data, function(index, vo) {
 						
-						let str = "<tr class=" + colorArr[index % 3] + ">" + "<td>" + vo.no + "</td>" + "<td>" + vo.name + "</td>" + "<td>" + vo.dongcode + "</td>" + "<td>" + vo.address + "</td>" + "<td>" + vo.lng + "</td>" + "<td>" + vo.lat + "</td>";
+						let str = "<tr class=" + colorArr[index % 3] + ">" + "<td>" + vo.no + "</td>" + "<td>" + vo.shopname + "</td>" + "<td>" + vo.address + "</td>" + "<td>" + vo.postcode + "</td>" + "<td>" + vo.lng + "</td>" + "<td>" + vo.lat + "</td>";
 						$("#searchResult").append(str);
 						
-						addMarker(vo.name, vo.lat, vo.lng);
+						addMarker(vo.shopname, vo.lat, vo.lng);
 
 						/* // ------------- 해당 아파트의 좌표 가져오기 --------------- //
 						let tmpLat;
@@ -144,13 +144,13 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid">
-					<h1 class="mt-4">환경 정보</h1>
+					<h1 class="mt-4">상권 정보</h1>
 					<ol class="breadcrumb mb-4">
 						<li class="breadcrumb-item"><a href="${root }/map/index">Dashboard</a></li>
-						<li class="breadcrumb-item active">환경 정보</li>
+						<li class="breadcrumb-item active">상권 정보</li>
 					</ol>
 					<div class="card mb-4">
-						<div class="card-body">주변 환경 정보를 표시한다.</div>
+						<div class="card-body">주변 상권 정보를 표시한다.</div>
 					</div>
 					<div class="card mb-4">
 						<div class="card-header">
@@ -180,9 +180,9 @@
 									<thead>
 										<tr >
 											<th>번호</th>
-											<th>이름(지도점검내역)</th>
-											<th>지역코드</th>
-											<th>주소(구 주소)</th>
+											<th>이름()</th>
+											<th>주소(신 주소)</th>
+											<th>우편번호</th>
 											<th>경도</th>
 											<th>위도</th>
 										</tr>
