@@ -76,7 +76,6 @@
 						$("#searchResult").append(str);
 						
 						addMarker(vo.shopname, vo.lat, vo.lng);
-
 						/* // ------------- 해당 아파트의 좌표 가져오기 --------------- //
 						let tmpLat;
 						let tmpLng;
@@ -99,13 +98,13 @@
 						// ------------- 해당 아파트의 좌표 가져오기 --------------- //  */
 
 					}) //each function
-
+					console.log(data[0].lat + ' ' + data[0].lng)
 				}// success function
 			})
 		});//change
 	});//ready
 
-	// 카카오 지도에 마커 찍기
+	// 카카오 지도에 마커 찍기	
 	function addMarker(name, lat, lng) {
 
 		var latlng = new kakao.maps.LatLng(lat, lng);
@@ -127,6 +126,7 @@
 			title : name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 			image : markerImage
 		});
+		map.setCenter(latlng);
 	}
 </script>
 </head>
@@ -203,11 +203,12 @@
 					<script>
 						var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 						mapOption = {
-							center : new kakao.maps.LatLng(37.5665734, 126.978179), // 지도의 중심좌표
+							center : new kakao.maps.LatLng(37.5665734, 126.978179),
+								//new kakao.maps.LatLng(tmplat, tmplng), // 지도의 중심좌표
 							level : 3
 						// 지도의 확대 레벨
 						};
-
+	
 						var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 						// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
 						var mapTypeControl = new kakao.maps.MapTypeControl();
