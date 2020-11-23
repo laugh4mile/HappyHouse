@@ -179,7 +179,7 @@
 					+ "	<td>"
 					+ board.no
 					+ "</td>"
-					+ "	<td> <a href=\"/board/${board.id}\" "
+					+ "	<td> <a href=\"${root}/board/"+board.no+"\" >"
 					+ board.title
 					+ "</a> </td>"
 					+ "	<td>"

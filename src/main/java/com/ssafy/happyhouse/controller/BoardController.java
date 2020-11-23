@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,13 +45,22 @@ public class BoardController {
 		return boardService.retrieveBoard();
 	}
 	
-	@ResponseBody
-	@GetMapping(value = "{no}")
-	public String detailBoard(@PathVariable int no) {
-		System.out.println("뭐지?zz");
-//		logger.debug("detailBoard - 호출");
-		boardService.detailBoard(no);
-		return "dist/qnaDetail";
+//	@ResponseBody
+//	@GetMapping(value = "{no}")
+//	public String detailBoard(@PathVariable int no) {
+//		System.out.println("뭐지?zz");
+////		logger.debug("detailBoard - 호출");
+//		boardService.detailBoard(no);
+//		return "dist/qnaDetail";
+//	}
+	
+	@GetMapping("{no}")
+	//?주소 -> 쿼리스트링 받는 것
+	// /post/{id} -> 파라메터를 받는 것
+	public String getPost(@PathVariable int no, Model model) {
+		System.out.println("됨?");
+		model.addAttribute("postDetailRespDto", boardService.detailBoard(no));
+		return "dist/qnaDetail"; 
 	}
 	
 //	@ResponseBody

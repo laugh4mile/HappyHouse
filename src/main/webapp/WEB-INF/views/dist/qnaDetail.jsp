@@ -218,10 +218,50 @@
 									<th class="text-center">질문 제목</th>
 									<th class="text-center">질문자</th>
 									<th class="text-center">날짜</th>
+									
+								</tr>
+								<tr>
+									<td>${postDetailRespDto.no }</td>
+									<td>${postDetailRespDto.title }</td>
+									<td>${postDetailRespDto.writer }</td>
+									<td>${postDetailRespDto.regtime }</td>
+									
+								</tr>
+								<tr>
+									<td colspan="4" rowspan="2">${postDetailRespDto.content }</td>
+								</tr>
+								<tr>
 								</tr>
 							</thead>
-							<tbody id="boardlist"></tbody>
 						</table>
+						
+						<%-- <table class="table table-hover text-center table-spacing">
+							<colgroup>
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+							</colgroup>
+							<thead>
+								<tr>
+									<th class="text-center">번호</th>
+									<th class="text-center">질문 제목</th>
+									<th class="text-center">질문자</th>
+									<th class="text-center">날짜</th>
+									<th class="text-center">내용</th>
+								</tr>
+							</thead>
+							<tbody>
+							  <tr>
+						        <td><input id="no" type="text" value="${postDetailRespDto.no }" readonly="readonly"></td>
+						        <td><input id="title" type="text" value="${postDetailRespDto.title }" readonly="readonly"></td>
+						        <td><input id="writer" type="text" value="${postDetailRespDto.writer}" readonly="readonly"></td>
+						        <td><input id="regdate" type="text" value="${postDetailRespDto.regtime}" readonly="readonly"></td>
+						        <td><input id="content" type="text" value="${postDetailRespDto.content }" readonly="readonly"></td>
+						      </tr>
+							</tbody>
+						</table> --%>
 					</div>
 					<!-- container -->
 				</div>
