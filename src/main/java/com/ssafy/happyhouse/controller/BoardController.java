@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ssafy.happyhouse.model.BoardDto;
+import com.ssafy.happyhouse.model.MemberDto;
 import com.ssafy.happyhouse.model.service.BoardService;
 
 
@@ -58,6 +59,14 @@ public class BoardController {
 		return "dist/qnaWrite";
 	}
 	
+	@ResponseBody
+	@PostMapping(value = "/regi", headers = { "Content-type=application/json" })
+	public List<BoardDto> boardRegister(@RequestBody BoardDto boardDto) {
+		System.out.println("등록 되냐?");
+		System.out.println(boardDto);
+		boardService.writeBoard(boardDto);
+		return boardService.retrieveBoard();
+	}
 	
 	@PostMapping
 	public ResponseEntity<String> writeBoard(@RequestBody BoardDto board) {

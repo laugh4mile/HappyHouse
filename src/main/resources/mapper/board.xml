@@ -20,7 +20,7 @@
 
 	<!-- 게시글 등록 -->
 	<insert id="insertBoard" parameterType="boardDto">
-		insert into vue_board(
+		insert into board(
 			title, writer, content
 		) values (
 			#{title}, #{writer}, #{content}
