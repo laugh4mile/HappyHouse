@@ -27,27 +27,7 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<div class="container-fluid">
-				<div class="row justify-content-center">
-					<div class="col-lg-7">
-						<div class="card shadow-lg border-0 rounded-lg mt-5">
-							<div class="card-header">
-								<h3 class="text-center font-weight-light my-4">회원 정보 조회</h3>
-							</div>
-							<div class="card-body">
-								First Name : ${userinfo.userFname}
-								<br>
-								Last Name : ${userinfo.userLname}
-								<br>
-								Email : ${userinfo.email}
-								<br>
-								<br>
-
-								<a class="btn btn-danger" href="${root}/interests/list" id="secession">관심목록 조회</a>
-							</div>
-							<div class="card-footer text-center"></div>
-						</div>
-					</div>
-				</div>
+				<h3> 관심 목록</h3>
 			</div>
 			<!-- 게시글 뿌리기 -->
 			<%@ include file="footer.jsp"%>
