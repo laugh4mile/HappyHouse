@@ -68,6 +68,7 @@
 				contentType : 'application/json;charset=utf-8',
 				dataType : 'json',
 				success : function(data, status) {
+					initMarkers(markers);
 
 					$("#searchResult").empty();
 					$.each(data, function(index, vo) {
@@ -98,11 +99,12 @@
 						// ------------- 해당 아파트의 좌표 가져오기 --------------- //  */
 
 					}) //each function
-					console.log(data[0].lat + ' ' + data[0].lng)
 				}// success function
 			})
 		});//change
 	});//ready
+
+	var markers = new Array();
 
 	// 카카오 지도에 마커 찍기	
 	function addMarker(name, lat, lng) {
@@ -127,6 +129,14 @@
 			image : markerImage
 		});
 		map.setCenter(latlng);
+		
+		markers.push(marker);
+	}
+	
+	function initMarkers(markers){
+		for(var i = 0; i<markers.length; i++){
+			markers[i].setMap(null);
+		}
 	}
 </script>
 </head>

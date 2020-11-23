@@ -75,6 +75,7 @@
 				contentType : 'application/json;charset=utf-8',
 				dataType : 'json',
 				success : function(data, status) {
+					initMarkers(markers);
 					$("#searchResult").empty();
 					$.each(data, function(index, vo) {
 						let str = "<tr class=" + colorArr[index % 3] + ">" + "<td>" + 
@@ -119,6 +120,7 @@
 		});//change
 	});//ready
 	// 카카오 지도에 마커 찍기
+	var markers = new Array();
 	function addMarker(positions) {
 		
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -139,6 +141,15 @@
 			title : positions.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 			image : markerImage
 		});
+		map.setCenter(positions.latlng);
+		
+		markers.push(marker);
+	}
+	
+	function initMarkers(markers){
+		for(var i = 0; i<markers.length; i++){
+			markers[i].setMap(null);
+		}
 	}
 
 	function searchSomething() {

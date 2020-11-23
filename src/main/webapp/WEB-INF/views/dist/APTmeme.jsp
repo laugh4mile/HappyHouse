@@ -71,7 +71,7 @@
 				contentType : 'application/json;charset=utf-8',
 				dataType : 'json',
 				success : function(data, status) {
-
+					initMarkers(markers);
 					$("#searchResult").empty();
 					$.each(data, function(index, vo) {
 						let str = "<tr class=" + colorArr[index % 3] + ">" + "<td>" + vo.no + "</td>" + "<td>" + vo.dong + "</td>" + "<td>" + vo.aptName + "</td>" + "<td>" + vo.jibun + "</td>" + "<td>" + vo.code + "</td>" + "<td>" + vo.dealAmount + "</td>" + "<td>" + vo.buildYear + "</td>" + "<td>" + vo.dealYear + "</td>" + "<td>" + vo.dealMonth + "</td>" + "<td>" + vo.dealDay + "</td>" + "<td>" + vo.area + "</td>" + "<td>" + vo.floor + "</td>";
@@ -102,11 +102,12 @@
 
 					/* var jsonInfo = JSON.stringify(positions); //json으로 변환
 					addMarker(positions); //마커 찍기 */
-
 				}// success function
 			})
 		});//change
 	});//ready
+	
+	var markers = new Array();
 
 	// 카카오 지도에 마커 찍기
 	function addMarker(positions) {
@@ -132,23 +133,15 @@
 			title : positions.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 			image : markerImage
 		});
-		/* for (var i = 0; i < positions.length; i++) {
-			// 마커 이미지의 이미지 크기 입니다
-			var imageSize = new kakao.maps.Size(24, 35);
-
-			// 마커 이미지를 생성합니다    
-			var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
-
-			// 마커를 생성합니다
-			var marker = new kakao.maps.Marker({
-				map : map, // 마커를 표시할 지도
-				position : positions[i].latlng, // 마커를 표시할 위치
-				title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-				image : markerImage
-			// 마커 이미지 
-			});
-			console.log(position[i].latlng);
-		}	 */
+		map.setCenter(positions.latlng);
+		
+		markers.push(marker);
+	}
+	
+	function initMarkers(markers){
+		for(var i = 0; i<markers.length; i++){
+			markers[i].setMap(null);
+		}
 	}
 
 	function searchSomething() {
@@ -160,6 +153,7 @@
 			document.getElementById("searchform").submit();
 		}
 	}
+	
 </script>
 </head>
 <body class="sb-nav-fixed">
