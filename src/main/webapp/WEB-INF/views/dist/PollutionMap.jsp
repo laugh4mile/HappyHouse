@@ -70,11 +70,11 @@
 				success : function(data, status) {
 
 					$("#searchResult").empty();
+					
 					$.each(data, function(index, vo) {
 						
 						let str = "<tr class=" + colorArr[index % 3] + ">" + "<td>" + vo.no + "</td>" + "<td>" + vo.name + "</td>" + "<td>" + vo.dongcode + "</td>" + "<td>" + vo.address + "</td>" + "<td>" + vo.lng + "</td>" + "<td>" + vo.lat + "</td>";
 						$("#searchResult").append(str);
-						
 						addMarker(vo.name, vo.lat, vo.lng);
 
 						/* // ------------- 해당 아파트의 좌표 가져오기 --------------- //
@@ -127,6 +127,7 @@
 			title : name, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
 			image : markerImage
 		});
+		map.setCenter(latlng);
 	}
 </script>
 </head>
@@ -198,7 +199,7 @@
 
 			<div class="container-fluid">
 				<div class="card mb-4">
-					<div id="map" style="width: 1630px; height: 400px;"></div>
+					<div id="map" style="width: 1630px; height: 600px;"></div>
 
 					<script>
 						var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
