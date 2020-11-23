@@ -31,8 +31,8 @@
 						console.log("상태값 : " + xhr.status + " Http에러메시지 : "
 								+ xhr.responseText);
 					}
-				});
-
+				}); 
+					
 				$("#registerBtn").click(
 						function() {
 							let registerinfo = JSON.stringify({
@@ -127,7 +127,6 @@
 								}
 							});
 						});
-
 				// 회원 정보 수정 취소.
 				$(document).on("click", ".cancelBtn", function() {
 					$("#view_" + ${postDetailRespDto.no}).css("display", "");
@@ -267,37 +266,27 @@
 							</thead>
 						</table>
 						
-						<%-- <table class="table table-hover text-center table-spacing">
-							<colgroup>
-								<col width="20%">
-								<col width="20%">
-								<col width="20%">
-								<col width="20%">
-								<col width="20%">
-							</colgroup>
-							<thead>
-								<tr>
-									<th class="text-center">번호</th>
-									<th class="text-center">질문 제목</th>
-									<th class="text-center">질문자</th>
-									<th class="text-center">날짜</th>
-									<th class="text-center">내용</th>
-								</tr>
-							</thead>
-							<tbody>
-							  <tr>
-						        <td><input id="no" type="text" value="${postDetailRespDto.no }" readonly="readonly"></td>
-						        <td><input id="title" type="text" value="${postDetailRespDto.title }" readonly="readonly"></td>
-						        <td><input id="writer" type="text" value="${postDetailRespDto.writer}" readonly="readonly"></td>
-						        <td><input id="regdate" type="text" value="${postDetailRespDto.regtime}" readonly="readonly"></td>
-						        <td><input id="content" type="text" value="${postDetailRespDto.content }" readonly="readonly"></td>
-						      </tr>
-							</tbody>
-						</table> --%>
 					</div>
 					<!-- container -->
-				</div>
+					<!--  댓글  -->
+					<div class="container">
+						<label for="content">comment</label>
+						<form name="commentInsertForm">
+							<div class="input-group">
+								<input type="hidden" name="bno" value="${postDetailRespDto.no}" /> <input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요."> <span class="input-group-btn">
+									<button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
+								</span>
+							</div>
+						</form>
+					</div>
 
+					<div class="container">
+				        <div class="commentList"></div>
+				    </div>
+
+
+				</div>
+				<%@ include file="commentS.jsp" %>
 			</main>
 			<%@ include file="footer.jsp"%>
 		</div>
