@@ -9,10 +9,15 @@
 		WHERE email = #{email};
 	</select>
 
-	<delete id="delete" parameterType="String">
+	<delete id="delete" parameterType="int">
 		DELETE FROM interests
-		WHERE email = #{email} AND aptNo = #{no};
+		WHERE no = ${no};
 	</delete>
+
+	<insert id="insert" parameterType="InterestsDto">
+		INSERT INTO interests(`email`, `dongcode`, `dongName`,  `aptNo`, `aptName`)
+		VALUSE(#{email}, #{dongcode}, #{dongName}, #{aptNo}, #{aptName});
+	</insert>
 
 </mapper>
 

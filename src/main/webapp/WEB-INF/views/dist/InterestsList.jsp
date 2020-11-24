@@ -16,6 +16,7 @@
 <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -47,12 +48,13 @@
 												<br>
 												<a href="${root}/map/detailedInfo?no=${item.aptNo}"> ${item.aptName} </a>
 											</h4>
+											<div id="email_${item.no}" style="display: none;">${item.email}</div>
+											<div id="aptNo_${item.no}" style="display: none;">${item.aptNo}</div>
 											<span id="${item.no}" class="heart liked"><i class="fa fa-heart" aria-hidden="true"></i> </span>
 										</div>
 									</div>
 								</div>
 							</c:forEach>
-
 						</div>
 					</c:when>
 					<c:otherwise>
@@ -67,26 +69,38 @@
 	<script>
 		$(document).ready(function() {
 			$(".heart").click(function() {
+				var no = $(this).attr('id');
 				var val = "#" + $(this).attr('id');
 				console.log(val);
 
 				if ($(val).hasClass("liked")) {
-					$(val).html('<i class="far fa-heart" aria-hidden="true"></i>');
-					
-					$ajax({
-					    type : "POST",
-					    url : "${root}/interests/delete", 
-					    data : {
-					    	aptNo : "${aptNo}"
-					    }
-					    success : function() {
-							console.log("success");
+					$.ajax({
+						type : "delete",
+						url : "${root}/interests/delete/" + no,
+						success : function(response) {
+							$(val).html('<i class="far fa-heart" aria-hidden="true"></i>');
 							$(val).removeClass("liked");
-					    }
+						}
 					})
 				} else {
-					$(val).html('<i class="fa fa-heart" aria-hidden="true"></i>');
-					$(val).addClass("liked");
+					var email = $("#email_" + no).text();
+					var aptNo = $("#aptNo_" + no).text();
+
+					console.log(email);
+					console.log(aptNo);
+
+					$.ajax({
+						type : "post",
+						url : "${root}/interests/insert",
+						data : {
+							"email" : email,
+							"aptNo" : aptNo,
+						},
+						success : function(response) {
+							$(val).html('<i class="fa fa-heart" aria-hidden="true"></i>');
+							$(val).addClass("liked");
+						}
+					})
 				}
 			});
 		});
@@ -96,5 +110,6 @@
 	<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 	<script src="${root }/assets/demo/datatables-demo.js"></script>
+
 </body>
 </html>
