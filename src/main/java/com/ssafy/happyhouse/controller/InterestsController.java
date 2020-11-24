@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -82,10 +81,20 @@ public class InterestsController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@DeleteMapping(value = "/delete/{no}")
+	@DeleteMapping(value = "/delete", headers = { "Content-type=application/json" })
 	@ResponseBody
-	public ResponseEntity<Void> delete(@PathVariable("no") String no) {
-		interestsService.delete(Integer.parseInt(no));
+	public ResponseEntity<Void> delete(@RequestParam String email, @RequestParam int aptNo) {
+		InterestsDto interestDto;
+		try {
+			interestDto = new InterestsDto();
+			interestDto.setEmail(email);
+			interestDto.setAptNo(Integer.toString(aptNo));
+			
+			interestsService.delete(interestDto);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 

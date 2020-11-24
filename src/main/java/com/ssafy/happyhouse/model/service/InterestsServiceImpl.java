@@ -19,8 +19,8 @@ public class InterestsServiceImpl implements InterestsService{
 
 
 	@Override
-	public void delete(int no) {
-		interestsDao.delete(no);
+	public void delete(InterestsDto interestDto) {
+		interestsDao.delete(interestDto);
 	}
 
 

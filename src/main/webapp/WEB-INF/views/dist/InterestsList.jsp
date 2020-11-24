@@ -71,24 +71,27 @@
 			$(".heart").click(function() {
 				var no = $(this).attr('id');
 				var val = "#" + $(this).attr('id');
+				var email = $("#email_" + no).text();
+				var aptNo = $("#aptNo_" + no).text();
+				
 				console.log(val);
+				console.log(email);
+				console.log(aptNo);
 
 				if ($(val).hasClass("liked")) {
 					$.ajax({
 						type : "delete",
-						url : "${root}/interests/delete/" + no,
+						url : "${root}/interests/delete/",
+						data : {
+							"email" : email,
+							"aptNo" : aptNo,
+						},
 						success : function(response) {
 							$(val).html('<i class="far fa-heart" aria-hidden="true"></i>');
 							$(val).removeClass("liked");
 						}
 					})
 				} else {
-					var email = $("#email_" + no).text();
-					var aptNo = $("#aptNo_" + no).text();
-
-					console.log(email);
-					console.log(aptNo);
-
 					$.ajax({
 						type : "post",
 						url : "${root}/interests/insert",
