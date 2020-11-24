@@ -10,8 +10,10 @@ public interface CommentDao {
 	 // 댓글 개수
     public int commentCount() throws Exception;
  
+//    // 댓글 목록
+//    public List<CommentDto> commentList() throws Exception;
     // 댓글 목록
-    public List<CommentDto> commentList() throws Exception;
+    public List<CommentDto> commentList(int bno) throws Exception;
  
     // 댓글 작성
     public int commentInsert(CommentDto comment) throws Exception;
