@@ -10,8 +10,7 @@ import com.ssafy.happyhouse.model.dao.InterestsDao;
 @Service
 public class InterestsServiceImpl implements InterestsService{
 	@Autowired
-	private InterestsDao interestsDao;
-	
+	private InterestsDao interestsDao;	
 	
 	@Override
 	public List<InterestsDto> getInterestsList(String email) {
@@ -20,8 +19,14 @@ public class InterestsServiceImpl implements InterestsService{
 
 
 	@Override
-	public void delete(String email, int no) {
-		interestsDao.delete(email, no);
+	public void delete(int no) {
+		interestsDao.delete(no);
+	}
+
+
+	@Override
+	public void insert(InterestsDto interestDto) {
+		interestsDao.insert(interestDto);
 	}
 	
 }
