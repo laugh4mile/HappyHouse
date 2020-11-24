@@ -10,7 +10,7 @@ public interface InterestsDao {
 
 	public List<InterestsDto> getInterestsList(String email);
 
-	public void delete(int no);
+	public void delete(InterestsDto interestDto);
 
 	public void insert(InterestsDto interestDto);
 
