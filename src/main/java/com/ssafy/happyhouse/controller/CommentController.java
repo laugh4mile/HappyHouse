@@ -24,28 +24,29 @@ public class CommentController {
 	
 	@RequestMapping("/list/{bno}") //댓글 리스트
 	@ResponseBody
-	private List<CommentDto> nCommentServiceList(Model model) throws Exception{
-		System.out.println("bno댓글리스트 출력");
-		return commentService.commentListService();
+	private List<CommentDto> nCommentServiceList(@PathVariable int bno, Model model) throws Exception{
+		System.out.println("bno기준으로 댓글리스트 출력");
+		return commentService.commentListService(bno);
 	}
-	@RequestMapping("/list") //댓글 리스트
-    @ResponseBody
-    private List<CommentDto> mCommentServiceList(Model model) throws Exception{
-        System.out.println("걍 댓글리스트");
-        return commentService.commentListService();
-    }
+	
+//	@RequestMapping("/list") //댓글 리스트
+//    @ResponseBody
+//    private List<CommentDto> mCommentServiceList(Model model) throws Exception{
+//        System.out.println("걍 댓글리스트");
+//        System.out.println(model);
+//        return commentService.commentListService();
+//    }
 
 	@RequestMapping("/insert") //댓글 작성 
     @ResponseBody
-    private int mCommentServiceInsert(@RequestParam int bno, @RequestParam String content) throws Exception{
+    private int mCommentServiceInsert(@RequestParam int bno, @RequestParam String content,  @RequestParam String writer) throws Exception{
         System.out.println("insert comment");
 		CommentDto comment = new CommentDto();
         comment.setBno(bno);
         comment.setContent(content);
         // 로그인 기능을 구현했거나 따로 댓글 작성자를 입력받는 폼이 있다면 입력 받아온 값으로 사용하면 됩니다. 
         // 저는 따로 폼을 구현하지 않았기때문에 임시로 "test"라는 값을 입력해놨습니다.
-        comment.setWriter("test");  
-        
+        comment.setWriter(writer);  
         
         return commentService.commentInsertService(comment);
     }

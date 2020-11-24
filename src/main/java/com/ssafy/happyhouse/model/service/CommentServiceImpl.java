@@ -14,9 +14,14 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private CommentDao commentDao;
 	
+//	@Override
+//	public List<CommentDto> commentListService() throws Exception {
+//		return commentDao.commentList();
+//	}
+	
 	@Override
-	public List<CommentDto> commentListService() throws Exception {
-		return commentDao.commentList();
+	public List<CommentDto> commentListService(int bno) throws Exception {
+		return commentDao.commentList(bno);
 	}
 
 	@Override
