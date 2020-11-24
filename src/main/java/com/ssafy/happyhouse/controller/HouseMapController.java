@@ -148,5 +148,10 @@ public class HouseMapController {
 	
 		return "dist/detailedInfo";
 	}
+	
+	@GetMapping(value = "/search")
+	public String search() {
+		return "dist/search";
+	}
 
 }

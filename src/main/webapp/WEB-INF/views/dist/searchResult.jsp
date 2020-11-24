@@ -85,7 +85,9 @@
 														</a>
 													</h4>
 													<p class="card-text">${item.dealAmount}만원</p>
-													<span id = "${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true" ></i> </span>
+													<div id="email_${item.no}" style="display: none;">${userinfo.email}</div>
+													<div id="aptNo_${item.no}" style="display: none;">${item.no}</div>
+													<span id="${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true"></i> </span>
 												</div>
 											</div>
 										</div>
@@ -108,7 +110,9 @@
 														</a>
 													</h4>
 													<p class="card-text">${item.dealAmount}만원</p>
-													<span id = "${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true" ></i> </span>
+													<div id="email_${item.no}" style="display: none;">${userinfo.email}</div>
+													<div id="aptNo_${item.no}" style="display: none;">${item.no}</div>
+													<span id="${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true"></i> </span>
 												</div>
 											</div>
 										</div>
@@ -131,7 +135,9 @@
 														</a>
 													</h4>
 													<p class="card-text">${item.dealAmount}만원</p>
-													<span id = "${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true" ></i> </span>
+													<div id="email_${item.no}" style="display: none;">${userinfo.email}</div>
+													<div id="aptNo_${item.no}" style="display: none;">${item.no}</div>
+													<span id="${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true"></i> </span>
 												</div>
 											</div>
 										</div>
@@ -154,7 +160,9 @@
 														</a>
 													</h4>
 													<p class="card-text">${item.dealAmount}만원</p>
-													<span id = "${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true" ></i> </span>
+													<div id="email_${item.no}" style="display: none;">${userinfo.email}</div>
+													<div id="aptNo_${item.no}" style="display: none;">${item.no}</div>
+													<span id="${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true"></i> </span>
 												</div>
 											</div>
 										</div>
@@ -162,7 +170,7 @@
 
 								</c:choose>
 							</c:forEach>
-							
+
 						</div>
 					</c:when>
 					<c:otherwise>
@@ -293,20 +301,46 @@
 		});
 	});
 	
-	$(document).ready(function(){
-		  $(".heart").click(function(){
-			  var val = "#" + $(this).attr('id');
-			  console.log(val);
-			  
-		    if($(val).hasClass("liked")){
-		      $(val).html('<i class="far fa-heart" aria-hidden="true"></i>');
-		      $(val).removeClass("liked");
-		    }else{
-		      $(val).html('<i class="fa fa-heart" aria-hidden="true"></i>');
-		      $(val).addClass("liked");
-		    }
-		  });
+	$(document).ready(function() {
+		$(".heart").click(function() {
+			var no = $(this).attr('id');
+			var val = "#" + $(this).attr('id');
+			var email = $("#email_" + no).text();
+			var aptNo = $("#aptNo_" + no).text();
+			
+			console.log(val);
+			console.log(email);
+			console.log(aptNo);
+
+			if ($(val).hasClass("liked")) {
+				$.ajax({
+					type : "delete",
+					url : "${root}/interests/delete/",
+					data : {
+						"email" : email,
+						"aptNo" : aptNo,
+					},
+					success : function(response) {
+						$(val).html('<i class="far fa-heart" aria-hidden="true"></i>');
+						$(val).removeClass("liked");
+					}
+				})
+			} else {
+				$.ajax({
+					type : "post",
+					url : "${root}/interests/insert",
+					data : {
+						"email" : email,
+						"aptNo" : aptNo,
+					},
+					success : function(response) {
+						$(val).html('<i class="fa fa-heart" aria-hidden="true"></i>');
+						$(val).addClass("liked");
+					}
+				})
+			}
 		});
+	});
 
 	//-------------------아파트/주택, 매매/전월세 별로 보기 ---------------------//
 </script>
