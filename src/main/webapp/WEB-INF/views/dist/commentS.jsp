@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="root" value="${pageContext.request.contextPath}" />
 <script>
 	var bno = '${postDetailRespDto.no}'; //게시글 번호
 	$('[name=commentInsertBtn]').click(function(){ //댓글 등록 버튼 클릭시 
@@ -10,7 +12,7 @@
 	//댓글 목록 
 	function commentList(){
 	    $.ajax({
-	        url : '/comment/list',
+	        url : '${root}/comment/list',
 	        type : 'get',
 	        data : {'bno':bno},
 	        success : function(data){
@@ -34,7 +36,7 @@
 	//댓글 등록
 	function commentInsert(insertData){
 	    $.ajax({
-	        url : '/comment/insert',
+	        url : '${root}/comment/insert',
 	        type : 'post',
 	        data : insertData,
 	        success : function(data){
@@ -63,7 +65,7 @@
 	    var updateContent = $('[name=content_'+cno+']').val();
 	    
 	    $.ajax({
-	        url : '/comment/update',
+	        url : '${root}/comment/update',
 	        type : 'post',
 	        data : {'content' : updateContent, 'cno' : cno},
 	        success : function(data){
@@ -75,7 +77,7 @@
 	//댓글 삭제 
 	function commentDelete(cno){
 	    $.ajax({
-	        url : '/comment/delete/'+cno,
+	        url : '${root}/comment/delete/'+cno,
 	        type : 'post',
 	        success : function(data){
 	            if(data == 1) commentList(bno); //댓글 삭제후 목록 출력 
