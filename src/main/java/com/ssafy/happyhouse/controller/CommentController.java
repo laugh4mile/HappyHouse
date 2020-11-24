@@ -22,17 +22,23 @@ public class CommentController {
 	@Autowired
 	private CommentService commentService;
 	
+	@RequestMapping("/list/{bno}") //댓글 리스트
+	@ResponseBody
+	private List<CommentDto> nCommentServiceList(Model model) throws Exception{
+		System.out.println("bno댓글리스트 출력");
+		return commentService.commentListService();
+	}
 	@RequestMapping("/list") //댓글 리스트
     @ResponseBody
     private List<CommentDto> mCommentServiceList(Model model) throws Exception{
-        System.out.println("tlqkffusdk");
+        System.out.println("걍 댓글리스트");
         return commentService.commentListService();
     }
 
 	@RequestMapping("/insert") //댓글 작성 
     @ResponseBody
     private int mCommentServiceInsert(@RequestParam int bno, @RequestParam String content) throws Exception{
-        
+        System.out.println("insert comment");
 		CommentDto comment = new CommentDto();
         comment.setBno(bno);
         comment.setContent(content);
@@ -40,13 +46,14 @@ public class CommentController {
         // 저는 따로 폼을 구현하지 않았기때문에 임시로 "test"라는 값을 입력해놨습니다.
         comment.setWriter("test");  
         
+        
         return commentService.commentInsertService(comment);
     }
     
     @RequestMapping("/update") //댓글 수정  
     @ResponseBody
     private int mCommentServiceUpdateProc(@RequestParam int cno, @RequestParam String content) throws Exception{
-        
+    	System.out.println("update comment");
         CommentDto comment = new CommentDto();
         comment.setCno(cno);
         comment.setContent(content);
@@ -57,7 +64,7 @@ public class CommentController {
     @RequestMapping("/delete/{cno}") //댓글 삭제  
     @ResponseBody
     private int mCommentServiceDelete(@PathVariable int cno) throws Exception{
-        
+    	System.out.println("delete comment");
         return commentService.commentDeleteService(cno);
     }
 
