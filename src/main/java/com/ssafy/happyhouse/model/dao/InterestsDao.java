@@ -1,5 +1,15 @@
 package com.ssafy.happyhouse.model.dao;
 
-public class InterestsDao {
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+
+import com.ssafy.happyhouse.model.InterestsDto;
+@Mapper
+public interface InterestsDao {
+
+	public List<InterestsDto> getInterestsList(String email);
+
+	public void delete(String email, int no);
 
 }
