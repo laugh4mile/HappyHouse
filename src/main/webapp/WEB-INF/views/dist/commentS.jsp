@@ -12,7 +12,7 @@
 	//댓글 목록 
 	function commentList(){
 	    $.ajax({
-	        url : '${root}/comment/list',
+	        url : '${root}/comment/list/'+bno,
 	        type : 'get',
 	        data : {'bno':bno},
 	        success : function(data){
@@ -59,7 +59,7 @@
 	    $('.commentContent'+cno).html(a);
 	    
 	}
-	 
+
 	//댓글 수정
 	function commentUpdateProc(cno){
 	    var updateContent = $('[name=content_'+cno+']').val();

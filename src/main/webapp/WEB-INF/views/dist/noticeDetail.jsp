@@ -20,7 +20,7 @@
 			function() {
 				//회원 목록
 				$.ajax({
-					url : '${root}/board/boards',
+					url : '${root}/notice/boards',
 					type : 'GET',
 					contentType : 'application/json;charset=utf-8',
 					dataType : 'json',
@@ -113,13 +113,13 @@
 							console.log($("#content" + mid).val());
 							console.log(modifyinfo);
 							$.ajax({
-								url : '${root}/board/modi',
+								url : '${root}/notice/modi',
 								type : 'PUT',
 								contentType : 'application/json;charset=utf-8',
 								dataType : 'json',
 								data : modifyinfo,
 								success : function(boards) {
-									location.href = '${root}/board/'+mid;
+									location.href = '${root}/notice/'+mid;
 								},
 								error : function(xhr, status, msg) {
 									console.log("상태값 : " + status
@@ -139,12 +139,12 @@
 					if (confirm("정말 삭제?")) {
 						let delid = ${postDetailRespDto.no};
 						$.ajax({
-							url : '${root}/board/delete/' + delid,
+							url : '${root}/notice/delete/' + delid,
 							type : 'DELETE',
 							contentType : 'application/json;charset=utf-8',
 							dataType : 'json',
 							success : function(boards) {
-								location.href = '${root}/board/list';
+								location.href = '${root}/notice/list';
 							},
 							error : function(xhr, status, msg) {
 								/* console
@@ -210,7 +210,7 @@
 			<main>
 				<div id="member_list_bg">
 					<div class="container table-bg" align="center">
-						<h1>Q&A 게시판</h1>
+						<h1>공지사항</h1>
 						<div align="right">
 							<button type="button" class="modiBtn btn btn-outline-primary btn-sm">수정</button>
 							<button type="button" class="delBtn btn btn-outline-danger btn-sm">삭제</button>
@@ -267,28 +267,10 @@
 						</table>
 						
 					</div>
-					<!-- container -->
-					<!--  댓글  -->
-					<div class="container">
-						<label for="content">comment</label>
-						<form name="commentInsertForm">
-							<div class="input-group">
-								<input type="hidden" name="bno" value="${postDetailRespDto.no}" /> 
-								<input type="hidden" name="writer" value="${postDetailRespDto.writer}" /> 
-								<input type="text" class="form-control" id="content" name="content" placeholder="내용을 입력하세요."> <span class="input-group-btn">
-									<button class="btn btn-default" type="button" name="commentInsertBtn">등록</button>
-								</span>
-							</div>
-						</form>
-					</div>
-
-					<div class="container">
-				        <div class="commentList"></div>
-				    </div>
+					
 
 
 				</div>
-				<%@ include file="commentS.jsp" %>
 			</main>
 			<%@ include file="footer.jsp"%>
 		</div>
