@@ -9,11 +9,18 @@
             COUNT(*)
         FROM COMMENT
     </select>
-    
+<!--     
     <select id="commentList" resultType="CommentDto">
         SELECT
             *
         FROM COMMENT
+    </select> -->
+    
+    <select id="commentList" parameterType="int" resultType="CommentDto">
+        SELECT
+            *
+        FROM COMMENT
+        WHERE bno = #{bno}
     </select>
     
     
