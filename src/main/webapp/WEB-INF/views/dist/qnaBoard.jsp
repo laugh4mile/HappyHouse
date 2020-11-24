@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="${root}/css/style_hyunsoo.css">
 <link href="${root }/css/styles.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(
@@ -63,49 +64,6 @@
 							});
 						});
 				
-				
-				
-				$(document).on("dblclick", "tr.view", function() {
-					let no = $(this).attr("data-id");
-					$.ajax({
-						url:'${root}/board/' + no,  
-						type:'GET',
-						contentType:'application/json;charset=utf-8',
-						success:function(user) {
-							$("#no").text(user.no);
-							$("#writer").text(user.writer);
-							$("#regtime").text(user.regtime);
-							$("#title").text(user.title);
-							$("#content").text(user.content);
-							/* $("#userViewModal").modal(); */
-						},
-						error:function(xhr,status,msg){
-							console.log("상태값 : " + status + " Http에러메시지 : "+msg);
-						}
-					});			
-				});
-				/*
-				
-				$(document).on("dblclick", "tr.view", function() {
-					let vid = $(this).attr("data-id");
-					$.ajax({
-						url:'${root}/admin/user/' + vid,  
-						type:'GET',
-						contentType:'application/json;charset=utf-8',
-						success:function(user) {
-							$("#vid").text(user.userid);
-							$("#vname").text(user.username);
-							$("#vemail").text(user.email);
-							$("#vaddress").text(user.address);
-							$("#vjoindate").text(user.joindate);
-							$("#userViewModal").modal();
-						},
-						error:function(xhr,status,msg){
-							console.log("상태값 : " + status + " Http에러메시지 : "+msg);
-						}
-					});			
-				});*/
-
 				// 회원 정보 수정 보기.
 				$(document).on("click", ".modiBtn", function() {
 					let mid = $(this).parents("tr").attr("data-id");
@@ -256,7 +214,7 @@
 	<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
