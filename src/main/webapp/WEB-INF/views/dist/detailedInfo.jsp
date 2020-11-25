@@ -50,7 +50,7 @@
 					<div class="row">
 						<div class="col-lg-8 mx-auto">
 							<h2>상세정보</h2>
-							<img class="card-img" src="<%=request.getContextPath() %>/img/<%=ranSu%>.jpg" alt="">
+							<img class="card-img" src="<%=request.getContextPath()%>/img/<%=ranSu%>.jpg" alt="">
 							<table class="table">
 								<tbody>
 									<tr>
@@ -139,7 +139,9 @@
 	});//ready
 
 	window.onload = function() {
-		next();
+		setTimeout(function() {
+			next();
+		}, 1000);
 	}
 
 	function next() {
@@ -147,6 +149,7 @@
 		ps = new kakao.maps.services.Places(map);
 
 		// 지도에 idle 이벤트를 등록합니다
+		console.log(kakao.maps.event);
 		kakao.maps.event.addListener(map, 'idle', searchPlaces);
 
 		// 커스텀 오버레이의 컨텐츠 노드에 css class를 추가합니다 
