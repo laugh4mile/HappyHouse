@@ -43,7 +43,7 @@
 		<if test="type == 'Jumeme'">
 			where dong = #{dong} and type=3
 		</if>
-		<if test="type == 'JURent'">
+		<if test="type == 'JuRent'">
 			where dong = #{dong} and type=4
 		</if>
 		order by AptName;

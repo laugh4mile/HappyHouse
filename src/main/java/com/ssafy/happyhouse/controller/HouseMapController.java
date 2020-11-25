@@ -46,6 +46,7 @@ public class HouseMapController {
 	@ResponseBody
 	@GetMapping(value = "/{sido}/{gugun}/{dong}/{type}", headers = { "Content-type=application/json" })
 	public List<HouseDealDto> getAptInType(@PathVariable String dong, @PathVariable String type) throws Exception {
+		System.out.println(dong + " " + type);
 		return houseMapService.getAptInType(dong, type);
 	}
 

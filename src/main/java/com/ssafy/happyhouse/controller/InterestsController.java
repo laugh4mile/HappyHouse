@@ -50,7 +50,7 @@ public class InterestsController {
 
 		return "dist/InterestsList";
 	}
-
+	
 	@PostMapping(value = "/insert", headers = { "Content-type=application/json" })
 	@ResponseBody
 	public ResponseEntity<Void> insert(@RequestParam String email, @RequestParam int aptNo) {
