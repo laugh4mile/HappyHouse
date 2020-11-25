@@ -73,7 +73,7 @@
 					$("#searchResult").empty();
 					$.each(data, function(index, vo) {
 						
-						let str = "<tr class=" + colorArr[index % 3] + ">" + "<td>" + vo.no + "</td>" + "<td>" + vo.shopname + "</td>" + "<td>" + vo.address + "</td>" + "<td>" + vo.postcode + "</td>" + "<td>" + vo.lng + "</td>" + "<td>" + vo.lat + "</td>";
+						let str = "<tr class=" + colorArr[index % 3] + ">" + "<td>" + vo.no + "</td>" + "<td>" + vo.codename3 + "</td>" + "<td>" + vo.shopname + "</td>" + "<td>" + vo.address + "</td>" + "<td>" + vo.postcode + "</td>";
 						$("#searchResult").append(str);
 						
 						addMarker(vo.shopname, vo.lat, vo.lng);
@@ -190,11 +190,10 @@
 									<thead>
 										<tr >
 											<th>번호</th>
-											<th>이름()</th>
+											<th>상권 분류</th>
+											<th>가게이름</th>
 											<th>주소(신 주소)</th>
 											<th>우편번호</th>
-											<th>경도</th>
-											<th>위도</th>
 										</tr>
 									</thead>
 									<tbody id="searchResult">

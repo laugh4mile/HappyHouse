@@ -1,7 +1,7 @@
 @charset "UTF-8";
-#container {overflow:hidden;height:300px;position:relative;}
-#mapWrapper {width:100%;height:300px;z-index:1;}
-#rvWrapper {width:100%;height:300px;top:0;right:0;position:absolute;z-index:0;}
+#container {overflow:hidden;height:380px;position:relative;}
+#mapWrapper {width:100%;height:350px;z-index:1;}
+#rvWrapper {width:100%;height:350px;top:0;right:0;position:absolute;z-index:0;}
 #container.view_roadview #mapWrapper {width: 100%;}
 #roadviewControl {position:absolute;top:5px;left:5px;width:42px;height:42px;z-index: 1;cursor: pointer; background: url(https://t1.daumcdn.net/localimg/localimages/07/2018/pc/common/img_search.png) 0 -450px no-repeat;}
 #roadviewControl.active {background-position:0 -350px;}
