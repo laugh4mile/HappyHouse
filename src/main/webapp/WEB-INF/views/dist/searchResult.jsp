@@ -80,7 +80,7 @@
 										<c:when test="${item.type == 1}">
 											<div class="col-lg-6 col-sm-5 portfolio-item AptMeme">
 												<div class="card h-150">
-													<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+													<a href="${root}/map/detailedInfo?no=${item.no}">
 														<!-- 링크 바꾸기  -->
 														<img class="card-img-top" src="<%=request.getContextPath()%>/img/<%=ranSu%>.jpg" alt="">
 													</a>
@@ -105,7 +105,7 @@
 										<c:when test="${item.type == 3}">
 											<div class="col-lg-6 col-sm-5 portfolio-item AptRent">
 												<div class="card h-150">
-													<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+													<a href="${root}/map/detailedInfo?no=${item.no}">
 														<!-- 링크 바꾸기  -->
 														<img class="card-img-top" src="<%=request.getContextPath()%>/img/<%=ranSu%>.jpg" alt="">
 													</a>
@@ -130,7 +130,7 @@
 										<c:when test="${item.type == 2}">
 											<div class="col-lg-6 col-sm-5 portfolio-item JuMeme">
 												<div class="card h-150">
-													<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+													<a href="${root}/map/detailedInfo?no=${item.no}">
 														<!-- 링크 바꾸기  -->
 														<img class="card-img-top" src="<%=request.getContextPath()%>/img/<%=ranSu%>.jpg" alt="">
 													</a>
@@ -155,7 +155,7 @@
 										<c:when test="${item.type == 4}">
 											<div class="col-lg-6 col-sm-5 portfolio-item JuRent">
 												<div class="card h-150">
-													<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+													<a href="${root}/map/detailedInfo?no=${item.no}">
 														<!-- 링크 바꾸기  -->
 														<img class="card-img-top" src="<%=request.getContextPath()%>/img/<%=ranSu%>.jpg" alt="">
 													</a>
