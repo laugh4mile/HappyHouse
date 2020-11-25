@@ -22,7 +22,7 @@
 			let registerinfo = JSON.stringify({
 				"title" : $("#title").val(),
 				"content" : $("#content").val(),
-				"writer" : ${userinfo.email},
+				"writer" : "${userinfo.email}",
 			});
 			console.log("여기까지는 된다");
 			$.ajax({

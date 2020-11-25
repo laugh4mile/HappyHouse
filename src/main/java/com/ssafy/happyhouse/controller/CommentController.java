@@ -25,7 +25,7 @@ public class CommentController {
 	@RequestMapping("/list/{bno}") //댓글 리스트
 	@ResponseBody
 	private List<CommentDto> nCommentServiceList(@PathVariable int bno, Model model) throws Exception{
-		System.out.println("bno기준으로 댓글리스트 출력");
+//		System.out.println("bno기준으로 댓글리스트 출력");
 		return commentService.commentListService(bno);
 	}
 	
