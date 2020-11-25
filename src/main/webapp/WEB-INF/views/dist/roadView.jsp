@@ -59,7 +59,7 @@
 					</div>
 					<div id="container">
 						<div id="mapWrapper">
-							<div id="map" style="width: 100%; height: 150%"></div>
+							<div id="map" style="width: 100%; height: 100%"></div>
 							<!-- 지도를 표시할 div 입니다 -->
 							<div id="roadviewControl" onclick="setRoadviewRoad()"></div>
 						</div>
@@ -80,7 +80,7 @@
 						mapContainer = document.getElementById('map'), // 지도를 표시할 div 입니다 
 						rvContainer = document.getElementById('roadview'); //로드뷰를 표시할 div 입니다
 
-						var mapCenter = new kakao.maps.LatLng(33.45042, 126.57091), // 지도의 중심좌표
+						var mapCenter = new kakao.maps.LatLng(37.5665734, 126.978179), // 지도의 중심좌표
 						mapOption = {
 							center : mapCenter, // 지도의 중심좌표
 							level : 3
