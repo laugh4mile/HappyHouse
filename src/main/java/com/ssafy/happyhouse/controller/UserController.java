@@ -48,7 +48,6 @@ public class UserController {
 	@ResponseBody
 	@PostMapping(value = "/regi", headers = { "Content-type=application/json" })
 	public List<MemberDto> userRegister(@RequestBody MemberDto memberDto) {
-		System.out.println("왜또안되냐");
 		System.out.println(memberDto.getEmail());
 		loginService.userRegister(memberDto);
 		return loginService.userList();
@@ -57,7 +56,6 @@ public class UserController {
 	@ResponseBody
 	@PutMapping(value = "/modi", headers = { "Content-type=application/json" })
 	public List<MemberDto> userModify(@RequestBody MemberDto memberDto) {
-		System.out.println("컨트롤러 - modify");
 		loginService.userModify(memberDto);
 		return loginService.userList();
 	}
@@ -65,7 +63,6 @@ public class UserController {
 	@ResponseBody
 	@DeleteMapping(value = "/delete/{email}",headers = { "Content-type=application/json" })
 	public List<MemberDto> userDelete(@PathVariable("email") String email) {
-		System.out.println("컨트롤러 - delete");
 		loginService.userDelete(email);
 		return loginService.userList();
 	}
@@ -83,12 +80,7 @@ public class UserController {
 			System.out.println(memberDto);
 			if(memberDto != null) {
 				session.setAttribute("userinfo", memberDto);
-//				System.out.println(session.getAttribute("userinfo"));
-//				System.out.println("맵 : " +  map);
-//				System.out.println("id pwd : " + map.get("email")+" "+map.get("userpwd"));
-//				System.out.println("세션 : " + session);
 				Cookie cookie = new Cookie("ssafy_id", memberDto.getEmail());
-//				System.out.println("쿠키 id : " + cookie.getName());
 				cookie.setPath("/");
 				if(memberDto.getEmail().equals(map.get("email"))) {
 					cookie.setMaxAge(60*5);//5분 저장.
@@ -102,7 +94,6 @@ public class UserController {
 				
 			} else {
 				model.addAttribute("msg", "아이디 또는 비밀번호 확인 후 로그인해 주세요.");
-				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

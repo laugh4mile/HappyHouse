@@ -12,6 +12,10 @@
 <script type="text/javascript">
 
 	$(document).ready(function() {
+		var noData = '${msg}';
+		if(noData != ''){
+			alert(noData);
+		}
 		$("#loginBtn").click(function() {
 
 			if ($("#inputEmailAddress").val() == "") {

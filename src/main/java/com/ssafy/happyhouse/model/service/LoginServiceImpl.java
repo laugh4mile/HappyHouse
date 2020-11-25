@@ -30,7 +30,6 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public void userRegister(MemberDto memberDto) {
 		// TODO Auto-generated method stub
-		System.out.println("서비스까진 가나");
 		loginDao.userRegister(memberDto);
 		
 	}
