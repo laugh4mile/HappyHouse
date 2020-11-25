@@ -22,8 +22,6 @@ import com.ssafy.happyhouse.model.BoardDto;
 import com.ssafy.happyhouse.model.MemberDto;
 import com.ssafy.happyhouse.model.service.BoardService;
 
-
-
 @Controller
 @RequestMapping("/board")
 public class BoardController {
@@ -62,8 +60,6 @@ public class BoardController {
 	@ResponseBody
 	@PostMapping(value = "/regi", headers = { "Content-type=application/json" })
 	public List<BoardDto> boardRegister(@RequestBody BoardDto boardDto) {
-		System.out.println("등록 되냐?");
-		System.out.println(boardDto);
 		boardService.writeBoard(boardDto);
 		return boardService.retrieveBoard();
 	}
@@ -71,7 +67,6 @@ public class BoardController {
 	@ResponseBody
 	@DeleteMapping(value = "/delete/{no}",headers = { "Content-type=application/json" })
 	public List<BoardDto> boardDelete(@PathVariable("no") int no) {
-		System.out.println("컨트롤러 - delete");
 		boardService.deleteBoard(no);
 		return boardService.retrieveBoard();
 	}
@@ -79,40 +74,9 @@ public class BoardController {
 	@ResponseBody
 	@PutMapping(value = "/modi", headers = { "Content-type=application/json" })
 	public List<BoardDto> boardModify(@RequestBody BoardDto boardDto) {
-		System.out.println("보드컨트롤러 - modify");
-		System.out.println(boardDto);
 		boardService.updateBoard(boardDto);
 		return boardService.retrieveBoard();
 	}
 	
-	@PostMapping
-	public ResponseEntity<String> writeBoard(@RequestBody BoardDto board) {
-		logger.debug("writeBoard - 호출"); 
-		if (boardService.writeBoard(board)) { 
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-		}
-		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
-	}
-
 	
-	@PutMapping("{no}")
-	public ResponseEntity<String> updateBoard(@PathVariable int no, @RequestBody BoardDto board) {
-		logger.debug("updateBoard - 호출");
-		logger.debug("" + board);
-		board.setNo(no);
-		
-		if (boardService.updateBoard(board)) {
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-		}
-		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
-	}
-
-	@DeleteMapping("{no}")
-	public ResponseEntity<String> deleteBoard(@PathVariable int no) {
-		logger.debug("deleteBoard - 호출");
-		if (boardService.deleteBoard(no)) {
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
-		}
-		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
-	}
 }
