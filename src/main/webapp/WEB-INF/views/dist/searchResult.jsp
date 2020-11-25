@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.util.Random"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value='${pageContext.request.contextPath}' />
 <!DOCTYPE html>
@@ -67,13 +68,17 @@
 							<c:forEach var="item" items="${result}">
 								<!-- 아파트 매매 / 아파트 전월세 / 주택 매매 / 주택 전월세를  type을 통해 구별해내기 -->
 
+								<% //1~8까지의 등급을 랜덤으로 발생시킴								
+								int ranSu = (new Random().nextInt(8)) + 1;
+								%>
+
 								<c:choose>
 									<c:when test="${item.type == 1}">
 										<div class="col-lg-3 col-sm-5 portfolio-item AptMeme">
 											<div class="card h-150">
 												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 													<!-- 링크 바꾸기  -->
-													<img class="card-img-top" src="${root }/img/2.jpg" alt="">
+													<img class="card-img-top" src="<%=request.getContextPath() %>/img/<%=ranSu%>.jpg" alt="">
 												</a>
 												<div class="card-body">
 													<h4 class="card-title">
@@ -98,7 +103,7 @@
 											<div class="card h-150">
 												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 													<!-- 링크 바꾸기  -->
-													<img class="card-img-top" src="${root }/img/2.jpg" alt="">
+													<img class="card-img-top" src="<%=request.getContextPath() %>/img/<%=ranSu%>.jpg" alt="">
 												</a>
 												<div class="card-body">
 													<h4 class="card-title">
@@ -123,7 +128,7 @@
 											<div class="card h-150">
 												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 													<!-- 링크 바꾸기  -->
-													<img class="card-img-top" src="${root }/img/2.jpg" alt="">
+													<img class="card-img-top" src="<%=request.getContextPath() %>/img/<%=ranSu%>.jpg" alt="">
 												</a>
 												<div class="card-body">
 													<h4 class="card-title">
@@ -148,7 +153,7 @@
 											<div class="card h-150">
 												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
 													<!-- 링크 바꾸기  -->
-													<img class="card-img-top" src="${root }/img/2.jpg" alt="">
+													<img class="card-img-top" src="<%=request.getContextPath() %>/img/<%=ranSu%>.jpg" alt="">
 												</a>
 												<div class="card-body">
 													<h4 class="card-title">
