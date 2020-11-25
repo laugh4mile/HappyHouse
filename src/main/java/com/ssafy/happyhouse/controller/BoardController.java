@@ -67,6 +67,7 @@ public class BoardController {
 	@ResponseBody
 	@DeleteMapping(value = "/delete/{no}",headers = { "Content-type=application/json" })
 	public List<BoardDto> boardDelete(@PathVariable("no") int no) {
+		System.out.println("나오냐");
 		boardService.deleteBoard(no);
 		return boardService.retrieveBoard();
 	}

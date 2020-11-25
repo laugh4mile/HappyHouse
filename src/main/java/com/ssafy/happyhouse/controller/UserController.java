@@ -62,7 +62,7 @@ public class UserController {
 	
 	@ResponseBody
 	@DeleteMapping(value = "/delete/{email}",headers = { "Content-type=application/json" })
-	public List<MemberDto> userDelete(@PathVariable("email") String email) {
+	public List<MemberDto> userDelete(@PathVariable("email") String email, HttpSession session) {
 		loginService.userDelete(email);
 		return loginService.userList();
 	}

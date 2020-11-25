@@ -104,7 +104,7 @@
 								"no" : ${postDetailRespDto.no},
 								"title" : $("#title" + mid).val(),
 								/* "writer" : $("#writer" + mid).val(), */
-								"writer" : ${userinfo.email},
+								"writer" : "${userinfo.email}",
 								"content" : $("#content" + mid).val(),
 							});
 							console.log(mid);
