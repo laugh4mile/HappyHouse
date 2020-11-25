@@ -216,7 +216,7 @@
 							</colgroup>
 							<thead>
 								<tr>
-									<th class="text-center">이메일</th>
+									<th class="text-center">아이디</th>
 									<th class="text-center">비밀번호</th>
 									<th class="text-center">성</th>
 									<th class="text-center">이름</th>
