@@ -7,7 +7,7 @@ public class BoardDto {
 	private String title;
 	private String content;
 	private String writer;
-	private Date regtime;
+	private String regtime;
 
 	public int getNo() {
 		return no;
@@ -33,10 +33,10 @@ public class BoardDto {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public Date getRegtime() {
+	public String getRegtime() {
 		return regtime;
 	}
-	public void setRegtime(Date regtime) {
+	public void setRegtime(String regtime) {
 		this.regtime = regtime;
 	}
 	@Override
