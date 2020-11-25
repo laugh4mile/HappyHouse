@@ -78,6 +78,7 @@
 				contentType : 'application/json;charset=utf-8',
 				dataType : 'json',
 				success : function(data, status) {
+					console.log(data);
 					initMarkers(markers);
 					$("#searchResult").empty();
 					$.each(data, function(index, vo) {
