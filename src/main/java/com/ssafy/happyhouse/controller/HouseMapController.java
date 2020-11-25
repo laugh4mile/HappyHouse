@@ -79,19 +79,19 @@ public class HouseMapController {
 		return "dist/index";
 	}
 
-	@GetMapping(value = "/test1")
+	@GetMapping(value = "/roadView")
 	public String test1() {
-		return "dist/test1";
+		return "dist/roadView";
 	}
 
-	@GetMapping(value = "/test2")
+	@GetMapping(value = "traffic")
 	public String test2() {
-		return "dist/test2";
+		return "dist/traffic";
 	}
 
-	@GetMapping(value = "/test3")
+	@GetMapping(value = "/circleDistance")
 	public String test3() {
-		return "dist/test3";
+		return "dist/circleDistance";
 	}
 
 	@GetMapping(value = "/searchResult")
