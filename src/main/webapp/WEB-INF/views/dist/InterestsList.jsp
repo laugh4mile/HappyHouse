@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.util.Random"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value='${pageContext.request.contextPath}' />
 <!DOCTYPE html>
@@ -36,11 +37,15 @@
 						<!-- 게시글 뿌리기 -->
 						<div class="result-cards">
 							<c:forEach var="item" items="${result}">
+								<%
+									//1~8까지의 등급을 랜덤으로 발생시킴								
+								int ranSu = (new Random().nextInt(8)) + 1;
+								%>
 								<div class="col-lg-3 col-sm-5 portfolio-item">
 									<div class="card h-150">
 										<a href="${root}/map/detailedInfo?no=${item.aptNo}" target="blank">
 											<!-- 링크 바꾸기  -->
-											<img class="card-img-top" src="${root }/img/2.jpg" alt="">
+											<img class="card-img-top" src="<%=request.getContextPath()%>/img/<%=ranSu%>.jpg" alt="">
 										</a>
 										<div class="card-body">
 											<h4 class="card-title">
@@ -73,7 +78,7 @@
 				var val = "#" + $(this).attr('id');
 				var email = $("#email_" + no).text();
 				var aptNo = $("#aptNo_" + no).text();
-				
+
 				console.log(val);
 				console.log(email);
 				console.log(aptNo);

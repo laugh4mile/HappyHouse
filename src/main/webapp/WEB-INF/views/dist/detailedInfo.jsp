@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.util.Random"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value='${pageContext.request.contextPath}' />
 <!DOCTYPE html>
@@ -42,10 +43,14 @@
 
 			<section id="about">
 				<div class="container">
+					<%
+						//1~8까지의 등급을 랜덤으로 발생시킴								
+					int ranSu = (new Random().nextInt(8)) + 1;
+					%>
 					<div class="row">
 						<div class="col-lg-8 mx-auto">
 							<h2>상세정보</h2>
-							<img class="card-img" src="${root }/img/1.jpg" alt="">
+							<img class="card-img" src="<%=request.getContextPath() %>/img/<%=ranSu%>.jpg" alt="">
 							<table class="table">
 								<tbody>
 									<tr>
@@ -128,15 +133,14 @@
 	// 지도를 생성합니다    
 	var map;
 	var ps;
-	
+
 	$(document).ready(function() { //페이지 생성시 실행
 		geocode(); //해당 아파트 위도 경도 찾기
 	});//ready
-	
-	window.onload = function(){
+
+	window.onload = function() {
 		next();
 	}
-	
 
 	function next() {
 		// 장소 검색 객체를 생성합니다
@@ -159,7 +163,6 @@
 		// 각 카테고리에 클릭 이벤트를 등록합니다
 		addCategoryClickEvent();
 	}
-
 
 	// 엘리먼트에 이벤트 핸들러를 등록하는 함수입니다
 	function addEventHandle(target, type, callback) {
@@ -309,7 +312,6 @@
 	}
 
 	//======================================  맵 스크립트 ====================// 	
-
 
 	function geocode() {
 		let idx = 0;
