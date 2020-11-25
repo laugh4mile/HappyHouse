@@ -84,18 +84,23 @@
 				console.log(aptNo);
 
 				if ($(val).hasClass("liked")) {
-					$.ajax({
-						type : "delete",
-						url : "${root}/interests/delete/",
-						data : {
-							"email" : email,
-							"aptNo" : aptNo,
-						},
-						success : function(response) {
-							$(val).html('<i class="far fa-heart" aria-hidden="true"></i>');
-							$(val).removeClass("liked");
-						}
-					})
+					var del;
+					del=confirm("관심목록에서 삭제할까요?");
+					if(del){
+						$.ajax({
+							type : "delete",
+							url : "${root}/interests/delete/",
+							data : {
+								"email" : email,
+								"aptNo" : aptNo,
+							},
+							success : function(response) {
+								$(val).html('<i class="far fa-heart" aria-hidden="true"></i>');
+								$(val).removeClass("liked");
+								alert("관심목록에서 삭제했습니다.");
+							}
+						})
+					}
 				} else {
 					$.ajax({
 						type : "post",
@@ -107,6 +112,7 @@
 						success : function(response) {
 							$(val).html('<i class="fa fa-heart" aria-hidden="true"></i>');
 							$(val).addClass("liked");
+							alert("관심목록에 추가해습니다.\n 관심목록은 마이페이지>관심목록 조회로 찾아볼 수 있습니다.");
 						}
 					})
 				}

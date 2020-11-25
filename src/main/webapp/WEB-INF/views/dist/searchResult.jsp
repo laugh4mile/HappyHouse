@@ -313,59 +313,54 @@
 	
 	//-------------------아파트/주택, 매매/전월세 별로 보기 ---------------------//
 	
-	//------------------- 관심목록에 이미 등록되어있는 것은 하트 채워주기 ---------------------//
-	
-	
-	
-	
-	
-	
-	
-	
-	//------------------- 관심목록에 이미 등록되어있는 것은 하트 채워주기 ---------------------//
-	
 	//------------------- 관심목록 등록/해제 ---------------------//
 	
-	$(document).ready(function() {
-		$(".heart").click(function() {
-			var no = $(this).attr('id');
-			var val = "#" + $(this).attr('id');
-			var email = $("#email_" + no).text();
-			var aptNo = $("#aptNo_" + no).text();
-			
-			console.log(val);
-			console.log(email);
-			console.log(aptNo);
+		$(document).ready(function() {
+			$(".heart").click(function() {
+				var no = $(this).attr('id');
+				var val = "#" + $(this).attr('id');
+				var email = $("#email_" + no).text();
+				var aptNo = $("#aptNo_" + no).text();
 
-			if ($(val).hasClass("liked")) {
-				$.ajax({
-					type : "delete",
-					url : "${root}/interests/delete/",
-					data : {
-						"email" : email,
-						"aptNo" : aptNo,
-					},
-					success : function(response) {
-						$(val).html('<i class="far fa-heart" aria-hidden="true"></i>');
-						$(val).removeClass("liked");
+				console.log(val);
+				console.log(email);
+				console.log(aptNo);
+
+				if ($(val).hasClass("liked")) {
+					var del;
+					del=confirm("관심목록에서 삭제할까요?");
+					if(del){
+						$.ajax({
+							type : "delete",
+							url : "${root}/interests/delete/",
+							data : {
+								"email" : email,
+								"aptNo" : aptNo,
+							},
+							success : function(response) {
+								$(val).html('<i class="far fa-heart" aria-hidden="true"></i>');
+								$(val).removeClass("liked");
+								alert("관심목록에서 삭제했습니다.");
+							}
+						})
 					}
-				})
-			} else {
-				$.ajax({
-					type : "post",
-					url : "${root}/interests/insert",
-					data : {
-						"email" : email,
-						"aptNo" : aptNo,
-					},
-					success : function(response) {
-						$(val).html('<i class="fa fa-heart" aria-hidden="true"></i>');
-						$(val).addClass("liked");
-					}
-				})
-			}
+				} else {
+					$.ajax({
+						type : "post",
+						url : "${root}/interests/insert",
+						data : {
+							"email" : email,
+							"aptNo" : aptNo,
+						},
+						success : function(response) {
+							$(val).html('<i class="fa fa-heart" aria-hidden="true"></i>');
+							$(val).addClass("liked");
+							alert("관심목록에 추가해습니다.\n 관심목록은 마이페이지>관심목록 조회로 찾아볼 수 있습니다.");
+						}
+					})
+				}
+			});
 		});
-	});
 	
 	//------------------- 관심목록 등록/해제 ---------------------//
 
