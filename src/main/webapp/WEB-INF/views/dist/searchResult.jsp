@@ -32,154 +32,159 @@
 		</div>
 		<div id="layoutSidenav_content">
 			<div class="container-fluid">
-				<h1 class="mt-4">${word}검색결과</h1>
+				<h1 class="mt-4" style="position: fixed;">${word}검색결과</h1>
 
 				<c:choose>
 					<c:when test="${!empty result}">
-						<div id="map" style="height: 600px;"></div>
-
-						<!-- 검색 결과 내  검색하기 -->
-						<div class="searchResult-bar">
-							<div class="button-group">
-								<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-									방 종류 <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" id="roomtype">
-									<li><input type="checkbox" checked="checked" value="apt" id="apt" /> &nbsp;아파트</li>
-									<li><input type="checkbox" checked="checked" value="ju" id="ju" /> &nbsp;주택</li>
-								</ul>
-							</div>
-							<div class="button-group">
-								<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-									매물 종류 <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu" id="estatetytpe">
-									<li><input type="checkbox" checked="checked" value="meme" id="meme" /> &nbsp;매매</li>
-									<li><input type="checkbox" checked="checked" value="rent" id="rent" /> &nbsp;전/월세</li>
-								</ul>
-							</div>
+						<div style="float: left; position: fixed; width: 50%; margin-top: 100px;">
+							<div id="map" style="width: 800px; height: 700px;"></div>
 						</div>
-						<!-- 검색 결과 내  검색하기 -->
 
-						<!-- 게시글 뿌리기 -->
-						<div class="result-cards">
+						<div style="float: right; width: 50%;">
+							<!-- 검색 결과 내  검색하기 -->
+							<div class="searchResult-bar" style="margin-top: 50px;">
+								<div class="button-group">
+									<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+										방 종류 <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" id="roomtype">
+										<li><input type="checkbox" checked="checked" value="apt" id="apt" /> &nbsp;아파트</li>
+										<li><input type="checkbox" checked="checked" value="ju" id="ju" /> &nbsp;주택</li>
+									</ul>
+								</div>
+								<div class="button-group">
+									<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+										매물 종류 <span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" id="estatetytpe">
+										<li><input type="checkbox" checked="checked" value="meme" id="meme" /> &nbsp;매매</li>
+										<li><input type="checkbox" checked="checked" value="rent" id="rent" /> &nbsp;전/월세</li>
+									</ul>
+								</div>
+							</div>
+							<!-- 검색 결과 내  검색하기 -->
+
+							<!-- 게시글 뿌리기 -->
+							<div class="result-cards">
 
 
-							<c:forEach var="item" items="${result}">
-								<!-- 아파트 매매 / 아파트 전월세 / 주택 매매 / 주택 전월세를  type을 통해 구별해내기 -->
+								<c:forEach var="item" items="${result}">
+									<!-- 아파트 매매 / 아파트 전월세 / 주택 매매 / 주택 전월세를  type을 통해 구별해내기 -->
 
-								<% //1~8까지의 등급을 랜덤으로 발생시킴								
-								int ranSu = (new Random().nextInt(8)) + 1;
-								%>
+									<%
+										//1~8까지의 등급을 랜덤으로 발생시킴								
+									int ranSu = (new Random().nextInt(8)) + 1;
+									%>
 
-								<c:choose>
-									<c:when test="${item.type == 1}">
-										<div class="col-lg-3 col-sm-5 portfolio-item AptMeme">
-											<div class="card h-150">
-												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
-													<!-- 링크 바꾸기  -->
-													<img class="card-img-top" src="<%=request.getContextPath() %>/img/<%=ranSu%>.jpg" alt="">
-												</a>
-												<div class="card-body">
-													<h4 class="card-title">
-														아마트매매
-														<br>
-														<a href="${root}/map/detailedInfo?no=${item.no}">
-															<!-- 파라미터로 뭘 보내는게 좋을까?  -->
-															${item.aptName}
-														</a>
-													</h4>
-													<p class="card-text">${item.dealAmount}만원</p>
-													<div id="email_${item.no}" style="display: none;">${userinfo.email}</div>
-													<div id="aptNo_${item.no}" style="display: none;">${item.no}</div>
-													<span id="${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true"></i> </span>
+									<c:choose>
+										<c:when test="${item.type == 1}">
+											<div class="col-lg-6 col-sm-5 portfolio-item AptMeme">
+												<div class="card h-150">
+													<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+														<!-- 링크 바꾸기  -->
+														<img class="card-img-top" src="<%=request.getContextPath()%>/img/<%=ranSu%>.jpg" alt="">
+													</a>
+													<div class="card-body">
+														<h4 class="card-title">
+															아마트매매
+															<br>
+															<a href="${root}/map/detailedInfo?no=${item.no}">
+																<!-- 파라미터로 뭘 보내는게 좋을까?  -->
+																${item.aptName}
+															</a>
+														</h4>
+														<p class="card-text">${item.dealAmount}만원</p>
+														<div id="email_${item.no}" style="display: none;">${userinfo.email}</div>
+														<div id="aptNo_${item.no}" style="display: none;">${item.no}</div>
+														<span id="${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true"></i> </span>
+													</div>
 												</div>
 											</div>
-										</div>
-									</c:when>
+										</c:when>
 
-									<c:when test="${item.type == 3}">
-										<div class="col-lg-3 col-sm-5 portfolio-item AptRent">
-											<div class="card h-150">
-												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
-													<!-- 링크 바꾸기  -->
-													<img class="card-img-top" src="<%=request.getContextPath() %>/img/<%=ranSu%>.jpg" alt="">
-												</a>
-												<div class="card-body">
-													<h4 class="card-title">
-														아파트 전/월세
-														<br>
-														<a href="${root}/map/detailedInfo?no=${item.no}">
-															<!-- 파라미터로 뭘 보내는게 좋을까?  -->
-															${item.aptName}
-														</a>
-													</h4>
-													<p class="card-text">${item.dealAmount}만원</p>
-													<div id="email_${item.no}" style="display: none;">${userinfo.email}</div>
-													<div id="aptNo_${item.no}" style="display: none;">${item.no}</div>
-													<span id="${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true"></i> </span>
+										<c:when test="${item.type == 3}">
+											<div class="col-lg-6 col-sm-5 portfolio-item AptRent">
+												<div class="card h-150">
+													<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+														<!-- 링크 바꾸기  -->
+														<img class="card-img-top" src="<%=request.getContextPath()%>/img/<%=ranSu%>.jpg" alt="">
+													</a>
+													<div class="card-body">
+														<h4 class="card-title">
+															아파트 전/월세
+															<br>
+															<a href="${root}/map/detailedInfo?no=${item.no}">
+																<!-- 파라미터로 뭘 보내는게 좋을까?  -->
+																${item.aptName}
+															</a>
+														</h4>
+														<p class="card-text">${item.dealAmount}만원</p>
+														<div id="email_${item.no}" style="display: none;">${userinfo.email}</div>
+														<div id="aptNo_${item.no}" style="display: none;">${item.no}</div>
+														<span id="${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true"></i> </span>
+													</div>
 												</div>
 											</div>
-										</div>
-									</c:when>
+										</c:when>
 
-									<c:when test="${item.type == 2}">
-										<div class="col-lg-3 col-sm-5 portfolio-item JuMeme">
-											<div class="card h-150">
-												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
-													<!-- 링크 바꾸기  -->
-													<img class="card-img-top" src="<%=request.getContextPath() %>/img/<%=ranSu%>.jpg" alt="">
-												</a>
-												<div class="card-body">
-													<h4 class="card-title">
-														주택 매매
-														<br>
-														<a href="${root}/map/detailedInfo?no=${item.no}">
-															<!-- 파라미터로 뭘 보내는게 좋을까?  -->
-															${item.aptName}
-														</a>
-													</h4>
-													<p class="card-text">${item.dealAmount}만원</p>
-													<div id="email_${item.no}" style="display: none;">${userinfo.email}</div>
-													<div id="aptNo_${item.no}" style="display: none;">${item.no}</div>
-													<span id="${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true"></i> </span>
+										<c:when test="${item.type == 2}">
+											<div class="col-lg-6 col-sm-5 portfolio-item JuMeme">
+												<div class="card h-150">
+													<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+														<!-- 링크 바꾸기  -->
+														<img class="card-img-top" src="<%=request.getContextPath()%>/img/<%=ranSu%>.jpg" alt="">
+													</a>
+													<div class="card-body">
+														<h4 class="card-title">
+															주택 매매
+															<br>
+															<a href="${root}/map/detailedInfo?no=${item.no}">
+																<!-- 파라미터로 뭘 보내는게 좋을까?  -->
+																${item.aptName}
+															</a>
+														</h4>
+														<p class="card-text">${item.dealAmount}만원</p>
+														<div id="email_${item.no}" style="display: none;">${userinfo.email}</div>
+														<div id="aptNo_${item.no}" style="display: none;">${item.no}</div>
+														<span id="${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true"></i> </span>
+													</div>
 												</div>
 											</div>
-										</div>
-									</c:when>
+										</c:when>
 
-									<c:when test="${item.type == 4}">
-										<div class="col-lg-3 col-sm-5 portfolio-item JuRent">
-											<div class="card h-150">
-												<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
-													<!-- 링크 바꾸기  -->
-													<img class="card-img-top" src="<%=request.getContextPath() %>/img/<%=ranSu%>.jpg" alt="">
-												</a>
-												<div class="card-body">
-													<h4 class="card-title">
-														주택 전/월세
-														<br>
-														<a href="${root}/map/detailedInfo?no=${item.no}">
-															<!-- 파라미터로 뭘 보내는게 좋을까?  -->
-															${item.aptName}
-														</a>
-													</h4>
-													<p class="card-text">${item.dealAmount}만원</p>
-													<div id="email_${item.no}" style="display: none;">${userinfo.email}</div>
-													<div id="aptNo_${item.no}" style="display: none;">${item.no}</div>
-													<span id="${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true"></i> </span>
+										<c:when test="${item.type == 4}">
+											<div class="col-lg-6 col-sm-5 portfolio-item JuRent">
+												<div class="card h-150">
+													<a href="${root}/map/detailedInfo?no=${item.no}" target="blank">
+														<!-- 링크 바꾸기  -->
+														<img class="card-img-top" src="<%=request.getContextPath()%>/img/<%=ranSu%>.jpg" alt="">
+													</a>
+													<div class="card-body">
+														<h4 class="card-title">
+															주택 전/월세
+															<br>
+															<a href="${root}/map/detailedInfo?no=${item.no}">
+																<!-- 파라미터로 뭘 보내는게 좋을까?  -->
+																${item.aptName}
+															</a>
+														</h4>
+														<p class="card-text">${item.dealAmount}만원</p>
+														<div id="email_${item.no}" style="display: none;">${userinfo.email}</div>
+														<div id="aptNo_${item.no}" style="display: none;">${item.no}</div>
+														<span id="${item.no}" class="heart"><i class="far fa-heart" aria-hidden="true"></i> </span>
+													</div>
 												</div>
 											</div>
-										</div>
-									</c:when>
+										</c:when>
 
-								</c:choose>
-							</c:forEach>
+									</c:choose>
+								</c:forEach>
 
+							</div>
 						</div>
 					</c:when>
 					<c:otherwise>
-							검색 결과가 없습니다.			
+						<div style="margin-top: 100px;">검색 결과가 없습니다.</div>
 					</c:otherwise>
 				</c:choose>
 			</div>
